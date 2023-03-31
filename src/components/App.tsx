@@ -1,14 +1,21 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
-import {Provider} from 'react-redux';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import {
   MD3DarkTheme,
   MD3LightTheme,
   Provider as PaperProvider,
+  adaptNavigationTheme,
 } from 'react-native-paper';
+import {Provider} from 'react-redux';
 import {store} from '../store';
 
-import Home from './Home';
+import HomeScreen from '../screens/HomeScreen';
+import DetailsScreen from '../screens/DetailsScreen';
+
+const Stack = createStackNavigator();
+const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme});
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -17,11 +24,21 @@ function App(): JSX.Element {
 
   return (
     <Provider store={store}>
-      <PaperProvider theme={theme}>
+      <PaperProvider theme={{...theme, version: 3}}>
         <SafeAreaView>
           <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-          <Home />
         </SafeAreaView>
+
+        <NavigationContainer theme={LightTheme}>
+          <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+              headerShown: false,
+            }}>
+            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Details" component={DetailsScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </PaperProvider>
     </Provider>
   );
