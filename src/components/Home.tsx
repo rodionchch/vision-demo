@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
+import {Button} from 'react-native-paper';
 import {useAppDispatch, useAppSelector} from '../store/hooks';
 import {sayHello} from '../store/appSlice';
 
@@ -13,7 +14,7 @@ const Home = () => {
 
   return (
     <View>
-      <Text>{hello}</Text>
+      <Button onPress={() => {}}>{hello}</Button>
     </View>
   );
 };
