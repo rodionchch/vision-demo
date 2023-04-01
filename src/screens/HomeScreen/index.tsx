@@ -10,7 +10,7 @@ const HomeScreen = () => {
     <View>
       <Text>HomeScreen</Text>
       <Button
-        // icon="camera"
+        icon="camera"
         onPress={() => {
           navigate('Details');
         }}>
