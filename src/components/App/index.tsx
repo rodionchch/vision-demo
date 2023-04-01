@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import {store} from '../../store';
 
 import Navigation from '../Navigation';
+import Drawer from '../Drawer';
 import useApp from './useApp';
 
 export const PreferencesContext = createContext({
@@ -22,6 +23,7 @@ function App(): JSX.Element {
         <PaperProvider theme={theme}>
           <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
           <Navigation theme={theme} />
+          <Drawer />
         </PaperProvider>
       </PreferencesContext.Provider>
     </Provider>
