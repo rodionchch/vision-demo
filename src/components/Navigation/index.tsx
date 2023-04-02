@@ -79,10 +79,10 @@ const Navigation: React.FC<NavigationProps> = ({theme}) => {
         <Stack.Navigator
           initialRouteName="Home"
           screenOptions={{
-            header: props => <NavigationBar {...props} />,
+            // header: props => <NavigationBar {...props} />,
           }}>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Details" component={DetailsScreen} />
+          <Stack.Screen name="Sms" component={SmsScreen} />
+          <Stack.Screen name="Mail" component={MailScreen} />
         </Stack.Navigator>
       </NavigationContainer> */}
     </>

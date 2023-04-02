@@ -1,17 +1,23 @@
-import React from 'react';
-import {Appbar, Menu} from 'react-native-paper';
+import React, {useState} from 'react';
+import {Appbar, Button, Menu} from 'react-native-paper';
 import {getHeaderTitle} from '@react-navigation/elements';
+import {useNavigation} from '@react-navigation/native';
 
 const NavigationBar = ({navigation, route, options, back}) => {
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
+  const {toggleDrawer} = useNavigation();
 
   const title = getHeaderTitle(options, route.name);
 
   return (
     <Appbar.Header>
-      {back ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
+      {back ? (
+        <Appbar.BackAction onPress={navigation.goBack} />
+      ) : (
+        <Button onPress={toggleDrawer}>menu</Button>
+      )}
       <Appbar.Content title={title} />
       {!back ? (
         <Menu
