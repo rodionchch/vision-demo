@@ -3,35 +3,35 @@ const menu = [
     {
       name: 'Sms',
       label: 'SMS',
-      icon: 'chat-processing-outline',
+      icon: 'chat-processing',
     },
     {
       name: 'Mail',
-      icon: 'email-outline',
-    },
-    {
-      name: 'Chat',
-      icon: 'forum-outline',
+      icon: 'email',
     },
     {
       name: 'Call',
-      icon: 'phone-outline',
+      icon: 'phone',
+    },
+    {
+      name: 'Chat',
+      icon: 'forum',
     },
   ],
   [
     {
       name: 'Phonebook',
-      icon: 'book-open-outline',
+      icon: 'book-open',
     },
     {
       name: 'Mailbook',
-      icon: 'email-multiple-outline',
+      icon: 'email-multiple',
     },
   ],
   [
     {
       name: 'Settings',
-      icon: 'cog-outline',
+      icon: 'cog',
     },
   ],
 ];

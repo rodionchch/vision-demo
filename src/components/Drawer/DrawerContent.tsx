@@ -27,7 +27,7 @@ const DrawerContent = () => {
             {section?.map(({name, label, icon}, index) => (
               <DrawerItem
                 key={index}
-                icon={({color, size}) => getIcon(icon, color, size)}
+                icon={props => getIcon(icon, props)}
                 label={label || name}
                 onPress={() => {
                   navigate(name);

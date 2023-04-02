@@ -44,7 +44,7 @@ const useApp = () => {
     [toggleTheme, isThemeDark],
   );
 
-  return [isDarkMode, theme, preferences];
+  return [isThemeDark, theme, preferences];
 };
 
 export default useApp;

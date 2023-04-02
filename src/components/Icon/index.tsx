@@ -1,18 +1,30 @@
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-type IconProps = {
-  name: string;
-  color?: string;
-  size?: number;
+type Props = {
+  focused: boolean;
+  color: string;
+  size: number;
 };
 
-export const getIcon = (name: string, color?: string, size?: number) => (
-  <Icon name={name} color={color} size={size} />
+type IconProps = {
+  name: string;
+};
+
+export const getIcon = (name: string, props: Props) => (
+  <Icon
+    name={name}
+    focused={props?.focused}
+    color={props?.color}
+    size={props?.size}
+  />
 );
 
-const Icon: React.FC<IconProps> = ({name, color, size}) => {
-  return <MaterialCommunityIcons name={name} color={color} size={size} />;
+const Icon: React.FC<IconProps & Props> = ({name, focused, color, size}) => {
+  const focusedName = focused ? name : `${name}-outline`;
+  return (
+    <MaterialCommunityIcons name={focusedName} color={color} size={size} />
+  );
 };
 
 export default Icon;

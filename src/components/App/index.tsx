@@ -6,7 +6,6 @@ import {Provider} from 'react-redux';
 import {store} from 'store';
 import useApp from './useApp';
 import Drawer from '../Drawer';
-import Navigation from '../Navigation';
 
 export const PreferencesContext = createContext({
   toggleTheme: () => {},
@@ -14,15 +13,16 @@ export const PreferencesContext = createContext({
 });
 
 function App(): JSX.Element {
-  const [isDarkMode, theme, preferences] = useApp();
+  const [isThemeDark, theme, preferences] = useApp();
 
   return (
     <Provider store={store}>
       <PreferencesContext.Provider value={preferences}>
         <PaperProvider theme={theme}>
-          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-          {/* <Drawer theme={theme} /> */}
-          <Navigation theme={theme} />
+          <StatusBar
+            barStyle={isThemeDark ? 'light-content' : 'dark-content'}
+          />
+          <Drawer theme={theme} />
         </PaperProvider>
       </PreferencesContext.Provider>
     </Provider>

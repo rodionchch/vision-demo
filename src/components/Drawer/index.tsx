@@ -2,13 +2,8 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-import SmsScreen from 'screens/SmsScreen';
-import MailScreen from 'screens/MailScreen';
-import ChatScreen from 'screens/ChatScreen';
-import CallScreen from 'screens/CallScreen';
-
+import HomeScreen from 'screens/HomeScreen';
 import DrawerContent from '../Drawer/DrawerContent';
-import NavigationBar from '../Navigation/NavigationBar';
 
 const DrawerNavigator = createDrawerNavigator();
 
@@ -21,13 +16,10 @@ const Drawer: React.FC<DrawerProps> = ({theme}) => {
     <NavigationContainer theme={theme}>
       <DrawerNavigator.Navigator
         screenOptions={{
-          header: props => <NavigationBar {...props} />,
+          headerShown: false,
         }}
         drawerContent={() => <DrawerContent />}>
-        <DrawerNavigator.Screen name="Sms" component={SmsScreen} />
-        <DrawerNavigator.Screen name="Mail" component={MailScreen} />
-        <DrawerNavigator.Screen name="Chat" component={ChatScreen} />
-        <DrawerNavigator.Screen name="Call" component={CallScreen} />
+        <DrawerNavigator.Screen name="Home" component={HomeScreen} />
       </DrawerNavigator.Navigator>
     </NavigationContainer>
   );
