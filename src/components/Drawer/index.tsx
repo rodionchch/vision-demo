@@ -2,10 +2,10 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-import SmsScreen from '../../screens/SmsScreen';
-import MailScreen from '../../screens/MailScreen';
-import ChatScreen from '../../screens/ChatScreen';
-import CallScreen from '../../screens/CallScreen';
+import SmsScreen from 'screens/SmsScreen';
+import MailScreen from 'screens/MailScreen';
+import ChatScreen from 'screens/ChatScreen';
+import CallScreen from 'screens/CallScreen';
 
 import DrawerContent from '../Drawer/DrawerContent';
 import NavigationBar from '../Navigation/NavigationBar';

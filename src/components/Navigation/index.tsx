@@ -5,10 +5,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import SmsScreen from '../../screens/SmsScreen';
-import MailScreen from '../../screens/MailScreen';
-import CallScreen from '../../screens/CallScreen';
-import ChatScreen from '../../screens/ChatScreen';
+import SmsScreen from 'screens/SmsScreen';
+import MailScreen from 'screens/MailScreen';
+import CallScreen from 'screens/CallScreen';
+import ChatScreen from 'screens/ChatScreen';
 import NavigationBar from './NavigationBar';
 import NavigationBottom from './NavigationBottom';
 

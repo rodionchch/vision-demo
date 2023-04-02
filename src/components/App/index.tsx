@@ -3,7 +3,7 @@ import {StatusBar} from 'react-native';
 
 import {Provider as PaperProvider} from 'react-native-paper';
 import {Provider} from 'react-redux';
-import {store} from '../../store';
+import {store} from 'store';
 import useApp from './useApp';
 import Drawer from '../Drawer';
 import Navigation from '../Navigation';
