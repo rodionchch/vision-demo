@@ -1,8 +1,18 @@
 import React from 'react';
 import {BottomNavigation} from 'react-native-paper';
 import {CommonActions} from '@react-navigation/native';
+import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
-const NavigationBottom = ({navigation, state, descriptors, insets}) => {
+export const getNavigationBottom = (props: BottomTabBarProps) => (
+  <NavigationBottom {...props} />
+);
+
+const NavigationBottom = ({
+  navigation,
+  state,
+  descriptors,
+  insets,
+}: BottomTabBarProps) => {
   return (
     <BottomNavigation.Bar
       navigationState={state}

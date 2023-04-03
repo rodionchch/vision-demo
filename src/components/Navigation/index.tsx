@@ -2,8 +2,8 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import ChatScreen from 'screens/ChatScreen';
-import NavigationBar from './NavigationBar';
-import NavigationBottom from './NavigationBottom';
+import {getNavigationBar} from './NavigationBar';
+import {getNavigationBottom} from './NavigationBottom';
 import {getIcon} from 'components/Icon';
 
 import tabs from './tabs';
@@ -18,12 +18,12 @@ const Navigation: React.FC<NavigationProps> = () => {
       <Tab.Navigator
         initialRouteName="Sms"
         screenOptions={{
-          header: props => <NavigationBar {...props} />,
+          header: getNavigationBar,
         }}
-        tabBar={props => <NavigationBottom {...props} />}>
+        tabBar={getNavigationBottom}>
         {tabs.map(({name, label, icon}, index) => (
           <Tab.Screen
-            key={index}
+            key={`${name}-${index}`}
             name={name}
             component={ChatScreen}
             options={{

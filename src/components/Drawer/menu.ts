@@ -20,11 +20,11 @@ const menu = [
   ],
   [
     {
-      name: 'Phonebook',
+      name: 'PhoneBook',
       icon: 'book-open',
     },
     {
-      name: 'Mailbook',
+      name: 'MailBook',
       icon: 'email-multiple',
     },
   ],

@@ -1,18 +1,17 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, Theme} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-import DrawerContent from './DrawerContent';
-
 import HomeScreen from 'screens/HomeScreen';
-import PhonebookScreen from 'screens/PhonebookScreen';
-import MailbookScreen from 'screens/MailbookScreen';
+import PhoneBookScreen from 'screens/PhoneBookScreen';
+import MailBookScreen from 'screens/MailBookScreen';
 import SettingsScreen from 'screens/SettingsScreen';
+import {getDrawerContent} from './DrawerContent';
 
 const DrawerNavigator = createDrawerNavigator();
 
 type DrawerProps = {
-  theme: any;
+  theme: Theme;
 };
 
 const Drawer: React.FC<DrawerProps> = ({theme}) => {
@@ -22,10 +21,10 @@ const Drawer: React.FC<DrawerProps> = ({theme}) => {
         screenOptions={{
           headerShown: false,
         }}
-        drawerContent={() => <DrawerContent />}>
+        drawerContent={getDrawerContent}>
         <DrawerNavigator.Screen name="Home" component={HomeScreen} />
-        <DrawerNavigator.Screen name="Phonebook" component={PhonebookScreen} />
-        <DrawerNavigator.Screen name="Mailbook" component={MailbookScreen} />
+        <DrawerNavigator.Screen name="PhoneBook" component={PhoneBookScreen} />
+        <DrawerNavigator.Screen name="MailBook" component={MailBookScreen} />
         <DrawerNavigator.Screen name="Settings" component={SettingsScreen} />
       </DrawerNavigator.Navigator>
     </NavigationContainer>

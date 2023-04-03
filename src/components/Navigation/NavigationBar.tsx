@@ -2,10 +2,23 @@ import React, {useContext, useState} from 'react';
 import {Appbar, Menu} from 'react-native-paper';
 import {getHeaderTitle} from '@react-navigation/elements';
 import {useNavigation} from '@react-navigation/native';
+import {BottomTabHeaderProps} from '@react-navigation/bottom-tabs';
+import {NativeStackHeaderProps} from '@react-navigation/native-stack';
+import NavigationType from 'types/NavigationType';
+
 import {PreferencesContext} from 'components/App';
 
-const NavigationBar = ({navigation, route, options, back}) => {
-  const {toggleDrawer} = useNavigation();
+export const getNavigationBar = (
+  props: BottomTabHeaderProps | NativeStackHeaderProps | NavigationType,
+) => <NavigationBar {...props} />;
+
+const NavigationBar = ({
+  navigation,
+  route,
+  options,
+  back,
+}: BottomTabHeaderProps | NativeStackHeaderProps | NavigationType) => {
+  const {toggleDrawer} = useNavigation<NavigationType>();
   const {toggleTheme, isThemeDark} = useContext(PreferencesContext);
 
   const [visible, setVisible] = useState(false);

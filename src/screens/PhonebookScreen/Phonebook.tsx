@@ -1,8 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
 
-const Phonebook = () => {
+const PhoneBook = () => {
   return <View></View>;
 };
 
-export default Phonebook;
+export default PhoneBook;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import NavigationBar from 'components/Navigation/NavigationBar';
+import {getNavigationBar} from 'components/Navigation/NavigationBar';
 import Settings from './Settings';
 
 const Stack = createNativeStackNavigator();
@@ -10,7 +10,7 @@ const SettingsScreen = () => {
     <Stack.Navigator
       initialRouteName="List"
       screenOptions={{
-        header: props => <NavigationBar {...props} />,
+        header: getNavigationBar,
       }}>
       <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>

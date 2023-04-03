@@ -1,4 +1,4 @@
-import {createContext, useCallback, useMemo, useState} from 'react';
+import {createContext, useCallback, useEffect, useMemo, useState} from 'react';
 import {useColorScheme} from 'react-native';
 import {
   DarkTheme as NavigationDarkTheme,
@@ -35,6 +35,10 @@ const useApp = () => {
   const toggleTheme = useCallback(() => {
     return setIsThemeDark(!isThemeDark);
   }, [isThemeDark]);
+
+  useEffect(() => {
+    setIsThemeDark(isDarkMode);
+  }, [isDarkMode]);
 
   const preferences = useMemo(
     () => ({
