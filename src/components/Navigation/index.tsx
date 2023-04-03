@@ -21,11 +21,11 @@ const Navigation: React.FC<NavigationProps> = () => {
           header: getNavigationBar,
         }}
         tabBar={getNavigationBottom}>
-        {tabs.map(({name, label, icon}, index) => (
+        {tabs.map(({name, label, icon, component}, index) => (
           <Tab.Screen
             key={`${name}-${index}`}
             name={name}
-            component={ChatScreen}
+            component={component}
             options={{
               tabBarLabel: label,
               headerTitle: label,
