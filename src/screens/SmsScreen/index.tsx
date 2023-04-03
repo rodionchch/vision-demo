@@ -5,32 +5,32 @@ import {List, Text} from 'react-native-paper';
 const SmsScreen = () => {
   return (
     <ScrollView>
-      <List.Subheader>Unified Folders</List.Subheader>
       <List.Section>
+        <List.Subheader>Unified Folders</List.Subheader>
         <List.Item
           title="Conversations"
           onPress={() => {}}
-          left={() => <List.Icon icon="chat" style={{paddingLeft: 8}} />}
+          left={() => <List.Icon icon="chat" style={{paddingLeft: 16}} />}
           right={() => <Text>659</Text>}
         />
         <List.Item
           title="All Unread"
           onPress={() => {}}
           left={() => (
-            <List.Icon icon="email-mark-as-unread" style={{paddingLeft: 8}} />
+            <List.Icon icon="email-mark-as-unread" style={{paddingLeft: 16}} />
           )}
           right={() => <Text>653</Text>}
         />
         <List.Item
           title="All Trash"
           onPress={() => {}}
-          left={() => <List.Icon icon="delete" style={{paddingLeft: 8}} />}
+          left={() => <List.Icon icon="delete" style={{paddingLeft: 16}} />}
           right={() => <Text>0</Text>}
         />
         <List.Item
           title="All Favorites"
           onPress={() => {}}
-          left={() => <List.Icon icon="heart" style={{paddingLeft: 8}} />}
+          left={() => <List.Icon icon="heart" style={{paddingLeft: 16}} />}
           right={() => <Text>0</Text>}
         />
       </List.Section>
@@ -38,7 +38,9 @@ const SmsScreen = () => {
       <List.Section>
         <List.Accordion
           title="Phone Numbers"
-          left={() => <List.Icon icon="account-group" />}>
+          left={() => (
+            <List.Icon icon="account-group" style={{paddingLeft: 8}} />
+          )}>
           <List.Item
             title="DEV TEST SIM"
             description={'+971608856211'}
@@ -66,7 +68,9 @@ const SmsScreen = () => {
         </List.Accordion>
         <List.Accordion
           title="Companies"
-          left={() => <List.Icon icon="account-group" />}>
+          left={() => (
+            <List.Icon icon="account-group" style={{paddingLeft: 8}} />
+          )}>
           <List.Item
             title="LOIM ALEXANDER ON HANDS"
             description={'+971608856211'}
