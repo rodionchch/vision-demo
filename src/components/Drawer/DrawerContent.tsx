@@ -22,14 +22,18 @@ const DrawerContent = () => {
 
         {menu?.map((section, index) => (
           <Drawer.Section key={index} showDivider={index + 1 < menu?.length}>
-            {section?.map(({name, label, icon}, index) => (
+            {section?.map(({name, label, icon, disabled}, index) => (
               <DrawerItem
                 key={`${name}-${index}`}
                 icon={props => getIcon(icon, props)}
                 label={label || name}
                 onPress={() => {
-                  navigate(name);
+                  if (!disabled) {
+                    navigate(name);
+                  }
                 }}
+                style={{opacity: !disabled ? 1 : 0.3}}
+                pressOpacity={!disabled ? 0.3 : 1}
               />
             ))}
           </Drawer.Section>

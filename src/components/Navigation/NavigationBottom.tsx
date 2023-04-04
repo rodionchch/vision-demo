@@ -17,7 +17,7 @@ const NavigationBottom = ({
     <BottomNavigation.Bar
       navigationState={state}
       safeAreaInsets={insets}
-      shifting={true}
+      // shifting={true}
       onTabPress={({route, preventDefault}) => {
         const {disabled} = route?.params;
         if (!disabled) {

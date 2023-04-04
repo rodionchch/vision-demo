@@ -12,10 +12,12 @@ const menu = [
     {
       name: 'Call',
       icon: 'phone',
+      disabled: true,
     },
     {
       name: 'Chat',
       icon: 'forum',
+      disabled: true,
     },
   ],
   [
