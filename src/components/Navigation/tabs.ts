@@ -9,12 +9,14 @@ const tabs = [
     label: 'Chat',
     icon: 'forum',
     component: ChatScreen,
+    disabled: true,
   },
   {
     name: 'Call',
     label: 'Call',
     icon: 'phone',
     component: CallScreen,
+    disabled: true,
   },
   {
     name: 'Mail',

@@ -1,7 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import ChatScreen from 'screens/ChatScreen';
 import {getNavigationBar} from './NavigationBar';
 import {getNavigationBottom} from './NavigationBottom';
 import {getIcon} from 'components/Icon';
@@ -21,7 +20,7 @@ const Navigation: React.FC<NavigationProps> = () => {
           header: getNavigationBar,
         }}
         tabBar={getNavigationBottom}>
-        {tabs.map(({name, label, icon, component}, index) => (
+        {tabs.map(({name, label, icon, component, disabled}, index) => (
           <Tab.Screen
             key={`${name}-${index}`}
             name={name}
@@ -31,6 +30,7 @@ const Navigation: React.FC<NavigationProps> = () => {
               headerTitle: label,
               tabBarIcon: props => getIcon(icon, props),
             }}
+            initialParams={{disabled}}
           />
         ))}
       </Tab.Navigator>

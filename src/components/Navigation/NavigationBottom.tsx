@@ -17,23 +17,29 @@ const NavigationBottom = ({
     <BottomNavigation.Bar
       navigationState={state}
       safeAreaInsets={insets}
+      shifting={true}
       onTabPress={({route, preventDefault}) => {
-        const event = navigation.emit({
-          type: 'tabPress',
-          target: route.key,
-          canPreventDefault: true,
-        });
-
-        if (event.defaultPrevented) {
-          preventDefault();
-        } else {
-          navigation.dispatch({
-            ...CommonActions.navigate(route.name, route.params),
-            target: state.key,
+        const {disabled} = route?.params;
+        if (!disabled) {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+            canPreventDefault: true,
           });
+
+          if (event.defaultPrevented) {
+            preventDefault();
+          } else {
+            navigation.dispatch({
+              ...CommonActions.navigate(route.name, route.params),
+              target: state.key,
+            });
+          }
         }
       }}
-      renderIcon={({route, focused, color}) => {
+      renderIcon={({route, focused, color: rgba}) => {
+        const {disabled} = route?.params;
+        const color = !disabled ? rgba : '#888';
         const {options} = descriptors[route.key];
         if (options.tabBarIcon) {
           return options.tabBarIcon({focused, color, size: 24});
