@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer, Theme} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
+import LoginScreen from 'screens/LoginScreen';
 import HomeScreen from 'screens/HomeScreen';
 import PhoneBookScreen from 'screens/PhoneBookScreen';
 import MailBookScreen from 'screens/MailBookScreen';
@@ -18,11 +19,13 @@ const Drawer: React.FC<DrawerProps> = ({theme}) => {
   return (
     <NavigationContainer theme={theme}>
       <DrawerNavigator.Navigator
+        initialRouteName="Home"
         screenOptions={{
           headerShown: false,
         }}
         drawerContent={getDrawerContent}>
         <DrawerNavigator.Screen name="Home" component={HomeScreen} />
+        <DrawerNavigator.Screen name="Login" component={LoginScreen} />
         <DrawerNavigator.Screen name="PhoneBook" component={PhoneBookScreen} />
         <DrawerNavigator.Screen name="MailBook" component={MailBookScreen} />
         <DrawerNavigator.Screen name="Settings" component={SettingsScreen} />

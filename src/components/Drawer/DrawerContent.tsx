@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {DrawerItem, DrawerContentScrollView} from '@react-navigation/drawer';
+import {DrawerItem} from '@react-navigation/drawer';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {Avatar, Title, Drawer} from 'react-native-paper';
 import NavigationType from 'types/NavigationType';
 import {getIcon} from '../Icon';
@@ -13,7 +14,7 @@ const DrawerContent = () => {
   const {navigate} = useNavigation<NavigationType>();
 
   return (
-    <DrawerContentScrollView>
+    <SafeAreaView>
       <View>
         <View style={styles.userInfoSection}>
           <Avatar.Text label="R" size={50} />
@@ -39,7 +40,7 @@ const DrawerContent = () => {
           </Drawer.Section>
         ))}
       </View>
-    </DrawerContentScrollView>
+    </SafeAreaView>
   );
 };
 
