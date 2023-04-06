@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import {GestureResponderEvent, StyleSheet} from 'react-native';
-import {Divider, List, Menu, Text, TouchableRipple} from 'react-native-paper';
+import {List, MD3Colors, Text, TouchableRipple} from 'react-native-paper';
+
+import Menu, {ContextualMenuCoord} from 'components/Menu';
+import menu from './menu';
 
 type TagsProps = {
   data: {
@@ -15,8 +18,6 @@ type TagsProps = {
   }[];
 };
 
-type ContextualMenuCoord = {x: number; y: number};
-
 const getTagIcon = (icon?: string) => () =>
   icon && <List.Icon icon={icon} style={styles.tagIcon} />;
 
@@ -28,17 +29,17 @@ const getCount = (count?: number) => () =>
 
 const Tags: React.FC<TagsProps> = ({data}) => {
   const [contextualMenuCoord, setContextualMenuCoor] =
-    React.useState<ContextualMenuCoord>({x: 0, y: 0});
-  const [visible, setVisible] = useState(false);
+    useState<ContextualMenuCoord>({x: 0, y: 0});
+  const [visible, setVisible] = useState<boolean | {id: number}>(false);
 
-  const onLongPress = (event: GestureResponderEvent) => {
+  const onLongPress = (event: GestureResponderEvent, tag: {id: number}) => {
     const {nativeEvent} = event;
 
     setContextualMenuCoor({
       x: nativeEvent.pageX,
       y: nativeEvent.pageY,
     });
-    setVisible(true);
+    setVisible(tag);
   };
 
   const toggleMenu = () => setVisible(!visible);
@@ -46,20 +47,11 @@ const Tags: React.FC<TagsProps> = ({data}) => {
   return (
     <>
       <Menu
+        menu={menu}
         visible={visible}
-        onDismiss={toggleMenu}
-        anchor={contextualMenuCoord}>
-        <Menu.Item
-          leadingIcon={'square-edit-outline'}
-          onPress={toggleMenu}
-          title="Edit"
-        />
-        <Menu.Item
-          leadingIcon={'information-outline'}
-          onPress={toggleMenu}
-          title="Info"
-        />
-      </Menu>
+        toggleMenu={toggleMenu}
+        contextualMenuCoord={contextualMenuCoord}
+      />
 
       <List.Section>
         {data?.map(({id, tag, icon, items}) => (
@@ -68,7 +60,15 @@ const Tags: React.FC<TagsProps> = ({data}) => {
               <TouchableRipple
                 key={itemId}
                 onPress={() => {}}
-                onLongPress={onLongPress}>
+                onLongPress={event => {
+                  onLongPress(event, {id: itemId});
+                }}
+                style={(() => {
+                  if (typeof visible === 'object' && visible.id === itemId) {
+                    return {backgroundColor: MD3Colors.secondary30};
+                  }
+                  return null;
+                })()}>
                 <List.Item
                   title={name}
                   description={phone}

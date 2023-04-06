@@ -1,20 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Code from 'components/Code';
 import {useNavigation} from '@react-navigation/native';
+
 import NavigationType from 'types/NavigationType';
+import useFaceId from 'hooks/useFaceId';
+import sleep from 'hooks/sleep';
 import CodeDots from 'components/Code/Dots';
+import Code from 'components/Code';
 
 import Logo from 'assets/images/logo.png';
 
 const LoginScreen = () => {
-  const [savedPIN, setSavedPIN] = useState<string | null>(null);
+  const [onFaceId, faceIdSuccess, isCompatible] = useFaceId();
 
-  const [PIN, setPIN] = useState('');
   const {navigate} = useNavigation<NavigationType>();
+  const [savedPIN, setSavedPIN] = useState<string | null>(null);
+  const [PIN, setPIN] = useState('');
+  const startFaceId = useRef(false);
 
   useEffect(() => {
     AsyncStorage.setItem('pin', '00000');
@@ -29,12 +34,33 @@ const LoginScreen = () => {
   useEffect(() => {
     if (PIN?.length === 5) {
       if (PIN === savedPIN) {
-        navigate('Home');
+        sleep(500).then(() => {
+          navigate('Home');
+        });
       } else {
         setPIN('');
       }
     }
   }, [PIN, navigate, savedPIN]);
+
+  useEffect(() => {
+    if (
+      isCompatible &&
+      typeof onFaceId === 'function' &&
+      !startFaceId.current
+    ) {
+      onFaceId();
+      startFaceId.current = true;
+    }
+  }, [isCompatible, onFaceId]);
+
+  useEffect(() => {
+    if (faceIdSuccess) {
+      AsyncStorage.getItem('pin').then(pin => {
+        setPIN(pin || '');
+      });
+    }
+  }, [faceIdSuccess, navigate]);
 
   const onChangeCode = (number: number) => {
     if (PIN?.length < 5) {
@@ -54,7 +80,11 @@ const LoginScreen = () => {
           Please enter your PIN
         </Text>
         <CodeDots length={PIN?.length} style={styles.dots} />
-        <Code onChange={onChangeCode} onBackspace={onBackspace} />
+        <Code
+          onFaceId={onFaceId}
+          onChange={onChangeCode}
+          onBackspace={onBackspace}
+        />
       </View>
     </SafeAreaView>
   );

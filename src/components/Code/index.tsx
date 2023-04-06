@@ -3,11 +3,12 @@ import CodeButton from './CodeButton';
 import {StyleSheet, View} from 'react-native';
 
 type CodeProps = {
+  onFaceId: boolean | (() => Promise<void>);
   onChange: (code: number) => void;
   onBackspace: () => void;
 };
 
-const Code: React.FC<CodeProps> = ({onChange, onBackspace}) => {
+const Code: React.FC<CodeProps> = ({onFaceId, onChange, onBackspace}) => {
   return (
     <View style={styles.container}>
       <CodeButton icon={'numeric-1'} onPress={() => onChange(1)} />
@@ -26,6 +27,7 @@ const Code: React.FC<CodeProps> = ({onChange, onBackspace}) => {
           marginTop: 18,
           marginLeft: 18,
         }}
+        onPress={onFaceId}
       />
       <CodeButton icon={'numeric-0'} onPress={() => onChange(0)} />
       <CodeButton
