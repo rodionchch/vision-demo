@@ -1,17 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import {useDisableDrawer} from 'hooks/useDrawer';
 import List from 'components/List';
-import {profile} from '../settingsData';
+import useProfile from './useProfile';
 
 const Profile = () => {
   useDisableDrawer();
+  const [profile] = useProfile();
 
   return (
-    <View>
+    <ScrollView>
       <List data={profile} />
-    </View>
+    </ScrollView>
   );
 };
 

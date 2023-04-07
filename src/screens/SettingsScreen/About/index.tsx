@@ -1,17 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import {useDisableDrawer} from 'hooks/useDrawer';
 import List from 'components/List';
-import {about} from '../settingsData';
+import useAbout from './useAbout';
 
 const About = () => {
+  const [about] = useAbout();
   useDisableDrawer();
 
   return (
-    <View>
+    <ScrollView>
       <List data={about} />
-    </View>
+    </ScrollView>
   );
 };
 

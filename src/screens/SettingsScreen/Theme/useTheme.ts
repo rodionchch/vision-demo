@@ -3,18 +3,20 @@ import {useContext, useEffect, useMemo, useState} from 'react';
 import {PreferencesContext} from 'components/App';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const SYSTEM = 'system',
+enum ThemeEnum {
+  SYSTEM = 'system',
   DARK = 'dark',
-  LIGHT = 'light';
+  LIGHT = 'light',
+}
 
 const useTheme = () => {
-  const [currentTheme, setCurrentTheme] = useState<string>('dark');
+  const [checked, setChecked] = useState<ThemeEnum>(ThemeEnum.DARK);
   const {setTheme} = useContext(PreferencesContext);
 
   useEffect(() => {
     AsyncStorage.getItem('theme').then(theme => {
       if (theme) {
-        setCurrentTheme(theme);
+        setChecked(theme as ThemeEnum);
       }
     });
   }, []);
@@ -22,37 +24,37 @@ const useTheme = () => {
   const themes = useMemo(
     () => [
       {
-        title: 'System',
-        selected: currentTheme === SYSTEM,
+        label: 'System',
+        checked: checked === ThemeEnum.SYSTEM,
         onPress: () => {
-          AsyncStorage.setItem('theme', SYSTEM).then(() => {
-            setCurrentTheme(SYSTEM);
-            setTheme(SYSTEM);
+          AsyncStorage.setItem('theme', ThemeEnum.SYSTEM).then(() => {
+            setChecked(ThemeEnum.SYSTEM);
+            setTheme(ThemeEnum.SYSTEM);
           });
         },
       },
       {
-        title: 'Dark',
-        selected: currentTheme === DARK,
+        label: 'Dark',
+        checked: checked === ThemeEnum.DARK,
         onPress: () => {
-          AsyncStorage.setItem('theme', DARK).then(() => {
-            setCurrentTheme(DARK);
-            setTheme(DARK);
+          AsyncStorage.setItem('theme', ThemeEnum.DARK).then(() => {
+            setChecked(ThemeEnum.DARK);
+            setTheme(ThemeEnum.DARK);
           });
         },
       },
       {
-        title: 'Light',
-        selected: currentTheme === LIGHT,
+        label: 'Light',
+        checked: checked === ThemeEnum.LIGHT,
         onPress: () => {
           AsyncStorage.setItem('theme', 'light').then(() => {
-            setCurrentTheme(LIGHT);
-            setTheme(LIGHT);
+            setChecked(ThemeEnum.LIGHT);
+            setTheme(ThemeEnum.LIGHT);
           });
         },
       },
     ],
-    [currentTheme, setTheme],
+    [setTheme, checked],
   );
 
   return [themes];

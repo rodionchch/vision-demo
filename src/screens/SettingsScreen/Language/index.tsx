@@ -1,17 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import {useDisableDrawer} from 'hooks/useDrawer';
-import List from 'components/List';
-import {language} from '../settingsData';
+import CheckList from 'components/CheckList';
+import useLanguage from './useLanguage';
 
 const Language = () => {
   useDisableDrawer();
+  const [language] = useLanguage();
 
   return (
-    <View>
-      <List data={language} />
-    </View>
+    <ScrollView>
+      <CheckList data={language} />
+    </ScrollView>
   );
 };
 

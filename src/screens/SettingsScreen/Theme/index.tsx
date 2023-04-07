@@ -1,18 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import {useDisableDrawer} from 'hooks/useDrawer';
 import useTheme from './useTheme';
-import List from 'components/List';
+import CheckList from 'components/CheckList';
 
 const Theme = () => {
   const [themes] = useTheme();
   useDisableDrawer();
 
   return (
-    <View>
-      <List data={themes} />
-    </View>
+    <ScrollView>
+      <CheckList data={themes} />
+    </ScrollView>
   );
 };
 

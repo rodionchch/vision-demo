@@ -1,8 +1,6 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {StyleSheet} from 'react-native';
 import {List as PaperList, Text} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
-import NavigationType from 'types/NavigationType';
 
 type ListProps = {
   title?: string;
@@ -11,7 +9,7 @@ type ListProps = {
     title: string;
     icon?: string;
     text?: string;
-    selected?: boolean;
+    right?: ReactNode;
     onPress?: () => void;
   }[];
 };
@@ -23,25 +21,18 @@ const getText = (text?: string) => () =>
   text !== undefined && <Text>{text}</Text>;
 
 const List: React.FC<ListProps> = ({title: headerTitle, data}) => {
-  const {navigate} = useNavigation<NavigationType>();
   return (
     <PaperList.Section>
       {!!headerTitle && (
         <PaperList.Subheader>{headerTitle}</PaperList.Subheader>
       )}
-      {data?.map(({id, title, icon, text, selected, onPress}, index) => (
+      {data?.map(({id, title, icon, text, right, onPress}, index) => (
         <PaperList.Item
           key={id || `${title}-${index}`}
           title={title}
-          onPress={() => {
-            if (onPress) {
-              onPress();
-            } else {
-              navigate(title);
-            }
-          }}
+          onPress={onPress}
           left={getListIcon(icon)}
-          right={selected ? getListIcon('check') : getText(text)}
+          right={right ? () => right : getText(text)}
         />
       ))}
     </PaperList.Section>
