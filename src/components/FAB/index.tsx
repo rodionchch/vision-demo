@@ -9,7 +9,7 @@ import {
 
 import {AnimatedFAB} from 'react-native-paper';
 
-type CustomFABProps = {
+type FABProps = {
   animatedValue: Animated.Value;
   visible: boolean;
   extended: boolean;
@@ -19,7 +19,7 @@ type CustomFABProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-const CustomFAB = ({
+const FAB = ({
   animatedValue,
   visible,
   extended,
@@ -27,7 +27,7 @@ const CustomFAB = ({
   animateFrom,
   style,
   iconMode,
-}: CustomFABProps) => {
+}: FABProps) => {
   const [isExtended, setIsExtended] = useState(true);
 
   const isIOS = Platform.OS === 'ios';
@@ -58,7 +58,7 @@ const CustomFAB = ({
   );
 };
 
-export default CustomFAB;
+export default FAB;
 
 const styles = StyleSheet.create({
   fabStyle: {

@@ -25,7 +25,11 @@ const Drawer: React.FC<DrawerProps> = ({theme}) => {
         }}
         drawerContent={getDrawerContent}>
         <DrawerNavigator.Screen name="Home" component={HomeScreen} />
-        <DrawerNavigator.Screen name="Login" component={LoginScreen} />
+        <DrawerNavigator.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{swipeEnabled: false}}
+        />
         <DrawerNavigator.Screen name="PhoneBook" component={PhoneBookScreen} />
         <DrawerNavigator.Screen name="MailBook" component={MailBookScreen} />
         <DrawerNavigator.Screen name="Settings" component={SettingsScreen} />

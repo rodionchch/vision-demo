@@ -1,12 +1,10 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {Appbar, Menu} from 'react-native-paper';
 import {getHeaderTitle} from '@react-navigation/elements';
 import {useNavigation} from '@react-navigation/native';
 import {BottomTabHeaderProps} from '@react-navigation/bottom-tabs';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import NavigationType from 'types/NavigationType';
-
-import {PreferencesContext} from 'components/App';
 
 export const getNavigationBarSettings = (
   props: BottomTabHeaderProps | NativeStackHeaderProps | NavigationType,
@@ -19,7 +17,6 @@ const NavigationBarSettings = ({
   back,
 }: BottomTabHeaderProps | NativeStackHeaderProps | NavigationType) => {
   const {toggleDrawer} = useNavigation<NavigationType>();
-  const {toggleTheme, isThemeDark} = useContext(PreferencesContext);
 
   const [visible, setVisible] = useState(false);
   const openMenu = () => setVisible(true);
@@ -43,10 +40,9 @@ const NavigationBarSettings = ({
           anchor={<Appbar.Action icon="dots-vertical" onPress={openMenu} />}>
           <Menu.Item
             onPress={() => {
-              toggleTheme();
               closeMenu();
             }}
-            title={'Change Theme'}
+            title={'Logout'}
           />
         </Menu>
       ) : null}

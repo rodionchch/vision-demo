@@ -2,7 +2,7 @@ const tags = [
   {
     id: 0,
     tag: 'Mailboxes',
-    icon: 'account-group',
+    icon: 'mailbox',
     items: [
       {
         id: 0,

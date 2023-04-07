@@ -12,7 +12,7 @@ import Folders from 'components/Folders';
 import Tags from 'components/Tags';
 import folders from './folders';
 import tags from './tags';
-import CustomFAB from 'components/CustomFAB';
+import FAB from 'components/FAB';
 
 const MailScreen = () => {
   const isIOS = Platform.OS === 'ios';
@@ -38,7 +38,7 @@ const MailScreen = () => {
         <View style={styles.plug} />
       </ScrollView>
 
-      <CustomFAB
+      <FAB
         visible={true}
         animatedValue={velocity}
         extended={extended}

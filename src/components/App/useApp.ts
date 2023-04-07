@@ -10,6 +10,7 @@ import {
   adaptNavigationTheme,
 } from 'react-native-paper';
 import merge from 'deepmerge';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {LightTheme, DarkTheme} = adaptNavigationTheme({
   reactNavigationLight: NavigationDefaultTheme,
@@ -32,9 +33,37 @@ const useApp = () => {
     ? {...CombinedDarkTheme}
     : {...CombinedDefaultTheme};
 
+  useEffect(() => {
+    AsyncStorage.getItem('theme').then(currentTheme => {
+      if (!currentTheme) {
+        setIsThemeDark(true);
+        AsyncStorage.setItem('theme', 'dark');
+      } else {
+        if (currentTheme === 'system') {
+          setIsThemeDark(isDarkMode);
+        } else {
+          setIsThemeDark(currentTheme === 'dark');
+        }
+      }
+    });
+  }, [isDarkMode]);
+
   const toggleTheme = useCallback(() => {
     return setIsThemeDark(!isThemeDark);
   }, [isThemeDark]);
+
+  const setTheme = useCallback(
+    (newTheme: string | null) => {
+      if (newTheme) {
+        if (newTheme === 'system') {
+          setIsThemeDark(isDarkMode);
+        } else {
+          setIsThemeDark(newTheme === 'dark');
+        }
+      }
+    },
+    [isDarkMode],
+  );
 
   useEffect(() => {
     setIsThemeDark(isDarkMode);
@@ -42,10 +71,11 @@ const useApp = () => {
 
   const preferences = useMemo(
     () => ({
+      setTheme,
       toggleTheme,
       isThemeDark,
     }),
-    [toggleTheme, isThemeDark],
+    [setTheme, toggleTheme, isThemeDark],
   );
 
   return [isThemeDark, theme, preferences];

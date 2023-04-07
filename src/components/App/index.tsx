@@ -10,6 +10,7 @@ import useApp from './useApp';
 import Drawer from '../Drawer';
 
 export const PreferencesContext = createContext({
+  setTheme: (theme: string | null) => theme,
   toggleTheme: () => {},
   isThemeDark: false,
 });

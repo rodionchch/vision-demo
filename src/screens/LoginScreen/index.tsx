@@ -7,14 +7,14 @@ import {useNavigation} from '@react-navigation/native';
 
 import NavigationType from 'types/NavigationType';
 import useFaceId from 'hooks/useFaceId';
-import sleep from 'hooks/sleep';
+import sleep from 'utils/sleep';
 import CodeDots from 'components/Code/Dots';
 import Code from 'components/Code';
 
 import Logo from 'assets/images/logo.png';
 
 const LoginScreen = () => {
-  const [onFaceId, faceIdSuccess, isCompatible] = useFaceId();
+  const [onFaceId, faceIdSuccess] = useFaceId();
 
   const {navigate} = useNavigation<NavigationType>();
   const [savedPIN, setSavedPIN] = useState<string | null>(null);
@@ -44,15 +44,11 @@ const LoginScreen = () => {
   }, [PIN, navigate, savedPIN]);
 
   useEffect(() => {
-    if (
-      isCompatible &&
-      typeof onFaceId === 'function' &&
-      !startFaceId.current
-    ) {
+    if (typeof onFaceId === 'function' && !startFaceId.current) {
       onFaceId();
       startFaceId.current = true;
     }
-  }, [isCompatible, onFaceId]);
+  }, [onFaceId]);
 
   useEffect(() => {
     if (faceIdSuccess) {

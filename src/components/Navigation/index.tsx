@@ -19,6 +19,7 @@ const Navigation: React.FC<NavigationProps> = () => {
   useEffect(() => {
     navigate('Login');
   }, [navigate]);
+
   return (
     <>
       <Tab.Navigator
