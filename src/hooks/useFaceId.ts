@@ -12,9 +12,7 @@ const useFaceId = () => {
 
       if (isCompatible && isEnrolled) {
         const {success, error, warning} =
-          await LocalAuthentication.authenticateAsync({
-            promptMessage: 'hello',
-          });
+          await LocalAuthentication.authenticateAsync({});
 
         console.log('Face ID ==>', success, error, warning);
 

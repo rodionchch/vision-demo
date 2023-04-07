@@ -21,7 +21,13 @@ function App(): JSX.Element {
   return (
     <Provider store={store}>
       <PreferencesContext.Provider
-        value={preferences as {toggleTheme: () => void; isThemeDark: boolean}}>
+        value={
+          preferences as {
+            setTheme: (theme: string | null) => theme;
+            toggleTheme: () => void;
+            isThemeDark: boolean;
+          }
+        }>
         <PaperProvider theme={theme as ThemeProp}>
           <StatusBar
             barStyle={isThemeDark ? 'light-content' : 'dark-content'}

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 
-import useDisableDrawer from 'hooks/useDisableDrawer';
+import {useDisableDrawer} from 'hooks/useDrawer';
 import List from 'components/List';
 import {about} from '../settingsData';
 
