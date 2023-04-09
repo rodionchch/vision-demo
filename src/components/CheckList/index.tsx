@@ -1,5 +1,6 @@
 import React from 'react';
-import {Checkbox, List} from 'react-native-paper';
+
+import * as s from './styles';
 
 type CheckListProps = {
   data: {
@@ -12,16 +13,16 @@ type CheckListProps = {
 
 const CheckList: React.FC<CheckListProps> = ({data}) => {
   return (
-    <List.Section>
+    <s.CheckList>
       {data?.map(({id, label, checked, onPress}, index) => (
-        <Checkbox.Item
+        <s.CheckListItem
           key={id || `${label}-${index}`}
           label={label}
           status={checked ? 'checked' : 'unchecked'}
           onPress={onPress}
         />
       ))}
-    </List.Section>
+    </s.CheckList>
   );
 };
 

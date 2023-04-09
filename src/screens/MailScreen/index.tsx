@@ -1,18 +1,18 @@
 import React, {useRef, useState} from 'react';
-import {ScrollView} from 'react-native-gesture-handler';
 import {
   Animated,
   NativeScrollEvent,
   NativeSyntheticEvent,
   Platform,
-  StyleSheet,
-  View,
 } from 'react-native';
+
 import Folders from 'components/Folders';
 import Tags from 'components/Tags';
+import FAB from 'components/FAB';
 import folders from './folders';
 import tags from './tags';
-import FAB from 'components/FAB';
+
+import * as s from './styles';
 
 const MailScreen = () => {
   const isIOS = Platform.OS === 'ios';
@@ -32,11 +32,11 @@ const MailScreen = () => {
 
   return (
     <>
-      <ScrollView onScroll={onScroll}>
+      <s.MailScreen onScroll={onScroll}>
         <Folders title={'Unified Folders'} data={folders} />
         <Tags data={tags} />
-        <View style={styles.plug} />
-      </ScrollView>
+        <s.MailScreenPlug />
+      </s.MailScreen>
 
       <FAB
         visible={true}
@@ -49,16 +49,5 @@ const MailScreen = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  plug: {
-    height: 60,
-  },
-  fabStyle: {
-    bottom: 16,
-    right: 16,
-    position: 'absolute',
-  },
-});
 
 export default MailScreen;

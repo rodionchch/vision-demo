@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+import * as s from './styles';
 
 const PhoneBook = () => {
-  return <View></View>;
+  return <s.PhoneBook></s.PhoneBook>;
 };
 
 export default PhoneBook;

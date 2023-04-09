@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
-import {StyleSheet} from 'react-native';
-import {List as PaperList, Text} from 'react-native-paper';
+
+import * as s from './styles';
 
 type ListProps = {
   title?: string;
@@ -15,19 +15,17 @@ type ListProps = {
 };
 
 const getListIcon = (icon?: string) => () =>
-  icon && <PaperList.Icon icon={icon} style={styles.icon} />;
+  icon && <s.ListItemIcon icon={icon} />;
 
 const getText = (text?: string) => () =>
-  text !== undefined && <Text>{text}</Text>;
+  text !== undefined && <s.ListItemText>{text}</s.ListItemText>;
 
 const List: React.FC<ListProps> = ({title: headerTitle, data}) => {
   return (
-    <PaperList.Section>
-      {!!headerTitle && (
-        <PaperList.Subheader>{headerTitle}</PaperList.Subheader>
-      )}
+    <s.List>
+      {!!headerTitle && <s.ListHeader>{headerTitle}</s.ListHeader>}
       {data?.map(({id, title, icon, text, right, onPress}, index) => (
-        <PaperList.Item
+        <s.ListItem
           key={id || `${title}-${index}`}
           title={title}
           onPress={onPress}
@@ -35,12 +33,8 @@ const List: React.FC<ListProps> = ({title: headerTitle, data}) => {
           right={right ? () => right : getText(text)}
         />
       ))}
-    </PaperList.Section>
+    </s.List>
   );
 };
-
-const styles = StyleSheet.create({
-  icon: {paddingLeft: 16},
-});
 
 export default List;

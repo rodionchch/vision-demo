@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native';
+import * as s from './styles';
 
-const MailScreen = () => {
-  return <View></View>;
+const MailBook = () => {
+  return <s.MailBook></s.MailBook>;
 };
 
-export default MailScreen;
+export default MailBook;

@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {GestureResponderEvent, StyleSheet} from 'react-native';
-import {List, MD3Colors, Text, TouchableRipple} from 'react-native-paper';
+import {GestureResponderEvent} from 'react-native';
 
 import Menu, {ContextualMenuCoord} from 'components/Menu';
 import menu from './menu';
+
+import * as s from './styles';
 
 type TagsProps = {
   data: {
@@ -19,13 +20,13 @@ type TagsProps = {
 };
 
 const getTagIcon = (icon?: string) => () =>
-  icon && <List.Icon icon={icon} style={styles.tagIcon} />;
+  icon && <s.TagsAccordionIcon icon={icon} />;
 
 const getItemIcon = (icon?: string) => () =>
-  icon && <List.Icon icon={icon} style={styles.itemIcon} />;
+  icon && <s.TagsItemIcon icon={icon} />;
 
 const getCount = (count?: number) => () =>
-  count !== undefined && <Text>{count}</Text>;
+  count !== undefined && <s.TagsItemText>{count}</s.TagsItemText>;
 
 const Tags: React.FC<TagsProps> = ({data}) => {
   const [contextualMenuCoord, setContextualMenuCoor] =
@@ -53,40 +54,30 @@ const Tags: React.FC<TagsProps> = ({data}) => {
         contextualMenuCoord={contextualMenuCoord}
       />
 
-      <List.Section>
+      <s.Tags>
         {data?.map(({id, tag, icon, items}) => (
-          <List.Accordion key={id} title={tag} left={getTagIcon(icon)}>
+          <s.TagsAccordion key={id} title={tag} left={getTagIcon(icon)}>
             {items?.map(({id: itemId, name, phone, icon: itemIcon}) => (
-              <TouchableRipple
+              <s.TagsTouchable
                 key={itemId}
                 onPress={() => {}}
                 onLongPress={event => {
                   onLongPress(event, {id: itemId});
                 }}
-                style={(() => {
-                  if (typeof visible === 'object' && visible.id === itemId) {
-                    return {backgroundColor: MD3Colors.secondary30};
-                  }
-                  return null;
-                })()}>
-                <List.Item
+                selected={typeof visible === 'object' && visible.id === itemId}>
+                <s.TagsItem
                   title={name}
                   description={phone}
                   left={getItemIcon(itemIcon)}
                   right={getCount(0)}
                 />
-              </TouchableRipple>
+              </s.TagsTouchable>
             ))}
-          </List.Accordion>
+          </s.TagsAccordion>
         ))}
-      </List.Section>
+      </s.Tags>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  tagIcon: {paddingLeft: 8},
-  itemIcon: {marginLeft: -32},
-});
 
 export default Tags;

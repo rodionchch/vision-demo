@@ -1,63 +1,39 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {IconButton, MD3Colors} from 'react-native-paper';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import * as s from './styles';
 
 type CodeButtonProps = {
   icon: string;
-  size?: number;
-  iconMargin?: {
-    marginTop?: number;
-    marginRight?: number;
-    marginBottom?: number;
-    marginLeft?: number;
-  };
+  isActionButton?: boolean | 'backspace';
   defaultSize?: number;
-  onPress?: () => void;
+  onPress?: boolean | (() => Promise<void>) | (() => void);
 };
 
 const getIcon =
-  ({icon, size: iconSize, defaultSize, iconMargin}: CodeButtonProps) =>
+  ({icon, isActionButton, defaultSize}: CodeButtonProps) =>
   () =>
     (
-      <MaterialCommunityIcons
+      <s.CodeButtonIcon
         name={icon}
-        color={MD3Colors.tertiary99}
-        size={iconSize || defaultSize}
-        style={{...styles.icon, ...iconMargin}}
+        isActionButton={isActionButton}
+        size={isActionButton ? 32 : defaultSize}
       />
     );
 
 const CodeButton: React.FC<CodeButtonProps> = ({
   icon,
-  size: iconSize,
-  iconMargin,
+  isActionButton,
   onPress,
 }) => {
   const defaultSize = 60;
   return (
-    <IconButton
-      icon={getIcon({icon, size: iconSize, defaultSize, iconMargin})}
+    <s.CodeButton
+      icon={getIcon({icon, isActionButton, defaultSize})}
       size={defaultSize}
       mode={'contained'}
-      onPress={onPress}
-      style={styles.button}
+      onPress={() => typeof onPress === 'function' && onPress?.()}
     />
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginBottom: 8,
-  },
-  icon: {
-    width: 50,
-    height: 50,
-    marginTop: -9,
-    marginLeft: -9,
-  },
-});
 
 export default CodeButton;

@@ -1,13 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Animated,
-  Platform,
-  StyleProp,
-  StyleSheet,
-  ViewStyle,
-} from 'react-native';
+import {Animated, Platform, StyleProp, ViewStyle} from 'react-native';
 
-import {AnimatedFAB} from 'react-native-paper';
+import * as s from './styles';
 
 type FABProps = {
   animatedValue: Animated.Value;
@@ -45,7 +39,7 @@ const FAB = ({
   const fabStyle = {[animateFrom]: 16};
 
   return (
-    <AnimatedFAB
+    <s.FAB
       icon={'plus'}
       label={label}
       extended={isExtended}
@@ -53,16 +47,9 @@ const FAB = ({
       visible={visible}
       animateFrom={animateFrom}
       iconMode={iconMode}
-      style={[styles.fabStyle, style, fabStyle]}
+      style={[style, fabStyle]}
     />
   );
 };
 
 export default FAB;
-
-const styles = StyleSheet.create({
-  fabStyle: {
-    bottom: 16,
-    position: 'absolute',
-  },
-});

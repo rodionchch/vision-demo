@@ -1,7 +1,4 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Image, StyleSheet, View} from 'react-native';
-import {Text} from 'react-native-paper';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
@@ -11,7 +8,7 @@ import sleep from 'utils/sleep';
 import CodeDots from 'components/Code/Dots';
 import Code from 'components/Code';
 
-import Logo from 'assets/images/logo.png';
+import * as s from './styles';
 
 const LoginScreen = () => {
   const [onFaceId, faceIdSuccess] = useFaceId();
@@ -69,39 +66,17 @@ const LoginScreen = () => {
   };
 
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <Image source={Logo} style={styles.logo} />
-        <Text variant={'titleMedium'} style={styles.text}>
-          Please enter your PIN
-        </Text>
-        <CodeDots length={PIN?.length} style={styles.dots} />
-        <Code
-          onFaceId={onFaceId}
-          onChange={onChangeCode}
-          onBackspace={onBackspace}
-        />
-      </View>
-    </SafeAreaView>
+    <s.Login>
+      <s.LoginLogo />
+      <s.LoginText variant={'titleMedium'}>Please enter your PIN</s.LoginText>
+      <CodeDots length={PIN?.length} />
+      <Code
+        onFaceId={onFaceId}
+        onChange={onChangeCode}
+        onBackspace={onBackspace}
+      />
+    </s.Login>
   );
 };
-
-const styles = StyleSheet.create({
-  logo: {
-    width: 86,
-    height: 90,
-    marginTop: 40,
-    marginBottom: 80,
-  },
-  text: {
-    marginBottom: 30,
-  },
-  dots: {
-    marginBottom: 60,
-  },
-  container: {
-    alignItems: 'center',
-  },
-});
 
 export default LoginScreen;

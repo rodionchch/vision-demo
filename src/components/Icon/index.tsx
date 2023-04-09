@@ -1,5 +1,6 @@
 import React from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import * as s from './styles';
 
 type Props = {
   focused: boolean;
@@ -31,12 +32,7 @@ const Icon: React.FC<IconProps & Props> = ({
 }) => {
   const focusedName = focused ? name : `${name}-outline`;
   return (
-    <MaterialCommunityIcons
-      name={focusedName}
-      style={{opacity: !disabled ? 1 : 0.3}}
-      color={color}
-      size={size}
-    />
+    <s.Icon name={focusedName} disabled={disabled} color={color} size={size} />
   );
 };
 

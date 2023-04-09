@@ -1,12 +1,11 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {DrawerItem} from '@react-navigation/drawer';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {Avatar, Title, Drawer} from 'react-native-paper';
+
 import NavigationType from 'types/NavigationType';
 import {getIcon} from '../Icon';
 import menu from './menu';
+
+import * as s from './styles';
 
 export const getDrawerContent = () => <DrawerContent />;
 
@@ -14,45 +13,31 @@ const DrawerContent = () => {
   const {navigate} = useNavigation<NavigationType>();
 
   return (
-    <SafeAreaView>
-      <View>
-        <View style={styles.userInfoSection}>
-          <Avatar.Text label="R" size={50} />
-          <Title style={styles.title}>Rodion Chegodaev</Title>
-        </View>
+    <s.Drawer>
+      <s.DrawerUserInfo>
+        <s.DrawerAvatarText label="R" />
+        <s.DrawerTitle>Rodion Chegodaev</s.DrawerTitle>
+      </s.DrawerUserInfo>
 
-        {menu?.map((section, index) => (
-          <Drawer.Section key={index} showDivider={index + 1 < menu?.length}>
-            {section?.map(({name, label, icon, disabled}, index) => (
-              <DrawerItem
-                key={`${name}-${index}`}
-                icon={props => getIcon(icon, props)}
-                label={label || name}
-                onPress={() => {
-                  if (!disabled) {
-                    navigate(name);
-                  }
-                }}
-                style={{opacity: !disabled ? 1 : 0.3}}
-                pressOpacity={!disabled ? 0.3 : 1}
-              />
-            ))}
-          </Drawer.Section>
-        ))}
-      </View>
-    </SafeAreaView>
+      {menu?.map((section, index) => (
+        <s.DrawerSection key={index} showDivider={index + 1 < menu?.length}>
+          {section?.map(({name, label, icon, disabled}, index) => (
+            <s.DrawerItem
+              key={`${name}-${index}`}
+              icon={props => getIcon(icon, props)}
+              label={label || name}
+              onPress={() => {
+                if (!disabled) {
+                  navigate(name);
+                }
+              }}
+              disabled={disabled}
+            />
+          ))}
+        </s.DrawerSection>
+      ))}
+    </s.Drawer>
   );
 };
-
-const styles = StyleSheet.create({
-  userInfoSection: {
-    paddingLeft: 20,
-    marginBottom: 15,
-  },
-  title: {
-    marginTop: 20,
-    fontWeight: 'bold',
-  },
-});
 
 export default DrawerContent;

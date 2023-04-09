@@ -1,5 +1,6 @@
 import React from 'react';
-import {Menu as PaperMenu} from 'react-native-paper';
+
+import * as s from './styles';
 
 export type ContextualMenuCoord = {x: number; y: number};
 
@@ -17,19 +18,19 @@ const Menu: React.FC<MenuProps> = ({
   contextualMenuCoord,
 }) => {
   return (
-    <PaperMenu
+    <s.Menu
       visible={!!visible}
       onDismiss={toggleMenu}
       anchor={contextualMenuCoord}>
       {menu?.map(({title, icon}, index) => (
-        <PaperMenu.Item
+        <s.MenuItem
           key={`${title}-${index}`}
           leadingIcon={icon}
           onPress={toggleMenu}
           title={title}
         />
       ))}
-    </PaperMenu>
+    </s.Menu>
   );
 };
 
