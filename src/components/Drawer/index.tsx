@@ -30,9 +30,18 @@ const Drawer: React.FC<DrawerProps> = ({theme}) => {
           component={LoginScreen}
           options={{swipeEnabled: false}}
         />
-        <DrawerNavigator.Screen name="PhoneBook" component={PhoneBookScreen} />
-        <DrawerNavigator.Screen name="MailBook" component={MailBookScreen} />
-        <DrawerNavigator.Screen name="Settings" component={SettingsScreen} />
+        <DrawerNavigator.Screen
+          name="PhoneBookRoot"
+          component={PhoneBookScreen}
+        />
+        <DrawerNavigator.Screen
+          name="MailBookRoot"
+          component={MailBookScreen}
+        />
+        <DrawerNavigator.Screen
+          name="SettingsRoot"
+          component={SettingsScreen}
+        />
       </DrawerNavigator.Navigator>
     </NavigationContainer>
   );

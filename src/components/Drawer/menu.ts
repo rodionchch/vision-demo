@@ -22,17 +22,20 @@ const menu = [
   ],
   [
     {
-      name: 'PhoneBook',
+      name: 'PhoneBookRoot',
+      label: 'PhoneBook',
       icon: 'book-open',
     },
     {
-      name: 'MailBook',
+      name: 'MailBookRoot',
+      label: 'MailBook',
       icon: 'email-multiple',
     },
   ],
   [
     {
-      name: 'Settings',
+      name: 'SettingsRoot',
+      label: 'Settings',
       icon: 'cog',
     },
   ],

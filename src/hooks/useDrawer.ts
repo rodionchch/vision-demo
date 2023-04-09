@@ -1,12 +1,14 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useCallback} from 'react';
 
-export const useDisableDrawer = () => {
+export const useDisableDrawer = (disable: boolean) => {
   const navigation = useNavigation();
   useFocusEffect(
     useCallback(() => {
-      navigation.getParent()?.setOptions({swipeEnabled: false});
-    }, [navigation]),
+      if ((disable !== undefined && !!disable) || !disable) {
+        navigation.getParent()?.setOptions({swipeEnabled: false});
+      }
+    }, [navigation, disable]),
   );
 };
 

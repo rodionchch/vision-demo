@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {getNavigationBar} from 'components/Navigation/NavigationBar';
+import {getNavigationBar} from './NavigationBar';
 import MailBook from './MailBook';
 
 const Stack = createNativeStackNavigator();
@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 const MailBookScreen = () => {
   return (
     <Stack.Navigator
-      initialRouteName="List"
+      initialRouteName="MailBook"
       screenOptions={{
         header: getNavigationBar,
       }}>

@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator();
 const SettingsScreen = () => {
   return (
     <Stack.Navigator
-      initialRouteName="List"
+      initialRouteName="Settings"
       screenOptions={{
         header: getNavigationBarSettings,
       }}>

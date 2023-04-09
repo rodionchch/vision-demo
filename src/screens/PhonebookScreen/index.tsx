@@ -1,14 +1,14 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {getNavigationBar} from 'components/Navigation/NavigationBar';
+import {getNavigationBar} from './NavigationBar';
 import PhoneBook from './PhoneBook';
 
 const Stack = createNativeStackNavigator();
 
-const PhoneBookScreen = () => {
+const PhoneBookRootScreen = () => {
   return (
     <Stack.Navigator
-      initialRouteName="List"
+      initialRouteName="PhoneBook"
       screenOptions={{
         header: getNavigationBar,
       }}>
@@ -17,4 +17,4 @@ const PhoneBookScreen = () => {
   );
 };
 
-export default PhoneBookScreen;
+export default PhoneBookRootScreen;
