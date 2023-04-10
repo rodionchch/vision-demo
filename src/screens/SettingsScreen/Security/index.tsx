@@ -16,7 +16,7 @@ export const Switch = ({value, onChange}: SwitchProps) => (
 );
 
 const Security = () => {
-  useDisableDrawer();
+  // useDisableDrawer();
 
   const [security] = useSecurity();
 

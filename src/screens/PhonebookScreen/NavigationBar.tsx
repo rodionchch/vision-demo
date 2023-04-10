@@ -1,11 +1,10 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {Appbar} from 'react-native-paper';
 import {getHeaderTitle} from '@react-navigation/elements';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {BottomTabHeaderProps} from '@react-navigation/bottom-tabs';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import NavigationType from 'types/NavigationType';
-import {useDisableDrawer} from 'hooks/useDrawer';
 
 export const getNavigationBar = (
   props: BottomTabHeaderProps | NativeStackHeaderProps | NavigationType,
@@ -19,16 +18,6 @@ const NavigationBar = ({
 }: BottomTabHeaderProps | NativeStackHeaderProps | NavigationType) => {
   const {toggleDrawer} = useNavigation<NavigationType>();
   const title = getHeaderTitle(options, route.name);
-
-  useDisableDrawer(route.params?.back);
-
-  useFocusEffect(
-    useCallback(() => {
-      navigation.getParent()?.setOptions({backBehavior: 'initialRoute'});
-
-      return () => navigation.setParams({back: false});
-    }, [navigation]),
-  );
 
   return (
     <Appbar.Header>

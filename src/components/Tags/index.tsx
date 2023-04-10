@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {GestureResponderEvent} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import Menu, {ContextualMenuCoord} from 'components/Menu';
 import menu from './menu';
@@ -29,6 +30,7 @@ const getCount = (count?: number) => () =>
   count !== undefined && <s.TagsItemText>{count}</s.TagsItemText>;
 
 const Tags: React.FC<TagsProps> = ({data}) => {
+  const {navigate, getState} = useNavigation();
   const [contextualMenuCoord, setContextualMenuCoor] =
     useState<ContextualMenuCoord>({x: 0, y: 0});
   const [visible, setVisible] = useState<boolean | {id: number}>(false);
@@ -60,7 +62,9 @@ const Tags: React.FC<TagsProps> = ({data}) => {
             {items?.map(({id: itemId, name, phone, icon: itemIcon}) => (
               <s.TagsTouchable
                 key={itemId}
-                onPress={() => {}}
+                onPress={() => {
+                  navigate(getState().routeNames[1]);
+                }}
                 onLongPress={event => {
                   onLongPress(event, {id: itemId});
                 }}

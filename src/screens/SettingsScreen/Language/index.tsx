@@ -6,7 +6,7 @@ import CheckList from 'components/CheckList';
 import useLanguage from './useLanguage';
 
 const Language = () => {
-  useDisableDrawer();
+  // useDisableDrawer();
   const [language] = useLanguage();
 
   return (

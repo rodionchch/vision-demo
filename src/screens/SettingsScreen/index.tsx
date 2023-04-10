@@ -18,11 +18,41 @@ const SettingsScreen = () => {
         header: getNavigationBarSettings,
       }}>
       <Stack.Screen name="Settings" component={Settings} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Security" component={Security} />
-      <Stack.Screen name="Theme" component={Theme} />
-      <Stack.Screen name="Language" component={Language} />
-      <Stack.Screen name="About" component={About} />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        // options={{
+        //   swipeEnabled: false,
+        // }}
+      />
+      <Stack.Screen
+        name="Security"
+        component={Security}
+        // options={{
+        //   swipeEnabled: false,
+        // }}
+      />
+      <Stack.Screen
+        name="Theme"
+        component={Theme}
+        // options={{
+        //   swipeEnabled: false,
+        // }}
+      />
+      <Stack.Screen
+        name="Language"
+        component={Language}
+        // options={{
+        //   swipeEnabled: false,
+        // }}
+      />
+      <Stack.Screen
+        name="About"
+        component={About}
+        // options={{
+        //   swipeEnabled: false,
+        // }}
+      />
     </Stack.Navigator>
   );
 };

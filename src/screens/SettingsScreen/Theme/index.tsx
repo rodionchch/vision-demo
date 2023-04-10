@@ -7,7 +7,7 @@ import CheckList from 'components/CheckList';
 
 const Theme = () => {
   const [themes] = useTheme();
-  useDisableDrawer();
+  // useDisableDrawer();
 
   return (
     <ScrollView>

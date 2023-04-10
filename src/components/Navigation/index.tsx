@@ -3,7 +3,6 @@ import {useNavigation} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import NavigationType from 'types/NavigationType';
 
-import {getNavigationBar} from './NavigationBar';
 import {getNavigationBottom} from './NavigationBottom';
 import {getIcon} from 'components/Icon';
 
@@ -23,9 +22,9 @@ const Navigation: React.FC<NavigationProps> = () => {
   return (
     <>
       <Tab.Navigator
-        initialRouteName="Sms"
+        initialRouteName="SmsRoot"
         screenOptions={{
-          header: getNavigationBar,
+          headerShown: false,
         }}
         tabBar={getNavigationBottom}>
         {tabs.map(({name, label, icon, component, disabled}, index) => (

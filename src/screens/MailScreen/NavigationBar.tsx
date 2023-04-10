@@ -29,22 +29,16 @@ const NavigationBar = ({
 
       <Appbar.Content title={title} />
 
-      <Appbar.Action
-        icon="book-edit-outline"
-        onPress={() => {
-          if (route.name === 'Sms') {
-            navigate('PhoneBookRoot', {
-              screen: 'PhoneBook',
-              params: {back: true},
+      {route.name === 'Mail' && (
+        <Appbar.Action
+          icon="book-edit-outline"
+          onPress={() => {
+            navigate('MailRoot', {
+              screen: 'MailBookRoot',
             });
-          } else if (route.name === 'Mail') {
-            navigate('MailBookRoot', {
-              screen: 'MailBook',
-              params: {back: true},
-            });
-          }
-        }}
-      />
+          }}
+        />
+      )}
     </Appbar.Header>
   );
 };

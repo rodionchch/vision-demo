@@ -31,11 +31,11 @@ const Drawer: React.FC<DrawerProps> = ({theme}) => {
           options={{swipeEnabled: false}}
         />
         <DrawerNavigator.Screen
-          name="PhoneBookRoot"
+          name="DrawerPhoneBookRoot"
           component={PhoneBookScreen}
         />
         <DrawerNavigator.Screen
-          name="MailBookRoot"
+          name="DrawerMailBookRoot"
           component={MailBookScreen}
         />
         <DrawerNavigator.Screen

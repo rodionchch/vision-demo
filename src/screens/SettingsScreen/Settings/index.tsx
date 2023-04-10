@@ -7,7 +7,7 @@ import useSettings from './useSettings';
 
 const Settings = () => {
   const [settings] = useSettings();
-  useEnableDrawer();
+  // useEnableDrawer();
 
   return (
     <ScrollView>

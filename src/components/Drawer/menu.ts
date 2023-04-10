@@ -22,7 +22,7 @@ const menu = [
   ],
   [
     {
-      name: 'PhoneBookRoot',
+      name: 'DrawerPhoneBookRoot',
       label: 'PhoneBook',
       icon: 'book-open',
     },

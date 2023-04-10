@@ -7,7 +7,7 @@ import useAbout from './useAbout';
 
 const About = () => {
   const [about] = useAbout();
-  useDisableDrawer();
+  // useDisableDrawer();
 
   return (
     <ScrollView>

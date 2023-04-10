@@ -6,7 +6,7 @@ import List from 'components/List';
 import useProfile from './useProfile';
 
 const Profile = () => {
-  useDisableDrawer();
+  // useDisableDrawer();
   const [profile] = useProfile();
 
   return (

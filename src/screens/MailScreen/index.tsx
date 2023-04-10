@@ -1,53 +1,35 @@
-import React, {useRef, useState} from 'react';
-import {
-  Animated,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  Platform,
-} from 'react-native';
+import React from 'react';
 
-import Folders from 'components/Folders';
-import Tags from 'components/Tags';
-import FAB from 'components/FAB';
-import folders from './folders';
-import tags from './tags';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import * as s from './styles';
+import {getNavigationBar} from './NavigationBar';
 
-const MailScreen = () => {
-  const isIOS = Platform.OS === 'ios';
-  const [extended, setExtended] = useState(true);
-  const {current: velocity} = useRef(new Animated.Value(0));
+import MailListScreen from './MailListScreen';
+import MailBookScreen from 'screens/MailBookScreen';
+import MailScreen from './MailScreen';
 
-  const onScroll = ({nativeEvent}: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentScrollPosition =
-      Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
+const Stack = createNativeStackNavigator();
 
-    if (!isIOS) {
-      return velocity.setValue(currentScrollPosition);
-    }
-
-    setExtended(currentScrollPosition <= 0);
-  };
-
+const MailScreenRoot = () => {
   return (
-    <>
-      <s.MailScreen onScroll={onScroll}>
-        <Folders title={'Unified Folders'} data={folders} />
-        <Tags data={tags} />
-        <s.MailScreenPlug />
-      </s.MailScreen>
-
-      <FAB
-        visible={true}
-        animatedValue={velocity}
-        extended={extended}
-        label={'New Message'}
-        animateFrom={'right'}
-        iconMode={'static'}
+    <Stack.Navigator
+      initialRouteName="Mail"
+      screenOptions={{
+        header: getNavigationBar,
+      }}>
+      <Stack.Screen name="Mail" component={MailScreen} />
+      <Stack.Screen
+        name="MailList"
+        component={MailListScreen}
+        options={{title: 'Mail'}}
       />
-    </>
+      <Stack.Screen
+        name="MailBookRoot"
+        component={MailBookScreen}
+        options={{title: 'MailBook'}}
+      />
+    </Stack.Navigator>
   );
 };
 
-export default MailScreen;
+export default MailScreenRoot;
