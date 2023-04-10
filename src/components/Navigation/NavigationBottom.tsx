@@ -1,6 +1,6 @@
 import React from 'react';
 import {BottomNavigation} from 'react-native-paper';
-import {CommonActions} from '@react-navigation/native';
+import {CommonActions, useNavigation} from '@react-navigation/native';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
 export const getNavigationBottom = (props: BottomTabBarProps) => (
@@ -15,6 +15,7 @@ const NavigationBottom = ({
 }: BottomTabBarProps) => {
   return (
     <BottomNavigation.Bar
+      // style={{display: 'none'}}
       navigationState={state}
       safeAreaInsets={insets}
       // shifting={true}

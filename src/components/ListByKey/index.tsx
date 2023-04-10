@@ -20,7 +20,6 @@ const getText = (text?: string) => () =>
   text !== undefined && <s.ListByKeyItemText>{text}</s.ListByKeyItemText>;
 
 const ListByKey: React.FC<ListByKeyProps> = ({data}) => {
-  console.log('data===>', data);
   return (
     <s.ListByKey>
       {Object.keys(data)?.map((key, index) => (

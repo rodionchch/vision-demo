@@ -1,6 +1,7 @@
 import React, {ReactNode} from 'react';
 
 import * as s from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 type ListProps = {
   title?: string;
@@ -11,6 +12,7 @@ type ListProps = {
     text?: string;
     right?: ReactNode;
     onPress?: () => void;
+    description?: string;
   }[];
 };
 
@@ -21,18 +23,29 @@ const getText = (text?: string) => () =>
   text !== undefined && <s.ListItemText>{text}</s.ListItemText>;
 
 const List: React.FC<ListProps> = ({title: headerTitle, data}) => {
+  const {navigate} = useNavigation();
+
   return (
     <s.List>
       {!!headerTitle && <s.ListHeader>{headerTitle}</s.ListHeader>}
-      {data?.map(({id, title, icon, text, right, onPress}, index) => (
-        <s.ListItem
-          key={id || `${title}-${index}`}
-          title={title}
-          onPress={onPress}
-          left={getListIcon(icon)}
-          right={right ? () => right : getText(text)}
-        />
-      ))}
+      {data?.map(
+        ({id, title, icon, text, right, description, onPress}, index) => (
+          <s.ListItem
+            key={id || `${title}-${index}`}
+            title={title}
+            onPress={() => {
+              if (onPress) {
+                onPress?.();
+              } else {
+                navigate(id);
+              }
+            }}
+            left={getListIcon(icon)}
+            right={right ? () => right : getText(text)}
+            description={description}
+          />
+        ),
+      )}
     </s.List>
   );
 };

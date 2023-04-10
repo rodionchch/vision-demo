@@ -11,6 +11,7 @@ type TagsProps = {
   data: {
     id: number;
     tag: string;
+    icon?: string;
     items?: {
       id: number;
       name: string;
@@ -33,7 +34,9 @@ const Tags: React.FC<TagsProps> = ({data}) => {
   const {navigate, getState} = useNavigation();
   const [contextualMenuCoord, setContextualMenuCoor] =
     useState<ContextualMenuCoord>({x: 0, y: 0});
-  const [visible, setVisible] = useState<boolean | {id: number}>(false);
+  const [menuVisible, setMenuVisible] = useState<boolean | {id: number}>(false);
+
+  const [expanded, setExpanded] = useState([0]);
 
   const onLongPress = (event: GestureResponderEvent, tag: {id: number}) => {
     const {nativeEvent} = event;
@@ -42,23 +45,40 @@ const Tags: React.FC<TagsProps> = ({data}) => {
       x: nativeEvent.pageX,
       y: nativeEvent.pageY,
     });
-    setVisible(tag);
+    setMenuVisible(tag);
   };
 
-  const toggleMenu = () => setVisible(!visible);
+  const toggleMenu = () => setMenuVisible(!menuVisible);
+
+  const onPressAccordion = (index: number) => {
+    const expandedSet = new Set(expanded);
+    if (expandedSet.has(index)) {
+      expandedSet.delete(index);
+    } else {
+      expandedSet.add(index);
+    }
+    setExpanded(Array.from(expandedSet));
+  };
 
   return (
     <>
       <Menu
         menu={menu}
-        visible={visible}
+        visible={menuVisible}
         toggleMenu={toggleMenu}
         contextualMenuCoord={contextualMenuCoord}
       />
 
       <s.Tags>
-        {data?.map(({id, tag, icon, items}) => (
-          <s.TagsAccordion key={id} title={tag} left={getTagIcon(icon)}>
+        {data?.map(({id, tag, icon, items}, index) => (
+          <s.TagsAccordion
+            key={id}
+            title={tag}
+            expanded={expanded.includes(index)}
+            onPress={() => {
+              onPressAccordion(index);
+            }}
+            left={getTagIcon(icon)}>
             {items?.map(({id: itemId, name, phone, icon: itemIcon}) => (
               <s.TagsTouchable
                 key={itemId}
@@ -68,7 +88,9 @@ const Tags: React.FC<TagsProps> = ({data}) => {
                 onLongPress={event => {
                   onLongPress(event, {id: itemId});
                 }}
-                selected={typeof visible === 'object' && visible.id === itemId}>
+                selected={
+                  typeof menuVisible === 'object' && menuVisible.id === itemId
+                }>
                 <s.TagsItem
                   title={name}
                   description={phone}
