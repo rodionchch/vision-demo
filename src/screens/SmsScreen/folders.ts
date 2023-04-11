@@ -1,36 +1,28 @@
-const getFolders = (onPress: () => void) => {
-  const folders = [
-    {
-      id: 0,
-      title: 'Conversations',
-      icon: 'chat',
-      text: 659,
-      onPress,
-    },
-    {
-      id: 1,
-      title: 'All Unread',
-      icon: 'email-mark-as-unread',
-      text: 653,
-      onPress,
-    },
-    {
-      id: 2,
-      title: 'All Favorites',
-      icon: 'heart',
-      text: 2,
-      onPress,
-    },
-    {
-      id: 3,
-      title: 'All Trash',
-      icon: 'delete',
-      text: 0,
-      onPress,
-    },
-  ];
+const folders = [
+  {
+    id: 0,
+    title: 'Conversations',
+    icon: 'chat',
+    count: 659,
+  },
+  {
+    id: 1,
+    title: 'All Unread',
+    icon: 'email-mark-as-unread',
+    count: 653,
+  },
+  {
+    id: 2,
+    title: 'All Favorites',
+    icon: 'heart',
+    count: 2,
+  },
+  {
+    id: 3,
+    title: 'All Trash',
+    icon: 'delete',
+    count: 0,
+  },
+];
 
-  return folders;
-};
-
-export default getFolders;
+export default folders;

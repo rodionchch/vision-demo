@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
+import {GestureResponderEvent} from 'react-native/types';
 
 import * as s from './styles';
-import {useNavigation} from '@react-navigation/native';
 
 type ListProps = {
   title?: string;
@@ -14,6 +14,7 @@ type ListProps = {
     onPress?: () => void;
     description?: string;
   }[];
+  onLongPress?: (event: GestureResponderEvent, id: number) => void;
 };
 
 const getListIcon = (icon?: string) => () =>
@@ -22,9 +23,7 @@ const getListIcon = (icon?: string) => () =>
 const getText = (text?: string) => () =>
   text !== undefined && <s.ListItemText>{text}</s.ListItemText>;
 
-const List: React.FC<ListProps> = ({title: headerTitle, data}) => {
-  const {navigate} = useNavigation();
-
+const List: React.FC<ListProps> = ({title: headerTitle, data, onLongPress}) => {
   return (
     <s.List>
       {!!headerTitle && <s.ListHeader>{headerTitle}</s.ListHeader>}
@@ -37,8 +36,11 @@ const List: React.FC<ListProps> = ({title: headerTitle, data}) => {
               if (onPress) {
                 onPress?.();
               } else {
-                navigate(id);
+                // navigate(id);
               }
+            }}
+            onLongPress={event => {
+              if (id) onLongPress?.(event, id);
             }}
             left={getListIcon(icon)}
             right={right ? () => right : getText(text)}

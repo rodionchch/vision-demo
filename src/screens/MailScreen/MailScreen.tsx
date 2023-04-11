@@ -32,7 +32,7 @@ const MailScreen = () => {
   return (
     <>
       <s.MailScreen onScroll={onScroll}>
-        <Folders title={'Unified Folders'} data={folders} />
+        <Folders title={'Unified Folders'} data={folders} screen="Mail" />
         <Tags data={tags} />
         <s.MailScreenPlug />
       </s.MailScreen>
