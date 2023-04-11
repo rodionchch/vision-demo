@@ -18,28 +18,34 @@ const NavigationBar = ({
 }: BottomTabHeaderProps | NativeStackHeaderProps | NavigationType) => {
   const {navigate, toggleDrawer} = useNavigation<NavigationType>();
   const title = getHeaderTitle(options, route.name);
+  const {params} = route;
 
   return (
-    <Appbar.Header>
-      {back ? (
-        <Appbar.BackAction onPress={navigation.goBack} />
-      ) : (
-        <Appbar.Action icon={'menu'} onPress={toggleDrawer} />
-      )}
+    <>
+      <Appbar.Header mode="center-aligned">
+        {back ? (
+          <Appbar.BackAction onPress={navigation.goBack} />
+        ) : (
+          <Appbar.Action icon={'menu'} onPress={toggleDrawer} />
+        )}
 
-      <Appbar.Content title={title} />
+        <Appbar.Content title={params?.name || title} />
 
-      {route.name === 'Sms' && (
-        <Appbar.Action
-          icon="book-edit-outline"
-          onPress={() => {
-            navigate('SmsRoot', {
-              screen: 'PhoneBookRoot',
-            });
-          }}
-        />
-      )}
-    </Appbar.Header>
+        {route.name === 'Sms' && (
+          <Appbar.Action
+            icon="book-edit-outline"
+            onPress={() => {
+              navigate('SmsRoot', {
+                screen: 'PhoneBookRoot',
+              });
+            }}
+          />
+        )}
+      </Appbar.Header>
+      {/* {params?.name && (
+        <s.NavigationBarSubtitle>{params?.phone}</s.NavigationBarSubtitle>
+      )} */}
+    </>
   );
 };
 

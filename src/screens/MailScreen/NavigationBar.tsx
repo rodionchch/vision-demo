@@ -18,6 +18,7 @@ const NavigationBar = ({
 }: BottomTabHeaderProps | NativeStackHeaderProps | NavigationType) => {
   const {navigate, toggleDrawer} = useNavigation<NavigationType>();
   const title = getHeaderTitle(options, route.name);
+  const {params} = route;
 
   return (
     <Appbar.Header>
@@ -27,7 +28,7 @@ const NavigationBar = ({
         <Appbar.Action icon={'menu'} onPress={toggleDrawer} />
       )}
 
-      <Appbar.Content title={title} />
+      <Appbar.Content title={params?.name || title} />
 
       {route.name === 'Mail' && (
         <Appbar.Action

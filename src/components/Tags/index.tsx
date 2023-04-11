@@ -88,8 +88,9 @@ const Tags: React.FC<TagsProps> = ({data, tabs}) => {
                   navigate(`${route?.name}Root`, {
                     screen: `${route?.name}List`,
                     params: {
-                      folder: 0,
                       tabs,
+                      name,
+                      phone,
                     },
                   });
                 }}

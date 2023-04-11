@@ -14,7 +14,7 @@ const useFaceId = () => {
         const {success, error, warning} =
           await LocalAuthentication.authenticateAsync({});
 
-        console.log('Face ID ==>', success, error, warning);
+        console.log('Face ID: ', success, error, warning);
 
         if (success) {
           setFaceIdSuccess(success);
