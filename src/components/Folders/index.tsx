@@ -12,6 +12,7 @@ type FoldersProps = {
     count?: number;
   }[];
   screen?: string;
+  tabs: {key: string; title: string}[];
 };
 
 const getFoldersIcon = (icon?: string) => () =>
@@ -24,6 +25,7 @@ const Folders: React.FC<FoldersProps> = ({
   title: headerTitle,
   data,
   screen,
+  tabs,
 }) => {
   const {navigate} = useNavigation();
 
@@ -40,12 +42,7 @@ const Folders: React.FC<FoldersProps> = ({
                 screen: `${screen}List`,
                 params: {
                   folder: id,
-                  tabs: [
-                    {key: '0', title: 'Conversations'},
-                    {key: '1', title: 'All Unread'},
-                    {key: '2', title: 'All Favorites'},
-                    {key: '3', title: 'All Trash'},
-                  ],
+                  tabs,
                 },
               });
             }

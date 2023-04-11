@@ -1,16 +1,18 @@
 import React from 'react';
-
+import {useRoute} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {getNavigationBar} from './NavigationBar';
-
-import MailListScreen from './MailListScreen';
 import MailBookScreen from 'screens/MailBookScreen';
+import {getNavigationBar} from './NavigationBar';
+import MailListScreen from './MailListScreen';
 import MailScreen from './MailScreen';
 
 const Stack = createNativeStackNavigator();
 
 const MailScreenRoot = () => {
+  const {params} = useRoute();
+  const tabs = params?.params?.tabs;
+
   return (
     <Stack.Navigator
       initialRouteName="Mail"
@@ -22,6 +24,7 @@ const MailScreenRoot = () => {
         name="MailList"
         component={MailListScreen}
         options={{title: 'Mail'}}
+        initialParams={{tabs}}
       />
       <Stack.Screen
         name="MailBookRoot"

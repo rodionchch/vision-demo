@@ -12,8 +12,6 @@ const SmsScreenRoot = () => {
   const {params} = useRoute();
   const tabs = params?.params?.tabs;
 
-  const getSmsListScreen = () => tabs && <SmsListScreen tabs={tabs} />;
-
   return (
     <Stack.Navigator
       initialRouteName="Sms"
@@ -23,8 +21,9 @@ const SmsScreenRoot = () => {
       <Stack.Screen name="Sms" component={SmsScreen} options={{title: 'SMS'}} />
       <Stack.Screen
         name="SmsList"
-        component={getSmsListScreen}
+        component={SmsListScreen}
         options={{title: 'SMS'}}
+        initialParams={{tabs}}
       />
       <Stack.Screen
         name="PhoneBookRoot"

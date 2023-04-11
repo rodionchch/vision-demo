@@ -19,6 +19,7 @@ type TagsProps = {
       icon?: string;
     }[];
   }[];
+  tabs: {key: string; title: string}[];
 };
 
 const getTagIcon = (icon?: string) => () =>
@@ -30,8 +31,8 @@ const getItemIcon = (icon?: string) => () =>
 const getCount = (count?: number) => () =>
   count !== undefined && <s.TagsItemText>{count}</s.TagsItemText>;
 
-const Tags: React.FC<TagsProps> = ({data}) => {
-  const {navigate, getState} = useNavigation();
+const Tags: React.FC<TagsProps> = ({data, tabs}) => {
+  const {navigate} = useNavigation();
   const route = useRoute();
   const [contextualMenuCoord, setContextualMenuCoor] =
     useState<ContextualMenuCoord>({x: 0, y: 0});
@@ -88,12 +89,7 @@ const Tags: React.FC<TagsProps> = ({data}) => {
                     screen: `${route?.name}List`,
                     params: {
                       folder: 0,
-                      tabs: [
-                        {key: '0', title: 'Conversations'},
-                        {key: '1', title: 'Unread'},
-                        {key: '2', title: 'Favorites'},
-                        {key: '3', title: 'Trash'},
-                      ],
+                      tabs,
                     },
                   });
                 }}

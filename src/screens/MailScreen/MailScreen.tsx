@@ -19,6 +19,19 @@ const MailScreen = () => {
   const [extended, setExtended] = useState(true);
   const {current: velocity} = useRef(new Animated.Value(0));
 
+  const tabsAll = [
+    {key: '0', title: 'Conversations'},
+    {key: '1', title: 'All Unread'},
+    {key: '2', title: 'All Favorites'},
+    {key: '3', title: 'All Trash'},
+  ];
+  const tabs = [
+    {key: '0', title: 'Conversations'},
+    {key: '1', title: 'Unread'},
+    {key: '2', title: 'Favorites'},
+    {key: '3', title: 'Trash'},
+  ];
+
   const onScroll = ({nativeEvent}: NativeSyntheticEvent<NativeScrollEvent>) => {
     const currentScrollPosition =
       Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
@@ -29,11 +42,17 @@ const MailScreen = () => {
 
     setExtended(currentScrollPosition <= 0);
   };
+
   return (
     <>
       <s.MailScreen onScroll={onScroll}>
-        <Folders title={'Unified Folders'} data={folders} screen="Mail" />
-        <Tags data={tags} />
+        <Folders
+          title={'Unified Folders'}
+          data={folders}
+          screen="Mail"
+          tabs={tabsAll}
+        />
+        <Tags data={tags} tabs={tabs} />
         <s.MailScreenPlug />
       </s.MailScreen>
 
