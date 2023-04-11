@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {getNavigationBarSettings} from './NavigationBar';
-import Settings from './Settings';
+import SettingsRoot from './SettingsRoot';
 import Profile from './Profile';
 import Security from './Security';
 import Theme from './Theme';
@@ -13,11 +13,15 @@ const Stack = createNativeStackNavigator();
 const SettingsScreen = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Settings"
+      initialRouteName="SettingsRoot"
       screenOptions={{
         header: getNavigationBarSettings,
       }}>
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen
+        name="SettingsRoot"
+        component={SettingsRoot}
+        options={{title: 'Settings'}}
+      />
       <Stack.Screen
         name="Profile"
         component={Profile}

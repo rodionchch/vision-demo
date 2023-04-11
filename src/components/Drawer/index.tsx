@@ -6,7 +6,7 @@ import LoginScreen from 'screens/LoginScreen';
 import HomeScreen from 'screens/HomeScreen';
 import PhoneBookScreen from 'screens/PhoneBookScreen';
 import MailBookScreen from 'screens/MailBookScreen';
-import SettingsScreen from 'screens/SettingsScreen';
+import SettingsScreen from 'screens/Settings';
 import {getDrawerContent} from './DrawerContent';
 
 const DrawerNavigator = createDrawerNavigator();

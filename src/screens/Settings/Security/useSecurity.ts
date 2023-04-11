@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Switch} from './';
+import {Switch} from '.';
 
 const useSecurity = () => {
   const [switchValue, setSwitchValue] = useState(true);

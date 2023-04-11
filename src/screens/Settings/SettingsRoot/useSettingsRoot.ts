@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import NavigationType from 'types/NavigationType';
 
-const useSettings = () => {
+const useSettingsRoot = () => {
   const {navigate} = useNavigation<NavigationType>();
 
   const settings = [
@@ -44,4 +44,4 @@ const useSettings = () => {
   return [settings];
 };
 
-export default useSettings;
+export default useSettingsRoot;

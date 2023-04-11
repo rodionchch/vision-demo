@@ -3,10 +3,10 @@ import {ScrollView} from 'react-native-gesture-handler';
 
 import {useEnableDrawer} from 'hooks/useDrawer';
 import List from 'components/List';
-import useSettings from './useSettings';
+import useSettingsRoot from './useSettingsRoot';
 
-const Settings = () => {
-  const [settings] = useSettings();
+const SettingsRoot = () => {
+  const [settings] = useSettingsRoot();
   // useEnableDrawer();
 
   return (
@@ -16,4 +16,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default SettingsRoot;
