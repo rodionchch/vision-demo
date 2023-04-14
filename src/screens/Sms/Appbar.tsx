@@ -35,7 +35,7 @@ const Appbar = ({
           icon="book-edit-outline"
           onPress={() => {
             navigate('Sms', {
-              screen: 'PhoneBookRoot',
+              screen: 'PhoneBook',
             });
           }}
         />

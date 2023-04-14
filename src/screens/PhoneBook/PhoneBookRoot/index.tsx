@@ -5,9 +5,9 @@ import ListByKey from 'components/ListByKey';
 import data from 'components/ListByKey/data';
 import folders from './folders';
 
-import * as s from './styles';
+import * as s from '../styles';
 
-const PhoneBook = () => {
+const PhoneBookRoot = () => {
   return (
     <s.PhoneBook>
       <Folders data={folders} />
@@ -16,4 +16,4 @@ const PhoneBook = () => {
   );
 };
 
-export default PhoneBook;
+export default PhoneBookRoot;

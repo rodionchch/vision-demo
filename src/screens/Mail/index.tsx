@@ -1,43 +1,43 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useRoute} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import NavigationType from 'types/NavigationType';
-import PhoneBook from 'screens/PhoneBook';
-import SmsRoot from './SmsRoot';
-import SmsList from './SmsList';
 import {getAppbar} from './Appbar';
+import MailList from './MailList';
+import MailRoot from './MailRoot';
+import MailBook from 'screens/MailBook';
 
 const Stack = createNativeStackNavigator();
 
-const Sms = () => {
+const Mail = () => {
   const {params} = useRoute<NavigationType>();
   const tabs = params?.params?.tabs;
 
   return (
     <Stack.Navigator
-      initialRouteName="SmsRoot"
+      initialRouteName="MailRoot"
       screenOptions={{
         header: getAppbar,
       }}>
       <Stack.Screen
-        name="SmsRoot"
-        component={SmsRoot}
-        options={{title: 'SMS'}}
+        name="MailRoot"
+        component={MailRoot}
+        options={{title: 'Mail'}}
       />
       <Stack.Screen
-        name="SmsList"
-        component={SmsList}
-        options={{title: 'SMS'}}
+        name="MailList"
+        component={MailList}
+        options={{title: 'Mail'}}
         initialParams={{tabs}}
       />
       <Stack.Screen
-        name="PhoneBook"
-        component={PhoneBook}
-        options={{title: 'PhoneBook'}}
+        name="MailBook"
+        component={MailBook}
+        options={{title: 'MailBook'}}
       />
     </Stack.Navigator>
   );
 };
 
-export default Sms;
+export default Mail;

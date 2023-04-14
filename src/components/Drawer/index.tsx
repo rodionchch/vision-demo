@@ -4,8 +4,8 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import LoginScreen from 'screens/LoginScreen';
 import HomeScreen from 'screens/HomeScreen';
-import PhoneBookScreen from 'screens/PhoneBookScreen';
-import MailBookScreen from 'screens/MailBookScreen';
+import PhoneBook from 'screens/PhoneBook';
+import MailBook from 'screens/MailBook';
 import Settings from 'screens/Settings';
 import {getDrawerContent} from './DrawerContent';
 
@@ -30,15 +30,9 @@ const Drawer: React.FC<DrawerProps> = ({theme}) => {
           component={LoginScreen}
           options={{swipeEnabled: false}}
         />
-        <DrawerNavigator.Screen
-          name="DrawerPhoneBookRoot"
-          component={PhoneBookScreen}
-        />
-        <DrawerNavigator.Screen
-          name="DrawerMailBookRoot"
-          component={MailBookScreen}
-        />
-        <DrawerNavigator.Screen name="SettingsRoot" component={Settings} />
+        <DrawerNavigator.Screen name="DrawerPhoneBook" component={PhoneBook} />
+        <DrawerNavigator.Screen name="DrawerMailBook" component={MailBook} />
+        <DrawerNavigator.Screen name="Settings" component={Settings} />
       </DrawerNavigator.Navigator>
     </NavigationContainer>
   );

@@ -13,7 +13,7 @@ type FoldersProps = {
     count?: number;
   }[];
   screen?: string;
-  tabs: {key: string; title: string}[];
+  tabs?: {key: string; title: string}[];
 };
 
 const getFoldersIcon = (icon?: string) => () =>

@@ -1,25 +1,28 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-import {getNavigationBar} from './NavigationBar';
-import PhoneBook from './PhoneBook';
 import {useNavigation} from '@react-navigation/native';
+
+import {getAppbar} from './Appbar';
+import MailBookRoot from './MailBookRoot';
 
 const Stack = createNativeStackNavigator();
 
-const PhoneBookRootScreen = () => {
+const MailBook = () => {
   const navigation = useNavigation();
-
   return (
     <Stack.Navigator
-      initialRouteName="PhoneBook"
+      initialRouteName="MailBookRoot"
       screenOptions={{
-        header: getNavigationBar,
+        header: getAppbar,
         headerShown: navigation.getState().type === 'drawer',
       }}>
-      <Stack.Screen name="PhoneBook" component={PhoneBook} />
+      <Stack.Screen
+        name="MailBookRoot"
+        component={MailBookRoot}
+        options={{title: 'MailBook'}}
+      />
     </Stack.Navigator>
   );
 };
 
-export default PhoneBookRootScreen;
+export default MailBook;

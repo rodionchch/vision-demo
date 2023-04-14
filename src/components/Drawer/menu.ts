@@ -22,19 +22,19 @@ const menu = [
   ],
   [
     {
-      name: 'DrawerPhoneBookRoot',
+      name: 'DrawerPhoneBook',
       label: 'PhoneBook',
       icon: 'book-open',
     },
     {
-      name: 'MailBookRoot',
+      name: 'DrawerMailBook',
       label: 'MailBook',
       icon: 'email-multiple',
     },
   ],
   [
     {
-      name: 'SettingsRoot',
+      name: 'Settings',
       label: 'Settings',
       icon: 'cog',
     },

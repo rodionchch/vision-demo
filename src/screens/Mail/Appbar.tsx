@@ -1,16 +1,16 @@
 import React from 'react';
-import {Appbar} from 'react-native-paper';
+import {Appbar as PaperAppbar} from 'react-native-paper';
 import {getHeaderTitle} from '@react-navigation/elements';
 import {useNavigation} from '@react-navigation/native';
 import {BottomTabHeaderProps} from '@react-navigation/bottom-tabs';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import NavigationType from 'types/NavigationType';
 
-export const getNavigationBar = (
+export const getAppbar = (
   props: BottomTabHeaderProps | NativeStackHeaderProps | NavigationType,
-) => <NavigationBar {...props} />;
+) => <Appbar {...props} />;
 
-const NavigationBar = ({
+const Appbar = ({
   navigation,
   route,
   options,
@@ -21,27 +21,27 @@ const NavigationBar = ({
   const {params} = route;
 
   return (
-    <Appbar.Header>
+    <PaperAppbar.Header>
       {back ? (
-        <Appbar.BackAction onPress={navigation.goBack} />
+        <PaperAppbar.BackAction onPress={navigation.goBack} />
       ) : (
-        <Appbar.Action icon={'menu'} onPress={toggleDrawer} />
+        <PaperAppbar.Action icon={'menu'} onPress={toggleDrawer} />
       )}
 
-      <Appbar.Content title={params?.name || title} />
+      <PaperAppbar.Content title={params?.name || title} />
 
-      {route.name === 'Mail' && (
-        <Appbar.Action
+      {route.name === 'MailRoot' && (
+        <PaperAppbar.Action
           icon="book-edit-outline"
           onPress={() => {
-            navigate('MailRoot', {
-              screen: 'MailBookRoot',
+            navigate('Mail', {
+              screen: 'MailBook',
             });
           }}
         />
       )}
-    </Appbar.Header>
+    </PaperAppbar.Header>
   );
 };
 
-export default NavigationBar;
+export default Appbar;

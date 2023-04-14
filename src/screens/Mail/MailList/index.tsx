@@ -8,16 +8,16 @@ import List from 'components/List';
 import Tabs from 'components/Tabs';
 import Menu, {ContextualMenuCoord} from 'components/Menu';
 import data from './data';
-import menu from './menu';
+import menu from '../menu';
 
-type MailListScreenProps = {
+type MailListProps = {
   tabs: {
     key: string;
     title: string;
   }[];
 };
 
-const MailList = () => {
+const MailListContent = () => {
   const [menuVisible, setMenuVisible] = useState<boolean | {id: number}>(false);
   const [contextualMenuCoord, setContextualMenuCoor] =
     useState<ContextualMenuCoord>({x: 0, y: 0});
@@ -47,10 +47,10 @@ const MailList = () => {
   );
 };
 
-const MailListScreen: React.FC<MailListScreenProps> = () => {
+const MailList: React.FC<MailListProps> = () => {
   const {params} = useRoute<NavigationType>();
 
-  return <Tabs tabs={params?.tabs} component={MailList} />;
+  return <Tabs tabs={params?.tabs} component={MailListContent} />;
 };
 
-export default MailListScreen;
+export default MailList;

@@ -1,7 +1,7 @@
 import CallScreen from 'screens/CallScreen';
 import ChatScreen from 'screens/ChatScreen';
 import Sms from 'screens/Sms';
-import MailScreenRoot from 'screens/MailScreen';
+import Mail from 'screens/Mail';
 
 const tabs = [
   {
@@ -19,10 +19,10 @@ const tabs = [
     disabled: true,
   },
   {
-    name: 'MailRoot',
+    name: 'Mail',
     label: 'Mail',
     icon: 'email',
-    component: MailScreenRoot,
+    component: Mail,
   },
   {
     name: 'Sms',

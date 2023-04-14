@@ -3,9 +3,9 @@ import React from 'react';
 import Folders from 'components/Folders';
 import folders from './folders';
 
-import * as s from './styles';
+import * as s from '../styles';
 
-const MailBook = () => {
+const MailBookRoot = () => {
   return (
     <s.MailBook>
       <Folders data={folders} />
@@ -13,4 +13,4 @@ const MailBook = () => {
   );
 };
 
-export default MailBook;
+export default MailBookRoot;
