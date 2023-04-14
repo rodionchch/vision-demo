@@ -12,7 +12,7 @@ const useProfile = () => {
     },
   ];
 
-  return [profile];
+  return {profile};
 };
 
 export default useProfile;

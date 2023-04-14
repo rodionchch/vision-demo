@@ -6,7 +6,7 @@ import List from 'components/List';
 import useAbout from './useAbout';
 
 const About = () => {
-  const [about] = useAbout();
+  const {about} = useAbout();
   // useDisableDrawer();
 
   return (

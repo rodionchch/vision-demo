@@ -1,11 +1,8 @@
-import React, {useState} from 'react';
-import {GestureResponderEvent} from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import React from 'react';
 
-import NavigationType from 'types/NavigationType';
-import Menu, {ContextualMenuCoord} from 'components/Menu';
+import Menu from 'components/Menu';
+import useTags from './useTegs';
 import menu from './menu';
-
 import * as s from './styles';
 
 type TagsProps = {
@@ -34,36 +31,15 @@ const getCount = (count?: number) => () =>
   count !== undefined && <s.TagsItemText>{count}</s.TagsItemText>;
 
 const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
-  const {navigate} = useNavigation<NavigationType>();
-  const route = useRoute();
-  const [contextualMenuCoord, setContextualMenuCoor] =
-    useState<ContextualMenuCoord>({x: 0, y: 0});
-  const [menuVisible, setMenuVisible] = useState<boolean | {id: number}>(false);
-
-  const [expanded, setExpanded] = useState([0]);
-
-  const onLongPress = (event: GestureResponderEvent, tag: {id: number}) => {
-    const {nativeEvent} = event;
-
-    setContextualMenuCoor({
-      x: nativeEvent.pageX,
-      y: nativeEvent.pageY,
-    });
-    setMenuVisible(tag);
-  };
-
-  const toggleMenu = () => setMenuVisible(!menuVisible);
-
-  const onPressAccordion = (index: number) => {
-    const expandedSet = new Set(expanded);
-    if (expandedSet.has(index)) {
-      expandedSet.delete(index);
-    } else {
-      expandedSet.add(index);
-    }
-    setExpanded(Array.from(expandedSet));
-  };
-
+  const {
+    navigate,
+    contextualMenuCoord,
+    onLongPress,
+    toggleMenu,
+    onPressAccordion,
+    menuVisible,
+    expanded,
+  } = useTags();
   return (
     <>
       <Menu

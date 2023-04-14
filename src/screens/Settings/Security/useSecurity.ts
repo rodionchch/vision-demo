@@ -23,7 +23,7 @@ const useSecurity = () => {
     },
   ];
 
-  return [security];
+  return {security};
 };
 
 export default useSecurity;

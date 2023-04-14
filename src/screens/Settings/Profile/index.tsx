@@ -7,7 +7,7 @@ import useProfile from './useProfile';
 
 const Profile = () => {
   // useDisableDrawer();
-  const [profile] = useProfile();
+  const {profile} = useProfile();
 
   return (
     <ScrollView>

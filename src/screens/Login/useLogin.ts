@@ -1,17 +1,13 @@
-import React, {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
 import NavigationType from 'types/NavigationType';
 import useFaceId from 'hooks/useFaceId';
 import sleep from 'utils/sleep';
-import CodeDots from 'components/Code/Dots';
-import Code from 'components/Code';
 
-import * as s from './styles';
-
-const LoginScreen = () => {
-  const [onFaceId, faceIdSuccess] = useFaceId();
+const useLogin = () => {
+  const {onFaceId, faceIdSuccess} = useFaceId();
 
   const {navigate} = useNavigation<NavigationType>();
   const [savedPIN, setSavedPIN] = useState<string | null>(null);
@@ -65,18 +61,7 @@ const LoginScreen = () => {
     setPIN(prevPIN => prevPIN.slice(0, prevPIN.length - 1));
   };
 
-  return (
-    <s.Login>
-      <s.LoginLogo />
-      <s.LoginText variant={'titleMedium'}>Please enter your PIN</s.LoginText>
-      <CodeDots length={PIN?.length} />
-      <Code
-        onFaceId={onFaceId}
-        onChange={onChangeCode}
-        onBackspace={onBackspace}
-      />
-    </s.Login>
-  );
+  return {PIN, onFaceId, onChangeCode, onBackspace};
 };
 
-export default LoginScreen;
+export default useLogin;

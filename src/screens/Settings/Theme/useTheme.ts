@@ -57,7 +57,7 @@ const useTheme = () => {
     [setTheme, checked],
   );
 
-  return [themes];
+  return {themes};
 };
 
 export default useTheme;

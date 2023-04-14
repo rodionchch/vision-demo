@@ -19,7 +19,7 @@ const useSmsList = () => {
     setMenuVisible({id});
   };
 
-  return [menuVisible, toggleMenu, contextualMenuCoord, onLongPress];
+  return {menuVisible, toggleMenu, contextualMenuCoord, onLongPress};
 };
 
 export default useSmsList;

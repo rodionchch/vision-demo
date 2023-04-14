@@ -6,7 +6,7 @@ import List from 'components/List';
 import useSettingsRoot from './useSettingsRoot';
 
 const SettingsRoot = () => {
-  const [settings] = useSettingsRoot();
+  const {settings} = useSettingsRoot();
   // useEnableDrawer();
 
   return (

@@ -9,7 +9,7 @@ import folders from '../folders';
 import tags from './tags';
 
 const SmsRoot = () => {
-  const [tabsAll, tabs] = useSmsRoot();
+  const {tabsAll, tabs} = useSmsRoot();
 
   return (
     <ScrollView>

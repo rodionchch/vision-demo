@@ -9,7 +9,7 @@ const useLanguage = () => {
     LanguageEnum.English,
   );
 
-  const languageData = [
+  const language = [
     {
       label: 'English',
       checked: checked === LanguageEnum.English,
@@ -18,7 +18,8 @@ const useLanguage = () => {
       },
     },
   ];
-  return [languageData];
+
+  return {language};
 };
 
 export default useLanguage;

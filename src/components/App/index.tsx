@@ -16,7 +16,7 @@ export const PreferencesContext = createContext({
 });
 
 function App(): JSX.Element {
-  const [isThemeDark, theme, preferences] = useApp();
+  const {isThemeDark, theme, preferences} = useApp();
 
   return (
     <Provider store={store}>

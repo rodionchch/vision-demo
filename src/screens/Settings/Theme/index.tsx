@@ -6,7 +6,7 @@ import useTheme from './useTheme';
 import CheckList from 'components/CheckList';
 
 const Theme = () => {
-  const [themes] = useTheme();
+  const {themes} = useTheme();
   // useDisableDrawer();
 
   return (

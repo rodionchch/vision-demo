@@ -12,7 +12,7 @@ const useSmsRoot = () => {
     {key: '3', title: 'Trash'},
   ];
 
-  return [tabsAll, tabs];
+  return {tabsAll, tabs};
 };
 
 export default useSmsRoot;

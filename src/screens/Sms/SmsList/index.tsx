@@ -14,7 +14,7 @@ import menu from '../menu';
 type SmsListProps = {};
 
 const SmsListContent = () => {
-  const [menuVisible, toggleMenu, contextualMenuCoord, onLongPress] =
+  const {menuVisible, toggleMenu, contextualMenuCoord, onLongPress} =
     useSmsList();
 
   return (

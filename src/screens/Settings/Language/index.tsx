@@ -7,7 +7,7 @@ import useLanguage from './useLanguage';
 
 const Language = () => {
   // useDisableDrawer();
-  const [language] = useLanguage();
+  const {language} = useLanguage();
 
   return (
     <ScrollView>

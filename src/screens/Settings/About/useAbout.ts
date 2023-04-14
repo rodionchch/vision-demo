@@ -6,7 +6,7 @@ const useAbout = () => {
     },
   ];
 
-  return [about];
+  return {about};
 };
 
 export default useAbout;

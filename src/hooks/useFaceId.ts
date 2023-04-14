@@ -25,7 +25,7 @@ const useFaceId = () => {
     }
   };
 
-  return [onFaceId, faceIdSuccess];
+  return {onFaceId, faceIdSuccess};
 };
 
 export default useFaceId;

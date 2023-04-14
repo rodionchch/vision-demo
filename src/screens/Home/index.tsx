@@ -1,8 +1,8 @@
 import React from 'react';
 import Navigation from 'components/Navigation';
 
-const HomeScreen = () => {
+const Home = () => {
   return <Navigation />;
 };
 
-export default HomeScreen;
+export default Home;

@@ -18,7 +18,7 @@ export const Switch = ({value, onChange}: SwitchProps) => (
 const Security = () => {
   // useDisableDrawer();
 
-  const [security] = useSecurity();
+  const {security} = useSecurity();
 
   return (
     <ScrollView>

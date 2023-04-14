@@ -41,7 +41,7 @@ const useSettingsRoot = () => {
       },
     },
   ];
-  return [settings];
+  return {settings};
 };
 
 export default useSettingsRoot;

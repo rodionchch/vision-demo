@@ -35,7 +35,7 @@ const useMailRoot = () => {
     setExtended(currentScrollPosition <= 0);
   };
 
-  return [onScroll, tabsAll, tabs, velocity, extended];
+  return {onScroll, tabsAll, tabs, velocity, extended};
 };
 
 export default useMailRoot;

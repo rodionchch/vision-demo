@@ -78,7 +78,7 @@ const useApp = () => {
     [setTheme, toggleTheme, isThemeDark],
   );
 
-  return [isThemeDark, theme, preferences];
+  return {isThemeDark, theme, preferences};
 };
 
 export default useApp;

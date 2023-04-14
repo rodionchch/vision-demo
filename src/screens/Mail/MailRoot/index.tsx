@@ -10,7 +10,7 @@ import tags from './tags';
 import * as s from '../styles';
 
 const MailRoot = () => {
-  const [onScroll, tabsAll, tabs, velocity, extended] = useMailRoot();
+  const {onScroll, tabsAll, tabs, velocity, extended} = useMailRoot();
 
   return (
     <>
