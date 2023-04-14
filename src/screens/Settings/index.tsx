@@ -10,7 +10,7 @@ import About from './About';
 
 const Stack = createNativeStackNavigator();
 
-const SettingsScreen = () => {
+const Settings = () => {
   return (
     <Stack.Navigator
       initialRouteName="SettingsRoot"
@@ -61,4 +61,4 @@ const SettingsScreen = () => {
   );
 };
 
-export default SettingsScreen;
+export default Settings;

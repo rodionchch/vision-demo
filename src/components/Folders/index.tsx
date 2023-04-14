@@ -1,7 +1,8 @@
 import React from 'react';
-
-import * as s from './styles';
 import {useNavigation} from '@react-navigation/native';
+
+import NavigationType from 'types/NavigationType';
+import * as s from './styles';
 
 type FoldersProps = {
   title?: string;
@@ -27,7 +28,7 @@ const Folders: React.FC<FoldersProps> = ({
   screen,
   tabs,
 }) => {
-  const {navigate} = useNavigation();
+  const {navigate} = useNavigation<NavigationType>();
 
   return (
     <s.Folders>
@@ -38,7 +39,7 @@ const Folders: React.FC<FoldersProps> = ({
           title={title}
           onPress={() => {
             if (screen) {
-              navigate(`${screen}Root`, {
+              navigate(screen, {
                 screen: `${screen}List`,
                 params: {
                   folder: id,

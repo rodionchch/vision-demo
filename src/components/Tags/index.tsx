@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {GestureResponderEvent} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
+import NavigationType from 'types/NavigationType';
 import Menu, {ContextualMenuCoord} from 'components/Menu';
 import menu from './menu';
 
@@ -20,6 +21,7 @@ type TagsProps = {
     }[];
   }[];
   tabs: {key: string; title: string}[];
+  screen?: string;
 };
 
 const getTagIcon = (icon?: string) => () =>
@@ -31,8 +33,8 @@ const getItemIcon = (icon?: string) => () =>
 const getCount = (count?: number) => () =>
   count !== undefined && <s.TagsItemText>{count}</s.TagsItemText>;
 
-const Tags: React.FC<TagsProps> = ({data, tabs}) => {
-  const {navigate} = useNavigation();
+const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
+  const {navigate} = useNavigation<NavigationType>();
   const route = useRoute();
   const [contextualMenuCoord, setContextualMenuCoor] =
     useState<ContextualMenuCoord>({x: 0, y: 0});
@@ -85,14 +87,16 @@ const Tags: React.FC<TagsProps> = ({data, tabs}) => {
               <s.TagsTouchable
                 key={itemId}
                 onPress={() => {
-                  navigate(`${route?.name}Root`, {
-                    screen: `${route?.name}List`,
-                    params: {
-                      tabs,
-                      name,
-                      phone,
-                    },
-                  });
+                  if (screen) {
+                    navigate(screen, {
+                      screen: `${screen}List`,
+                      params: {
+                        tabs,
+                        name,
+                        phone,
+                      },
+                    });
+                  }
                 }}
                 onLongPress={event => {
                   onLongPress(event, {id: itemId});

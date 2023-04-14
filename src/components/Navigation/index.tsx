@@ -22,7 +22,7 @@ const Navigation: React.FC<NavigationProps> = () => {
   return (
     <>
       <Tab.Navigator
-        initialRouteName="SmsRoot"
+        initialRouteName="Sms"
         screenOptions={{
           headerShown: false,
         }}
