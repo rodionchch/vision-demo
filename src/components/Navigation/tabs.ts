@@ -1,5 +1,5 @@
-import Call from 'screens/Call';
 import Chat from 'screens/Chat';
+import Call from 'screens/Call';
 import Sms from 'screens/Sms';
 import Mail from 'screens/Mail';
 
