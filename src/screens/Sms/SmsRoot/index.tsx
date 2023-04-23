@@ -1,6 +1,7 @@
 import React from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 
+import {useToggleDrawer} from 'hooks/useDrawer';
 import Folders from 'components/Folders';
 import Tags from 'components/Tags';
 import useSmsRoot from './useSmsRoot';
@@ -10,6 +11,7 @@ import tags from './tags';
 
 const SmsRoot = () => {
   const {tabsAll, tabs} = useSmsRoot();
+  useToggleDrawer();
 
   return (
     <ScrollView>

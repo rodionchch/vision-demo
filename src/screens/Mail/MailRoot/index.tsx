@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {useToggleDrawer} from 'hooks/useDrawer';
 import Folders from 'components/Folders';
 import Tags from 'components/Tags';
 import FAB from 'components/FAB';
@@ -11,6 +12,7 @@ import * as s from '../styles';
 
 const MailRoot = () => {
   const {onScroll, tabsAll, tabs, velocity, extended} = useMailRoot();
+  useToggleDrawer();
 
   return (
     <>

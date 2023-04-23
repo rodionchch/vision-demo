@@ -22,14 +22,11 @@ const Drawer: React.FC<DrawerProps> = ({theme}) => {
         initialRouteName="Home"
         screenOptions={{
           headerShown: false,
+          swipeEnabled: false,
         }}
         drawerContent={getDrawerContent}>
         <DrawerNavigator.Screen name="Home" component={Home} />
-        <DrawerNavigator.Screen
-          name="Login"
-          component={Login}
-          options={{swipeEnabled: false}}
-        />
+        <DrawerNavigator.Screen name="Login" component={Login} />
         <DrawerNavigator.Screen name="DrawerPhoneBook" component={PhoneBook} />
         <DrawerNavigator.Screen name="DrawerMailBook" component={MailBook} />
         <DrawerNavigator.Screen name="Settings" component={Settings} />
