@@ -1,23 +1,23 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 interface AppState {
-  hello: string;
+  rootScreen: boolean;
 }
 
 const initialState: AppState = {
-  hello: '',
+  rootScreen: false,
 };
 
 export const appSlice = createSlice({
-  name: 'counter',
+  name: 'app',
   initialState,
   reducers: {
-    sayHello: state => {
-      state.hello = 'Hello, World!';
+    setRootScreen: (state, {payload}) => {
+      state.rootScreen = payload;
     },
   },
 });
 
-export const {sayHello} = appSlice.actions;
+export const {setRootScreen} = appSlice.actions;
 
 export default appSlice.reducer;

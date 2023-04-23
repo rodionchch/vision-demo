@@ -1,7 +1,12 @@
-import React from 'react';
-import {BottomNavigation} from 'react-native-paper';
-import {CommonActions, useNavigation} from '@react-navigation/native';
+import React, {useEffect, useRef} from 'react';
+import {BottomNavigation, MD3Colors} from 'react-native-paper';
+import {CommonActions} from '@react-navigation/native';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
+
+import {useAppSelector} from 'store/hooks';
+
+import * as s from './styles';
+import {Animated} from 'react-native';
 
 export const getNavigationBottom = (props: BottomTabBarProps) => (
   <NavigationBottom {...props} />
@@ -13,12 +18,26 @@ const NavigationBottom = ({
   descriptors,
   insets,
 }: BottomTabBarProps) => {
+  const {rootScreen} = useAppSelector(({app}) => app);
+
+  const translateYAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
+
+  useEffect(() => {
+    Animated.timing(translateYAnim, {
+      toValue: rootScreen ? 0 : 120,
+      duration: 160,
+      useNativeDriver: true,
+    }).start();
+  }, [translateYAnim, rootScreen]);
+
   return (
     <BottomNavigation.Bar
-      // style={{display: 'none'}}
+      style={{
+        position: 'absolute',
+        transform: [{translateY: translateYAnim}],
+      }}
       navigationState={state}
       safeAreaInsets={insets}
-      // shifting={true}
       onTabPress={({route, preventDefault}) => {
         const {disabled} = route?.params;
         if (!disabled) {
@@ -32,7 +51,7 @@ const NavigationBottom = ({
             preventDefault();
           } else {
             navigation.dispatch({
-              ...CommonActions.navigate(route.name, route.params),
+              ...CommonActions.navigate(route.name),
               target: state.key,
             });
           }
@@ -40,13 +59,21 @@ const NavigationBottom = ({
       }}
       renderIcon={({route, focused, color: rgba}) => {
         const {disabled} = route?.params;
-        const color = !disabled ? rgba : '#888';
+        const color = !disabled ? rgba : MD3Colors.secondary40;
         const {options} = descriptors[route.key];
         if (options.tabBarIcon) {
           return options.tabBarIcon({focused, color, size: 24});
         }
 
         return null;
+      }}
+      renderLabel={({route, focused, color}) => {
+        const {disabled} = route?.params;
+        return (
+          <s.NavigationBottomLabel disabled={disabled}>
+            {route?.name}
+          </s.NavigationBottomLabel>
+        );
       }}
       getLabelText={({route}) => {
         const {options} = descriptors[route.key];

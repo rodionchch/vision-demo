@@ -1,11 +1,5 @@
-import React, {useCallback, useEffect} from 'react';
+import React from 'react';
 
-import {
-  useFocusEffect,
-  useIsFocused,
-  useNavigation,
-  useRoute,
-} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {getNavigationBarSettings} from './NavigationBar';
 import SettingsRoot from './SettingsRoot';

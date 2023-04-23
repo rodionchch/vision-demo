@@ -35,8 +35,6 @@ const List: React.FC<ListProps> = ({title: headerTitle, data, onLongPress}) => {
             onPress={() => {
               if (onPress) {
                 onPress?.();
-              } else {
-                // navigate(id);
               }
             }}
             onLongPress={event => {

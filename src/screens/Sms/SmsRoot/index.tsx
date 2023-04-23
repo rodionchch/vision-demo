@@ -9,6 +9,8 @@ import useSmsRoot from './useSmsRoot';
 import folders from '../folders';
 import tags from './tags';
 
+import * as s from '../styles';
+
 const SmsRoot = () => {
   const {tabsAll, tabs} = useSmsRoot();
   useToggleDrawer();
@@ -22,6 +24,7 @@ const SmsRoot = () => {
         tabs={tabsAll}
       />
       <Tags data={tags} tabs={tabs} screen="Sms" />
+      <s.SmsPlug />
     </ScrollView>
   );
 };

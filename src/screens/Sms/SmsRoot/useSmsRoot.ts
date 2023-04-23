@@ -1,4 +1,20 @@
+import {useFocusEffect} from '@react-navigation/native';
+import {useCallback} from 'react';
+import {setRootScreen} from 'store/appSlice';
+import {useAppDispatch} from 'store/hooks';
+
 const useSmsRoot = () => {
+  const dispatch = useAppDispatch();
+
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(setRootScreen(true));
+      return () => {
+        dispatch(setRootScreen(false));
+      };
+    }, [dispatch]),
+  );
+
   const tabsAll = [
     {key: '0', title: 'Conversations'},
     {key: '1', title: 'All Unread'},
