@@ -5,5 +5,5 @@ import {View} from 'react-native';
 export const Sms = styled(ScrollView)``;
 
 export const SmsPlug = styled(View)`
-  height: 120px;
+  height: 60px;
 `;

@@ -24,7 +24,6 @@ const SmsRoot = () => {
         tabs={tabsAll}
       />
       <Tags data={tags} tabs={tabs} screen="Sms" />
-      <s.SmsPlug />
     </ScrollView>
   );
 };

@@ -5,32 +5,32 @@ const tags = [
     icon: 'mailbox',
     items: [
       {
-        id: 0,
+        id: 1,
         name: 'rodionchch@gmail.com',
         icon: 'inbox-full',
       },
       {
-        id: 1,
+        id: 2,
         name: 'visiontest1@xsecurenetwork.com',
         icon: 'inbox-full',
       },
       {
-        id: 2,
+        id: 3,
         name: 'visiontest2@xsecurenetwork.com',
         icon: 'inbox-full',
       },
       {
-        id: 3,
+        id: 4,
         name: 'visiontest3@xsecurenetwork.com',
         icon: 'inbox-full',
       },
       {
-        id: 4,
+        id: 5,
         name: 'visiontest4@xsecurenetwork.com',
         icon: 'inbox-full',
       },
       {
-        id: 5,
+        id: 6,
         name: 'visiontest5@xsecurenetwork.com',
         icon: 'inbox-full',
       },
@@ -42,22 +42,22 @@ const tags = [
     icon: 'earth',
     items: [
       {
-        id: 0,
+        id: 7,
         name: 'rodion1@history.com',
         icon: 'inbox-full',
       },
       {
-        id: 1,
+        id: 8,
         name: 'rodion2@history.com',
         icon: 'inbox-full',
       },
       {
-        id: 2,
+        id: 9,
         name: 'rodion3@history.com',
         icon: 'inbox-full',
       },
       {
-        id: 3,
+        id: 10,
         name: 'rodion4@history.com',
         icon: 'inbox-full',
       },

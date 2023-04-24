@@ -1,12 +1,9 @@
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 import {BottomNavigation, MD3Colors} from 'react-native-paper';
 import {CommonActions} from '@react-navigation/native';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
-import {useAppSelector} from 'store/hooks';
-
 import * as s from './styles';
-import {Animated} from 'react-native';
 
 export const getNavigationBottom = (props: BottomTabBarProps) => (
   <NavigationBottom {...props} />
@@ -18,24 +15,8 @@ const NavigationBottom = ({
   descriptors,
   insets,
 }: BottomTabBarProps) => {
-  const {rootScreen} = useAppSelector(({app}) => app);
-
-  const translateYAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
-
-  useEffect(() => {
-    Animated.timing(translateYAnim, {
-      toValue: rootScreen ? 0 : 120,
-      duration: 160,
-      useNativeDriver: true,
-    }).start();
-  }, [translateYAnim, rootScreen]);
-
   return (
     <BottomNavigation.Bar
-      style={{
-        position: 'absolute',
-        transform: [{translateY: translateYAnim}],
-      }}
       navigationState={state}
       safeAreaInsets={insets}
       onTabPress={({route, preventDefault}) => {

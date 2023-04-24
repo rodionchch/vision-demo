@@ -33,7 +33,11 @@ export const useToggleDrawer = () => {
       }
 
       return () => {
-        navigation.getParent()?.setOptions({swipeEnabled: false});
+        if (parent?.getState().type === type) {
+          parent.setOptions({swipeEnabled: false});
+        } else if (parentParent?.getState()?.type === type) {
+          parentParent.setOptions({swipeEnabled: false});
+        }
       };
     }, [navigation]),
   );

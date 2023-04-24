@@ -5,5 +5,5 @@ import {View} from 'react-native';
 export const Mail = styled(ScrollView)``;
 
 export const MailPlug = styled(View)`
-  height: 180px;
+  height: 60px;
 `;
