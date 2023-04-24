@@ -9,6 +9,7 @@ type MenuProps = {
   visible: boolean | {id: number};
   toggleMenu: () => void;
   contextualMenuCoord: ContextualMenuCoord;
+  onPress?: (menuItem: string) => void;
 };
 
 const Menu: React.FC<MenuProps> = ({
@@ -16,6 +17,7 @@ const Menu: React.FC<MenuProps> = ({
   visible,
   toggleMenu,
   contextualMenuCoord,
+  onPress,
 }) => {
   return (
     <s.Menu
@@ -26,7 +28,10 @@ const Menu: React.FC<MenuProps> = ({
         <s.MenuItem
           key={`${title}-${index}`}
           leadingIcon={icon}
-          onPress={toggleMenu}
+          onPress={() => {
+            toggleMenu();
+            onPress?.(title);
+          }}
           title={title}
         />
       ))}

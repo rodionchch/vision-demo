@@ -9,8 +9,6 @@ import useSmsRoot from './useSmsRoot';
 import folders from '../folders';
 import tags from './tags';
 
-import * as s from '../styles';
-
 const SmsRoot = () => {
   const {tabsAll, tabs} = useSmsRoot();
   useToggleDrawer();

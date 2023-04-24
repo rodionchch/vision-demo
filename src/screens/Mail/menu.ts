@@ -1,6 +1,6 @@
 const menu = [
-  {title: 'Copy', icon: 'content-copy'},
-  {title: 'Edit Contact Name', icon: 'square-edit-outline'},
+  {title: 'Add to favorites', icon: 'heart-outline'},
+  {title: 'Mark as Unread', icon: 'email-mark-as-unread'},
   {title: 'Move to Trash', icon: 'delete-outline'},
 ];
 

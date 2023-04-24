@@ -1,11 +1,13 @@
 import styled from 'styled-components/native';
-import {List as PaperList, Text} from 'react-native-paper';
+import {MD3Colors, List as PaperList, Text} from 'react-native-paper';
 
 export const List = styled(PaperList.Section)``;
 
 export const ListHeader = styled(PaperList.Subheader)``;
 
-export const ListItem = styled(PaperList.Item)``;
+export const ListItem = styled(PaperList.Item)<{selected?: boolean}>`
+  ${props => props.selected && `background: ${MD3Colors.secondary30};`}
+`;
 
 export const ListItemIcon = styled(PaperList.Icon)`
   padding-left: 16px;

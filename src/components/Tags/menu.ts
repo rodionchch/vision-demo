@@ -1,6 +1,11 @@
+export enum MenuEnum {
+  Edit = 'Edit',
+  Info = 'Info',
+}
+
 const menu = [
-  {title: 'Edit', icon: 'square-edit-outline'},
-  {title: 'Info', icon: 'information-outline'},
+  {title: MenuEnum.Edit, icon: 'square-edit-outline'},
+  {title: MenuEnum.Info, icon: 'information-outline'},
 ];
 
 export default menu;

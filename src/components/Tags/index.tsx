@@ -1,8 +1,10 @@
 import React from 'react';
 
 import Menu from 'components/Menu';
+import Modal from 'components/Modal';
 import useTags from './useTegs';
 import menu from './menu';
+
 import * as s from './styles';
 
 type TagsProps = {
@@ -39,7 +41,12 @@ const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
     onPressAccordion,
     menuVisible,
     expanded,
+    onPressMenu,
+    modalRef,
+    snapPoints,
+    onSheetChanges,
   } = useTags();
+
   return (
     <>
       <Menu
@@ -47,6 +54,7 @@ const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
         visible={menuVisible}
         toggleMenu={toggleMenu}
         contextualMenuCoord={contextualMenuCoord}
+        onPress={onPressMenu}
       />
 
       <s.Tags>
@@ -91,6 +99,12 @@ const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
           </s.TagsAccordion>
         ))}
       </s.Tags>
+
+      <Modal
+        modalRef={modalRef}
+        snapPoints={snapPoints}
+        onSheetChanges={onSheetChanges}
+      />
     </>
   );
 };

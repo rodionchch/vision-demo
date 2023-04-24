@@ -15,6 +15,7 @@ type ListProps = {
     description?: string;
   }[];
   onLongPress?: (event: GestureResponderEvent, id: number) => void;
+  selected?: boolean | {id: number};
 };
 
 const getListIcon = (icon?: string) => () =>
@@ -23,7 +24,12 @@ const getListIcon = (icon?: string) => () =>
 const getText = (text?: string) => () =>
   text !== undefined && <s.ListItemText>{text}</s.ListItemText>;
 
-const List: React.FC<ListProps> = ({title: headerTitle, data, onLongPress}) => {
+const List: React.FC<ListProps> = ({
+  title: headerTitle,
+  data,
+  onLongPress,
+  selected,
+}) => {
   return (
     <s.List>
       {!!headerTitle && <s.ListHeader>{headerTitle}</s.ListHeader>}
@@ -43,6 +49,7 @@ const List: React.FC<ListProps> = ({title: headerTitle, data, onLongPress}) => {
             left={getListIcon(icon)}
             right={right ? () => right : getText(text)}
             description={description}
+            selected={selected && selected?.id === id}
           />
         ),
       )}
