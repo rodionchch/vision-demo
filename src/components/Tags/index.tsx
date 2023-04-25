@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Menu from 'components/Menu';
-import Modal from 'components/Modal';
-import useTags from './useTegs';
+import Modal, {ModalActions} from 'components/Modal';
+import useTags from './useTags';
 import menu from './menu';
 
 import * as s from './styles';
@@ -43,8 +43,7 @@ const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
     expanded,
     onPressMenu,
     modalRef,
-    snapPoints,
-    onSheetChanges,
+    modal,
   } = useTags();
 
   return (
@@ -102,9 +101,10 @@ const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
 
       <Modal
         modalRef={modalRef}
-        snapPoints={snapPoints}
-        onSheetChanges={onSheetChanges}
-      />
+        title={modal?.title}
+        actions={modal?.actions as ModalActions}>
+        {modal?.component as React.ReactNode}
+      </Modal>
     </>
   );
 };

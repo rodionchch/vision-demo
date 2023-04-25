@@ -1,21 +1,62 @@
 import {useCallback, useMemo, useRef, useState} from 'react';
 import {GestureResponderEvent} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
 import NavigationType from 'types/NavigationType';
 import {ContextualMenuCoord} from 'components/Menu';
+import Edit from 'components/Edit';
+import Info from 'components/Info';
 import {MenuEnum} from './menu';
-import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
 const useTags = () => {
   const {navigate} = useNavigation<NavigationType>();
   const [contextualMenuCoord, setContextualMenuCoor] =
     useState<ContextualMenuCoord>({x: 0, y: 0});
-  const [menuVisible, setMenuVisible] = useState<boolean | {id: number}>(false);
   const modalRef = useRef<BottomSheetModal>(null);
-  const snapPoints = useMemo(() => ['54%', '92%'], []);
+  const [menuVisible, setMenuVisible] = useState<boolean | {id: number}>(false);
 
   const [expanded, setExpanded] = useState([0]);
+  const [showModal, setShowModal] = useState<MenuEnum | null>(null);
+
+  const modalData = useMemo(
+    () => ({
+      [MenuEnum.Edit]: {
+        component: <Edit />,
+        actions: [
+          {
+            label: 'Cancel',
+            onPress: () => {
+              modalRef.current?.close();
+            },
+          },
+          {
+            label: 'Done',
+            onPress: () => {
+              modalRef.current?.close();
+            },
+          },
+        ],
+        title: 'Edit',
+      },
+      [MenuEnum.Info]: {
+        component: <Info />,
+        title: 'TOKARCHUK ANDREI',
+        actions: [
+          {},
+          {
+            label: 'Done',
+            onPress: () => {
+              modalRef.current?.close();
+            },
+          },
+        ],
+      },
+    }),
+    [],
+  );
+
+  const modal = showModal && modalData?.[showModal];
 
   const onLongPress = (event: GestureResponderEvent, tag: {id: number}) => {
     const {nativeEvent} = event;
@@ -39,20 +80,19 @@ const useTags = () => {
     setExpanded(Array.from(expandedSet));
   };
 
-  // callbacks
-  const onShowModal = useCallback(() => {
-    modalRef.current?.present();
-  }, []);
+  const onShowModal = useCallback(
+    (menuItem: MenuEnum) => {
+      setShowModal(menuItem);
+      modalRef.current?.present();
+    },
+    [setShowModal],
+  );
 
-  const onSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
-
-  const onPressMenu = (menuItem: string) => {
+  const onPressMenu = (menuItem: MenuEnum) => {
     switch (menuItem) {
       case MenuEnum.Edit:
-        onShowModal();
-        break;
+      case MenuEnum.Info:
+        onShowModal(menuItem);
     }
   };
 
@@ -66,8 +106,7 @@ const useTags = () => {
     expanded,
     onPressMenu,
     modalRef,
-    snapPoints,
-    onSheetChanges,
+    modal,
   };
 };
 
