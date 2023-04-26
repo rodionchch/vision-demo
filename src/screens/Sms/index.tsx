@@ -6,6 +6,7 @@ import NavigationType from 'types/NavigationType';
 import PhoneBook from 'screens/PhoneBook';
 import SmsRoot from './SmsRoot';
 import SmsList from './SmsList';
+import SmsChat from './SmsChat';
 import {getAppbar} from './Appbar';
 
 const Stack = createNativeStackNavigator();
@@ -30,6 +31,11 @@ const Sms = () => {
         component={SmsList}
         options={{title: 'SMS'}}
         initialParams={{tabs}}
+      />
+      <Stack.Screen
+        name="SmsChat"
+        component={SmsChat}
+        options={{title: 'SMS'}}
       />
       <Stack.Screen
         name="PhoneBook"

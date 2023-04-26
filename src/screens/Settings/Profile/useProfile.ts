@@ -3,12 +3,10 @@ const useProfile = () => {
     {
       title: 'First Name',
       text: 'Rodion',
-      onPress: () => {},
     },
     {
       title: 'Last Name',
       text: 'Chegodaev',
-      onPress: () => {},
     },
   ];
 

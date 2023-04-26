@@ -19,7 +19,7 @@ const Security = () => {
 
   return (
     <ScrollView>
-      <List data={security} />
+      <List data={security} onPress={() => {}} />
     </ScrollView>
   );
 };

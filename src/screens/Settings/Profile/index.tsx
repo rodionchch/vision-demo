@@ -9,7 +9,7 @@ const Profile = () => {
 
   return (
     <ScrollView>
-      <List data={profile} />
+      <List data={profile} onPress={() => {}} />
     </ScrollView>
   );
 };

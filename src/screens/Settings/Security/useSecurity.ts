@@ -6,11 +6,9 @@ const useSecurity = () => {
   const security = [
     {
       title: 'Real PIN',
-      onPress: () => {},
     },
     {
       title: 'Fake PIN',
-      onPress: () => {},
     },
     {
       title: 'Face ID',

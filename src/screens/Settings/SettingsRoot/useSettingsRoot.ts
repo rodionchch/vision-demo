@@ -1,46 +1,31 @@
-import {useNavigation} from '@react-navigation/native';
-import NavigationType from 'types/NavigationType';
+import {useMemo} from 'react';
 
 const useSettingsRoot = () => {
-  const {navigate} = useNavigation<NavigationType>();
-
-  const settings = [
-    {
-      title: 'Profile',
-      icon: 'account',
-      onPress: () => {
-        navigate('Profile');
+  const settings = useMemo(
+    () => [
+      {
+        title: 'Profile',
+        icon: 'account',
       },
-    },
-    {
-      title: 'Security',
-      icon: 'security',
-      onPress: () => {
-        navigate('Security');
+      {
+        title: 'Security',
+        icon: 'security',
       },
-    },
-    {
-      title: 'Theme',
-      icon: 'white-balance-sunny',
-      onPress: () => {
-        navigate('Theme');
+      {
+        title: 'Theme',
+        icon: 'white-balance-sunny',
       },
-    },
-    {
-      title: 'Language',
-      icon: 'alpha-a-box-outline',
-      onPress: () => {
-        navigate('Language');
+      {
+        title: 'Language',
+        icon: 'alpha-a-box-outline',
       },
-    },
-    {
-      title: 'About',
-      icon: 'information-outline',
-      onPress: () => {
-        navigate('About');
+      {
+        title: 'About',
+        icon: 'information-outline',
       },
-    },
-  ];
+    ],
+    [],
+  );
   return {settings};
 };
 
