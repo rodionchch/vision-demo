@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {MenuEnum} from 'components/Tags/menu';
 import * as s from './styles';
 
 export type ContextualMenuCoord = {x: number; y: number};
@@ -9,7 +10,7 @@ type MenuProps = {
   visible: boolean | {id: number};
   toggleMenu: () => void;
   contextualMenuCoord: ContextualMenuCoord;
-  onPress?: (menuItem: string) => void;
+  onPress?: (menuItem: MenuEnum) => void;
 };
 
 const Menu: React.FC<MenuProps> = ({

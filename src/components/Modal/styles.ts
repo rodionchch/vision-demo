@@ -7,13 +7,18 @@ export const Modal = styled(BottomSheetModal).attrs(
   (props: {hideHandle?: boolean}) => ({
     handleStyle: props.hideHandle ? {display: 'none'} : undefined,
     backgroundStyle: {
-      backgroundColor: MD3Colors.secondary20,
+      backgroundColor: MD3Colors.secondary10,
+      borderRadius: 22,
     },
     handleIndicatorStyle: {
       backgroundColor: MD3Colors.secondary90,
     },
   }),
 )<{hideHandle?: boolean}>``;
+
+export const ModalSafeArea = styled.SafeAreaView`
+  flex: 1;
+`;
 
 export const ModalContent = styled.ScrollView``;
 

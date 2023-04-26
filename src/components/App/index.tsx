@@ -2,6 +2,8 @@ import React, {createContext} from 'react';
 import {StatusBar} from 'react-native';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {Provider} from 'react-redux';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {store} from 'store';
 import {Theme} from '@react-navigation/native';
 import {ThemeProp} from 'react-native-paper/lib/typescript/src/types';
@@ -32,7 +34,11 @@ function App(): JSX.Element {
           <StatusBar
             barStyle={isThemeDark ? 'light-content' : 'dark-content'}
           />
-          <Drawer theme={theme as Theme} />
+          <SafeAreaProvider>
+            <GestureHandlerRootView style={{flex: 1}}>
+              <Drawer theme={theme as Theme} />
+            </GestureHandlerRootView>
+          </SafeAreaProvider>
         </PaperProvider>
       </PreferencesContext.Provider>
     </Provider>

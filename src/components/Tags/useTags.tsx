@@ -1,5 +1,5 @@
 import {useCallback, useMemo, useRef, useState} from 'react';
-import {GestureResponderEvent} from 'react-native';
+import {GestureResponderEvent, Keyboard} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
@@ -23,21 +23,23 @@ const useTags = () => {
     () => ({
       [MenuEnum.Edit]: {
         component: <Edit />,
+        title: 'TOKARCHUK ANDREI',
         actions: [
           {
             label: 'Cancel',
             onPress: () => {
+              Keyboard.dismiss();
               modalRef.current?.close();
             },
           },
           {
             label: 'Done',
             onPress: () => {
+              Keyboard.dismiss();
               modalRef.current?.close();
             },
           },
         ],
-        title: 'Edit',
       },
       [MenuEnum.Info]: {
         component: <Info />,

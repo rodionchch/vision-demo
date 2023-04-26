@@ -1,4 +1,5 @@
 import React, {useMemo} from 'react';
+import {Keyboard} from 'react-native';
 import {Portal} from 'react-native-paper';
 import {
   BottomSheetBackdrop,
@@ -7,6 +8,7 @@ import {
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
 
+import {iOS} from 'constants/Platform';
 import * as s from './styles';
 
 export type ModalActions = [
@@ -26,7 +28,10 @@ const getBackdropComponent = (props: BottomSheetBackdropProps) => (
 );
 
 const Modal: React.FC<ModalProps> = ({modalRef, title, actions, children}) => {
-  const snapPoints = useMemo(() => ['92%', '92%'], []);
+  const snapPoints = useMemo(
+    () => (iOS ? ['94%', '94%'] : ['100%', '100%']),
+    [],
+  );
 
   return (
     <Portal>
@@ -36,17 +41,21 @@ const Modal: React.FC<ModalProps> = ({modalRef, title, actions, children}) => {
           index={1}
           hideHandle={!!actions}
           snapPoints={snapPoints}
-          onChange={() => {}}
+          onAnimate={() => {
+            Keyboard.dismiss();
+          }}
           backdropComponent={getBackdropComponent}>
-          {actions && (
-            <s.ModalActions>
-              {actions?.map(({label, onPress}) => (
-                <s.ModalAction onPress={onPress}>{label}</s.ModalAction>
-              ))}
-              <s.ModalTitle>{title}</s.ModalTitle>
-            </s.ModalActions>
-          )}
-          <s.ModalContent>{children}</s.ModalContent>
+          <s.ModalSafeArea>
+            {actions && (
+              <s.ModalActions>
+                {actions?.map(({label, onPress}) => (
+                  <s.ModalAction onPress={onPress}>{label}</s.ModalAction>
+                ))}
+                <s.ModalTitle>{title}</s.ModalTitle>
+              </s.ModalActions>
+            )}
+            <s.ModalContent>{children}</s.ModalContent>
+          </s.ModalSafeArea>
         </s.Modal>
       </BottomSheetModalProvider>
     </Portal>

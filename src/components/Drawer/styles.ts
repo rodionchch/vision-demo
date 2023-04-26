@@ -3,7 +3,9 @@ import {Drawer as PaperDrawer, Avatar, Title} from 'react-native-paper';
 import {DrawerItem as NavigationDrawer} from '@react-navigation/drawer';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-export const Drawer = styled(SafeAreaView)``;
+export const Drawer = styled(SafeAreaView)`
+  padding-top: 20px;
+`;
 
 export const DrawerUserInfo = styled.View`
   padding-left: 20px;

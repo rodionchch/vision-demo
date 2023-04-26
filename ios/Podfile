@@ -51,6 +51,7 @@ target 'Vision' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text', :modular_headers => true
 
   target 'VisionTests' do
     inherit! :complete
