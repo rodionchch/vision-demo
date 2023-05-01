@@ -9,6 +9,12 @@ import SmsChat from 'screens/Sms/SmsChat';
 import PhoneBook from 'screens/PhoneBook';
 import MailList from 'screens/Mail/MailList';
 import MailBook from 'screens/MailBook';
+import Settings from 'screens/Settings';
+import Profile from 'screens/Settings/Profile';
+import Security from 'screens/Settings/Security';
+import Theme from 'screens/Settings/Theme';
+import Language from 'screens/Settings/Language';
+import About from 'screens/Settings/About';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +61,19 @@ const Home = () => {
         component={MailBook}
         options={{title: 'MailBook'}}
       />
+
+      {/* Settings */}
+
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={{title: 'Settings'}}
+      />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Security" component={Security} />
+      <Stack.Screen name="Theme" component={Theme} />
+      <Stack.Screen name="Language" component={Language} />
+      <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );
 };

@@ -1,33 +1,26 @@
 import React from 'react';
+import {ScrollView} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SettingsRoot from './SettingsRoot';
-import Profile from './Profile';
-import Security from './Security';
-import Theme from './Theme';
-import Language from './Language';
-import About from './About';
-
-const Stack = createNativeStackNavigator();
+import {useToggleDrawer} from 'hooks/useDrawer';
+import List, {ListDataItemType} from 'components/List';
+import useSettings from './useSettings';
+import NavigationType from 'types/NavigationType';
 
 const Settings = () => {
+  const {navigate} = useNavigation<NavigationType>();
+  const {settings} = useSettings();
+  useToggleDrawer();
+
   return (
-    <Stack.Navigator
-      initialRouteName="SettingsRoot"
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen
-        name="SettingsRoot"
-        component={SettingsRoot}
-        options={{title: 'Settings'}}
+    <ScrollView>
+      <List
+        data={settings}
+        onPress={({title}: ListDataItemType) => {
+          navigate(title);
+        }}
       />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Security" component={Security} />
-      <Stack.Screen name="Theme" component={Theme} />
-      <Stack.Screen name="Language" component={Language} />
-      <Stack.Screen name="About" component={About} />
-    </Stack.Navigator>
+    </ScrollView>
   );
 };
 

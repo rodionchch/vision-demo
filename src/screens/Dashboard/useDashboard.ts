@@ -1,6 +1,8 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {BottomNavigation} from 'react-native-paper';
+import {useRoute} from '@react-navigation/native';
 
+import NavigationType from 'types/NavigationType';
 import Chat from 'screens/Chat';
 import Call from 'screens/Call';
 import Mail from 'screens/Mail';
@@ -10,6 +12,16 @@ import {setDashboard} from 'store/appSlice';
 
 const useDashboard = () => {
   const [index, setIndex] = useState(3);
+  const route = useRoute<NavigationType>();
+
+  useEffect(() => {
+    if (route?.params?.name === 'Sms') {
+      setIndex(3);
+    } else if (route?.params?.name === 'Mail') {
+      setIndex(2);
+    }
+  }, [route?.params?.name]);
+
   const [routes] = useState([
     {
       key: 'chat',

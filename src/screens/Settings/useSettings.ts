@@ -1,6 +1,6 @@
 import {useMemo} from 'react';
 
-const useSettingsRoot = () => {
+const useSettings = () => {
   const settings = useMemo(
     () => [
       {
@@ -29,4 +29,4 @@ const useSettingsRoot = () => {
   return {settings};
 };
 
-export default useSettingsRoot;
+export default useSettings;

@@ -1,5 +1,9 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import {
+  CommonActions,
+  StackActions,
+  useNavigation,
+} from '@react-navigation/native';
 
 import NavigationType from 'types/NavigationType';
 import {getIcon} from '../Icon';
@@ -28,7 +32,11 @@ const DrawerContent = () => {
               label={label || name}
               onPress={() => {
                 if (!disabled) {
-                  navigate(name);
+                  if (name === 'Sms' || name === 'Mail') {
+                    navigate('Dashboard', {name});
+                  } else {
+                    navigate(name, {drawer: true});
+                  }
                 }
               }}
               disabled={disabled}

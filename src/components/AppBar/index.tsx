@@ -29,7 +29,7 @@ const AppBar = ({
 
   return (
     <PaperAppbar.Header mode="center-aligned">
-      {back ? (
+      {back && route.name !== 'Settings' && !route?.params?.drawer ? (
         <PaperAppbar.BackAction onPress={navigation.goBack} />
       ) : (
         <PaperAppbar.Action icon={'menu'} onPress={toggleDrawer} />
