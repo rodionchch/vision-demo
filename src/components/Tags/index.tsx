@@ -71,13 +71,10 @@ const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
                 key={itemId}
                 onPress={() => {
                   if (screen) {
-                    navigate(screen, {
-                      screen: `${screen}List`,
-                      params: {
-                        tabs,
-                        name,
-                        phone,
-                      },
+                    navigate(`${screen}List`, {
+                      tabs,
+                      name,
+                      phone,
                     });
                   }
                 }}

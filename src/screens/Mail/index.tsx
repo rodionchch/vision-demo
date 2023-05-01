@@ -1,42 +1,41 @@
 import React from 'react';
-import {useRoute} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import NavigationType from 'types/NavigationType';
-import {getAppbar} from './Appbar';
-import MailList from './MailList';
-import MailRoot from './MailRoot';
-import MailBook from 'screens/MailBook';
+import {useToggleDrawer} from 'hooks/useDrawer';
+import Folders from 'components/Folders';
+import Tags from 'components/Tags';
+import FAB from 'components/FAB';
+import useMail from './useMail';
+import folders from './folders';
+import tags from './tags';
 
-const Stack = createNativeStackNavigator();
+import * as s from './styles';
 
 const Mail = () => {
-  const {params} = useRoute<NavigationType>();
-  const tabs = params?.params?.tabs;
+  const {onScroll, tabsAll, tabs, velocity, extended} = useMail();
+  useToggleDrawer();
 
   return (
-    <Stack.Navigator
-      initialRouteName="MailRoot"
-      screenOptions={{
-        header: getAppbar,
-      }}>
-      <Stack.Screen
-        name="MailRoot"
-        component={MailRoot}
-        options={{title: 'Mail'}}
+    <>
+      <s.Mail onScroll={onScroll}>
+        <Folders
+          title={'Unified Folders'}
+          data={folders}
+          screen="Mail"
+          tabs={tabsAll}
+        />
+        <Tags data={tags} tabs={tabs} screen="Mail" />
+        <s.MailPlug />
+      </s.Mail>
+
+      <FAB
+        visible={true}
+        animatedValue={velocity}
+        extended={extended}
+        label={'New Message'}
+        animateFrom={'right'}
+        iconMode={'static'}
       />
-      <Stack.Screen
-        name="MailList"
-        component={MailList}
-        options={{title: 'Mail'}}
-        initialParams={{tabs}}
-      />
-      <Stack.Screen
-        name="MailBook"
-        component={MailBook}
-        options={{title: 'MailBook'}}
-      />
-    </Stack.Navigator>
+    </>
   );
 };
 

@@ -10,13 +10,6 @@ import Menu, {ContextualMenuCoord} from 'components/Menu';
 import data from './data';
 import menu from '../menu';
 
-type MailListProps = {
-  tabs: {
-    key: string;
-    title: string;
-  }[];
-};
-
 const MailListContent = () => {
   const [menuVisible, setMenuVisible] = useState<boolean | {id: number}>(false);
   const [contextualMenuCoord, setContextualMenuCoor] =
@@ -47,10 +40,25 @@ const MailListContent = () => {
   );
 };
 
-const MailList: React.FC<MailListProps> = () => {
+const MailList = () => {
   const {params} = useRoute<NavigationType>();
 
-  return <Tabs tabs={params?.tabs} component={MailListContent} />;
+  const tabsAll = [
+    {key: '0', title: 'All Inbox'},
+    {key: '1', title: 'All Unread'},
+    {key: '2', title: 'All Sent'},
+    {key: '3', title: 'All Favorites'},
+    {key: '4', title: 'All Trash'},
+  ];
+  const tabs = [
+    {key: '0', title: 'Inbox'},
+    {key: '1', title: 'Unread'},
+    {key: '2', title: 'Sent'},
+    {key: '3', title: 'Favorites'},
+    {key: '4', title: 'Trash'},
+  ];
+
+  return <Tabs tabs={tabs} component={MailListContent} />;
 };
 
 export default MailList;

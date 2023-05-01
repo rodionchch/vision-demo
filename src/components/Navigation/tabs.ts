@@ -24,12 +24,6 @@ const tabs = [
     icon: 'email',
     component: Mail,
   },
-  {
-    name: 'Sms',
-    label: 'SMS',
-    icon: 'chat-processing',
-    component: Sms,
-  },
 ];
 
 export default tabs;

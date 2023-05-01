@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {getNavigationBarSettings} from './NavigationBar';
 import SettingsRoot from './SettingsRoot';
 import Profile from './Profile';
 import Security from './Security';
@@ -16,7 +15,7 @@ const Settings = () => {
     <Stack.Navigator
       initialRouteName="SettingsRoot"
       screenOptions={{
-        header: getNavigationBarSettings,
+        headerShown: false,
       }}>
       <Stack.Screen
         name="SettingsRoot"

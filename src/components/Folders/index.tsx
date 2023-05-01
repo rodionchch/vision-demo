@@ -39,12 +39,9 @@ const Folders: React.FC<FoldersProps> = ({
           title={title}
           onPress={() => {
             if (screen) {
-              navigate(screen, {
-                screen: `${screen}List`,
-                params: {
-                  folder: id,
-                  tabs,
-                },
+              navigate(`${screen}List`, {
+                folder: id,
+                tabs,
               });
             }
           }}

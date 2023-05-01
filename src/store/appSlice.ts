@@ -1,23 +1,23 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 interface AppState {
-  rootScreen: boolean;
+  dashboard: 'chat' | 'call' | 'mail' | 'sms';
 }
 
 const initialState: AppState = {
-  rootScreen: false,
+  dashboard: 'sms',
 };
 
 export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setRootScreen: (state, {payload}) => {
-      state.rootScreen = payload;
+    setDashboard: (state, {payload}) => {
+      state.dashboard = payload;
     },
   },
 });
 
-export const {setRootScreen} = appSlice.actions;
+export const {setDashboard} = appSlice.actions;
 
 export default appSlice.reducer;

@@ -1,27 +1,17 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {useNavigation} from '@react-navigation/native';
 
-import {getAppbar} from './Appbar';
-import MailBookRoot from './MailBookRoot';
+import {useToggleDrawer} from 'hooks/useDrawer';
+import Folders from 'components/Folders';
+import folders from './folders';
 
-const Stack = createNativeStackNavigator();
+import * as s from './styles';
 
 const MailBook = () => {
-  const navigation = useNavigation();
+  useToggleDrawer();
   return (
-    <Stack.Navigator
-      initialRouteName="MailBookRoot"
-      screenOptions={{
-        header: getAppbar,
-        headerShown: navigation.getState().type === 'drawer',
-      }}>
-      <Stack.Screen
-        name="MailBookRoot"
-        component={MailBookRoot}
-        options={{title: 'MailBook'}}
-      />
-    </Stack.Navigator>
+    <s.MailBook>
+      <Folders data={folders} />
+    </s.MailBook>
   );
 };
 

@@ -1,48 +1,28 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {useRoute} from '@react-navigation/native';
+import {ScrollView} from 'react-native-gesture-handler';
 
-import NavigationType from 'types/NavigationType';
-import PhoneBook from 'screens/PhoneBook';
-import SmsRoot from './SmsRoot';
-import SmsList from './SmsList';
-import SmsChat from './SmsChat';
-import {getAppbar} from './Appbar';
+import {useToggleDrawer} from 'hooks/useDrawer';
+import Folders from 'components/Folders';
+import Tags from 'components/Tags';
+import useSms from './useSms';
 
-const Stack = createNativeStackNavigator();
+import folders from './folders';
+import tags from './tags';
 
 const Sms = () => {
-  const {params} = useRoute<NavigationType>();
-  const tabs = params?.params?.tabs;
+  const {tabsAll, tabs} = useSms();
+  useToggleDrawer();
 
   return (
-    <Stack.Navigator
-      initialRouteName="SmsRoot"
-      screenOptions={{
-        header: getAppbar,
-      }}>
-      <Stack.Screen
-        name="SmsRoot"
-        component={SmsRoot}
-        options={{title: 'SMS'}}
+    <ScrollView>
+      <Folders
+        title={'Unified Folders'}
+        data={folders}
+        screen="Sms"
+        tabs={tabsAll}
       />
-      <Stack.Screen
-        name="SmsList"
-        component={SmsList}
-        options={{title: 'SMS'}}
-        initialParams={{tabs}}
-      />
-      <Stack.Screen
-        name="SmsChat"
-        component={SmsChat}
-        options={{title: 'SMS'}}
-      />
-      <Stack.Screen
-        name="PhoneBook"
-        component={PhoneBook}
-        options={{title: 'PhoneBook'}}
-      />
-    </Stack.Navigator>
+      <Tags data={tags} tabs={tabs} screen="Sms" />
+    </ScrollView>
   );
 };
 

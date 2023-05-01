@@ -1,5 +1,4 @@
-import {useFocusEffect} from '@react-navigation/native';
-import {useCallback, useRef, useState} from 'react';
+import {useRef, useState} from 'react';
 import {
   Animated,
   NativeScrollEvent,
@@ -7,24 +6,10 @@ import {
   Platform,
 } from 'react-native';
 
-import {setRootScreen} from 'store/appSlice';
-import {useAppDispatch} from 'store/hooks';
-
-const useMailRoot = () => {
+const useMail = () => {
   const isIOS = Platform.OS === 'ios';
   const [extended, setExtended] = useState(true);
   const {current: velocity} = useRef(new Animated.Value(0));
-
-  const dispatch = useAppDispatch();
-
-  useFocusEffect(
-    useCallback(() => {
-      dispatch(setRootScreen(true));
-      return () => {
-        dispatch(setRootScreen(false));
-      };
-    }, [dispatch]),
-  );
 
   const tabsAll = [
     {key: '0', title: 'All Inbox'},
@@ -55,4 +40,4 @@ const useMailRoot = () => {
   return {onScroll, tabsAll, tabs, velocity, extended};
 };
 
-export default useMailRoot;
+export default useMail;

@@ -30,7 +30,7 @@ const Appbar = ({
 
       <PaperAppbar.Content title={params?.name || title} />
 
-      {route.name === 'SmsRoot' && (
+      {route.name === 'Sms' && (
         <PaperAppbar.Action
           icon="book-edit-outline"
           onPress={() => {

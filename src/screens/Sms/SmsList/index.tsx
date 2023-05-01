@@ -30,11 +30,8 @@ const SmsListContent = () => {
         selected={menuVisible}
         data={data}
         onPress={({id}: ListDataItemType) => {
-          navigate('Sms', {
-            screen: 'SmsChat',
-            params: {
-              id,
-            },
+          navigate('SmsChat', {
+            id,
           });
         }}
         onLongPress={onLongPress}

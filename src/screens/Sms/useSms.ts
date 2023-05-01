@@ -1,6 +1,4 @@
-import {useAppDispatch} from 'store/hooks';
-
-const useSmsRoot = () => {
+const useSms = () => {
   const tabsAll = [
     {key: '0', title: 'Conversations'},
     {key: '1', title: 'All Unread'},
@@ -17,4 +15,4 @@ const useSmsRoot = () => {
   return {tabsAll, tabs};
 };
 
-export default useSmsRoot;
+export default useSms;
