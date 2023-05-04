@@ -28,7 +28,7 @@ const Home = () => {
       <Stack.Screen
         name="Dashboard"
         component={Dashboard}
-        options={{title: 'SMS'}}
+        options={{animation: 'none'}}
       />
 
       {/* SMS */}
@@ -46,7 +46,9 @@ const Home = () => {
       <Stack.Screen
         name="PhoneBook"
         component={PhoneBook}
-        options={{title: 'PhoneBook'}}
+        options={{
+          title: 'PhoneBook',
+        }}
       />
 
       {/* Mail */}
@@ -59,7 +61,9 @@ const Home = () => {
       <Stack.Screen
         name="MailBook"
         component={MailBook}
-        options={{title: 'MailBook'}}
+        options={{
+          title: 'MailBook',
+        }}
       />
 
       {/* Settings */}
@@ -67,7 +71,7 @@ const Home = () => {
       <Stack.Screen
         name="Settings"
         component={Settings}
-        options={{title: 'Settings'}}
+        options={{title: 'Settings', animation: 'none'}}
       />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Security" component={Security} />

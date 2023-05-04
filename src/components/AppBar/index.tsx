@@ -4,7 +4,6 @@ import {getHeaderTitle} from '@react-navigation/elements';
 import {useNavigation} from '@react-navigation/native';
 import {BottomTabHeaderProps} from '@react-navigation/bottom-tabs';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
-import {useAppSelector} from 'store/hooks';
 import NavigationType from 'types/NavigationType';
 
 export const getAppBar = (
@@ -17,33 +16,38 @@ const AppBar = ({
   options,
   back,
 }: BottomTabHeaderProps | NativeStackHeaderProps | NavigationType) => {
-  const {navigate, toggleDrawer, getParent} = useNavigation<NavigationType>();
+  const {navigate, toggleDrawer} = useNavigation<NavigationType>();
   const title = getHeaderTitle(options, route.name);
   const {params} = route;
-
-  const {dashboard} = useAppSelector(({app}) => app);
 
   const [visible, setVisible] = useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
 
+  const getTitle = () => {
+    if (route.name === 'Dashboard') {
+      return params?.dashboard;
+    }
+    return params?.name || title;
+  };
+
   return (
     <PaperAppbar.Header mode="center-aligned">
-      {back && route.name !== 'Settings' && !route?.params?.drawer ? (
+      {back ? (
         <PaperAppbar.BackAction onPress={navigation.goBack} />
       ) : (
         <PaperAppbar.Action icon={'menu'} onPress={toggleDrawer} />
       )}
 
-      <PaperAppbar.Content title={params?.name || title} />
+      <PaperAppbar.Content title={getTitle()} />
 
       {route.name === 'Dashboard' && (
         <PaperAppbar.Action
           icon="book-edit-outline"
           onPress={() => {
-            if (dashboard === 'sms') {
+            if (params?.dashboard === 'Sms') {
               navigate('PhoneBook');
-            } else if (dashboard === 'mail') {
+            } else if (params?.dashboard === 'Mail') {
               navigate('MailBook');
             }
           }}

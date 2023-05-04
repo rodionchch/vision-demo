@@ -1,26 +1,33 @@
 import {useEffect, useState} from 'react';
 import {BottomNavigation} from 'react-native-paper';
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 import NavigationType from 'types/NavigationType';
-import Chat from 'screens/Chat';
-import Call from 'screens/Call';
-import Mail from 'screens/Mail';
-import Sms from 'screens/Sms';
-import {useAppDispatch} from 'store/hooks';
-import {setDashboard} from 'store/appSlice';
+import ChatScreen from 'screens/Chat';
+import CallScreen from 'screens/Call';
+import MailScreen from 'screens/Mail';
+import SmsScreen from 'screens/Sms';
+// import {setDashboard} from 'store/appSlice';
+
+enum Dashboard {
+  Chat,
+  Call,
+  Mail,
+  Sms,
+}
 
 const useDashboard = () => {
   const [index, setIndex] = useState(3);
   const route = useRoute<NavigationType>();
+  const navigation = useNavigation<NavigationType>();
 
   useEffect(() => {
-    if (route?.params?.name === 'Sms') {
-      setIndex(3);
-    } else if (route?.params?.name === 'Mail') {
-      setIndex(2);
+    if (route?.params?.dashboard === 'Sms') {
+      setIndex(Dashboard.Sms);
+    } else if (route?.params?.dashboard === 'Mail') {
+      setIndex(Dashboard.Mail);
     }
-  }, [route?.params?.name]);
+  }, [route?.params?.dashboard]);
 
   const [routes] = useState([
     {
@@ -52,17 +59,16 @@ const useDashboard = () => {
     },
   ]);
 
-  const dispatch = useAppDispatch();
-
-  const onSetDashboard = (key: string) => {
-    dispatch(setDashboard(key));
+  const onSetDashboard = (dashboard: string) => {
+    // dispatch(setDashboard(key));
+    navigation.setParams({dashboard});
   };
 
   const renderScene = BottomNavigation.SceneMap({
-    chat: Chat,
-    call: Call,
-    mail: Mail,
-    sms: Sms,
+    chat: ChatScreen,
+    call: CallScreen,
+    mail: MailScreen,
+    sms: SmsScreen,
   });
 
   return {index, setIndex, routes, renderScene, onSetDashboard};

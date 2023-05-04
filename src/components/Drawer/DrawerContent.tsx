@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   CommonActions,
-  StackActions,
+  DrawerActions,
   useNavigation,
 } from '@react-navigation/native';
 
@@ -14,7 +14,7 @@ import * as s from './styles';
 export const getDrawerContent = () => <DrawerContent />;
 
 const DrawerContent = () => {
-  const {navigate} = useNavigation<NavigationType>();
+  const navigation = useNavigation<NavigationType>();
 
   return (
     <s.Drawer>
@@ -32,11 +32,31 @@ const DrawerContent = () => {
               label={label || name}
               onPress={() => {
                 if (!disabled) {
-                  if (name === 'Sms' || name === 'Mail') {
-                    navigate('Dashboard', {name});
-                  } else {
-                    navigate(name, {drawer: true});
+                  const isDashboard = name === 'Sms' || name === 'Mail';
+
+                  let route: any = {
+                    name,
+                    params: {fromDrawer: true},
+                  };
+
+                  if (isDashboard) {
+                    route = {
+                      name: 'Dashboard',
+                      params: {
+                        dashboard: name,
+                        fromDrawer: true,
+                      },
+                    };
                   }
+
+                  navigation.dispatch(
+                    CommonActions.reset({
+                      index: 1,
+                      routes: [route],
+                    }),
+                  );
+
+                  navigation.dispatch(DrawerActions.toggleDrawer());
                 }
               }}
               disabled={disabled}
