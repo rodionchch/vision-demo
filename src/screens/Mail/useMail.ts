@@ -1,16 +1,4 @@
-import {useRef, useState} from 'react';
-import {
-  Animated,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  Platform,
-} from 'react-native';
-
 const useMail = () => {
-  const isIOS = Platform.OS === 'ios';
-  const [extended, setExtended] = useState(true);
-  const {current: velocity} = useRef(new Animated.Value(0));
-
   const tabsAll = [
     {key: '0', title: 'All Inbox'},
     {key: '1', title: 'All Unread'},
@@ -26,18 +14,10 @@ const useMail = () => {
     {key: '4', title: 'Trash'},
   ];
 
-  const onScroll = ({nativeEvent}: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentScrollPosition =
-      Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
-
-    if (!isIOS) {
-      return velocity.setValue(currentScrollPosition);
-    }
-
-    setExtended(currentScrollPosition <= 0);
+  return {
+    tabsAll,
+    tabs,
   };
-
-  return {onScroll, tabsAll, tabs, velocity, extended};
 };
 
 export default useMail;

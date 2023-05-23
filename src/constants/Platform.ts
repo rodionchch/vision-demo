@@ -5,8 +5,8 @@ enum PlatformEnum {
   Android = 'android',
 }
 
-const iOS = Platform.OS === PlatformEnum.iOS;
+const isIOS = Platform.OS === PlatformEnum.iOS;
 
-const Android = Platform.OS === PlatformEnum.Android;
+const isAndroid = Platform.OS === PlatformEnum.Android;
 
-export {iOS, Android};
+export {isIOS, isAndroid};

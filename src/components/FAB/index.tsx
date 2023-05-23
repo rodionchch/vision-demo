@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Animated, Platform, StyleProp, ViewStyle} from 'react-native';
+import {Animated, StyleProp, ViewStyle} from 'react-native';
+import {isIOS} from 'constants/Platform';
 
 import * as s from './styles';
 
 type FABProps = {
+  nav?: boolean;
   animatedValue: Animated.Value;
   visible: boolean;
   extended: boolean;
@@ -14,6 +16,7 @@ type FABProps = {
 };
 
 const FAB = ({
+  nav,
   animatedValue,
   visible,
   extended,
@@ -24,8 +27,6 @@ const FAB = ({
 }: FABProps) => {
   const [isExtended, setIsExtended] = useState(true);
 
-  const isIOS = Platform.OS === 'ios';
-
   useEffect(() => {
     if (!isIOS) {
       animatedValue.addListener(({value}: {value: number}) => {
@@ -34,12 +35,13 @@ const FAB = ({
     } else {
       setIsExtended(extended);
     }
-  }, [animatedValue, extended, isIOS]);
+  }, [animatedValue, extended]);
 
   const fabStyle = {[animateFrom]: 16};
 
   return (
     <s.FAB
+      nav={nav}
       icon={'plus'}
       label={label}
       extended={isExtended}

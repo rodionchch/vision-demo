@@ -10,13 +10,13 @@ PODS:
     - ExpoModulesCore
   - EXFont (11.1.1):
     - ExpoModulesCore
-  - Expo (48.0.15):
+  - Expo (48.0.17):
     - ExpoModulesCore
   - ExpoKeepAwake (12.0.1):
     - ExpoModulesCore
   - ExpoLocalAuthentication (13.2.1):
     - ExpoModulesCore
-  - ExpoModulesCore (1.2.6):
+  - ExpoModulesCore (1.2.7):
     - React-Core
     - React-RCTAppDelegate
     - ReactCommon/turbomodule/core
@@ -350,7 +350,7 @@ PODS:
     - glog
   - react-native-pager-view (6.1.2):
     - React-Core
-  - react-native-safe-area-context (4.5.1):
+  - react-native-safe-area-context (4.5.3):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -450,7 +450,7 @@ PODS:
     - React
   - RNDeviceInfo (10.6.0):
     - React-Core
-  - RNGestureHandler (2.9.0):
+  - RNGestureHandler (2.10.1):
     - React-Core
   - RNReanimated (3.1.0):
     - DoubleConversion
@@ -701,10 +701,10 @@ SPEC CHECKSUMS:
   EXConstants: f348da07e21b23d2b085e270d7b74f282df1a7d9
   EXFileSystem: 844e86ca9b5375486ecc4ef06d3838d5597d895d
   EXFont: 6ea3800df746be7233208d80fe379b8ed74f4272
-  Expo: 62bba165c9cd30a2983176e7d975ae688b6334b6
+  Expo: d351b4546895fb99ae4e5a1bc39df770ab9dc7d1
   ExpoKeepAwake: 69f5f627670d62318410392d03e0b5db0f85759a
   ExpoLocalAuthentication: b870b7a8df5e15b8b0be042185a2bb7764093096
-  ExpoModulesCore: 6e0259511f4c4341b6b8357db393624df2280828
+  ExpoModulesCore: 653958063a301098b541ae4dfed1ac0b98db607b
   FBLazyVector: a83ceaa8a8581003a623facdb3c44f6d4f342ac5
   FBReactNativeSpec: 85eee79837cb797ab6176f0243a2b40511c09158
   Flipper: 26fc4b7382499f1281eb8cb921e5c3ad6de91fe0
@@ -737,7 +737,7 @@ SPEC CHECKSUMS:
   React-jsinspector: d5ce2ef3eb8fd30c28389d0bc577918c70821bd6
   React-logger: 9332c3e7b4ef007a0211c0a9868253aac3e1da82
   react-native-pager-view: 54bed894cecebe28cede54c01038d9d1e122de43
-  react-native-safe-area-context: f5549f36508b1b7497434baa0cd97d7e470920d4
+  react-native-safe-area-context: b8979f5eda6ed5903d4dbc885be3846ea3daa753
   react-native-text-input-mask: 36a546b378fadd2efe1b7484a859d34bc2c80395
   React-perflogger: 43392072a5b867a504e2b4857606f8fc5a403d7f
   React-RCTActionSheet: c7b67c125bebeda9fb19fc7b200d85cb9d6899c4
@@ -755,7 +755,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: b90b71f45b8b97be43bc4284e71a6af48ac9f547
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNDeviceInfo: 475a4c447168d0ad4c807e48ef5e0963a0f4eb1b
-  RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
+  RNGestureHandler: 42ec7c28dd02d540ed6c9159c57a98ff016492dc
   RNReanimated: b1220a0e5168745283ff5d53bfc7d2144b2cee1b
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
@@ -765,4 +765,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3441b08037f74b36c55c2f3af38eb5ab110da591
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1

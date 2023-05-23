@@ -4,7 +4,7 @@ import {GestureResponderEvent} from 'react-native/types';
 import {ContextualMenuCoord} from 'components/Menu';
 import {isIOS} from 'constants/Platform';
 
-const useSmsList = () => {
+const useMailList = () => {
   const [menuVisible, setMenuVisible] = useState<boolean | {id: number}>(false);
   const [contextualMenuCoord, setContextualMenuCoor] =
     useState<ContextualMenuCoord>({x: 0, y: 0});
@@ -35,14 +35,14 @@ const useSmsList = () => {
   };
 
   return {
-    menuVisible,
-    toggleMenu,
-    contextualMenuCoord,
-    onLongPress,
+    onScroll,
     velocity,
     extended,
-    onScroll,
+    toggleMenu,
+    menuVisible,
+    onLongPress,
+    contextualMenuCoord,
   };
 };
 
-export default useSmsList;
+export default useMailList;

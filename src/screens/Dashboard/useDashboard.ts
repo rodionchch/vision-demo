@@ -55,7 +55,7 @@ const useDashboard = () => {
       title: 'Sms',
       focusedIcon: 'chat-processing',
       unfocusedIcon: 'chat-outline',
-      badge: 3,
+      // badge: 3,
     },
   ]);
 

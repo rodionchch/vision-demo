@@ -8,7 +8,7 @@ import {
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
 
-import {iOS} from 'constants/Platform';
+import {isIOS} from 'constants/Platform';
 import * as s from './styles';
 
 export type ModalActions = [
@@ -29,7 +29,7 @@ const getBackdropComponent = (props: BottomSheetBackdropProps) => (
 
 const Modal: React.FC<ModalProps> = ({modalRef, title, actions, children}) => {
   const snapPoints = useMemo(
-    () => (iOS ? ['94%', '94%'] : ['100%', '100%']),
+    () => (isIOS ? ['94%', '94%'] : ['100%', '100%']),
     [],
   );
 
