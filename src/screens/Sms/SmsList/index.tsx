@@ -64,7 +64,11 @@ const SmsListContent = () => {
 const SmsList: React.FC<SmsListProps> = () => {
   const {params} = useRoute<NavigationType>();
 
-  return <Tabs tabs={params?.tabs} component={SmsListContent} />;
+  return (
+    <Tabs tabs={params?.tabs}>
+      <SmsListContent />
+    </Tabs>
+  );
 };
 
 export default SmsList;

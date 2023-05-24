@@ -52,7 +52,11 @@ const MailListContent = () => {
 const MailList = () => {
   const {params} = useRoute<NavigationType>();
 
-  return <Tabs tabs={params?.tabs} component={MailListContent} />;
+  return (
+    <Tabs tabs={params?.tabs}>
+      <MailListContent />
+    </Tabs>
+  );
 };
 
 export default MailList;

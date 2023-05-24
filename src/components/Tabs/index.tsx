@@ -1,52 +1,40 @@
 import React, {ComponentType, useState} from 'react';
 import {useWindowDimensions} from 'react-native';
-import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-import {MD3Colors} from 'react-native-paper';
 import {useRoute} from '@react-navigation/native';
 import NavigationType from 'types/NavigationType';
+
+import {View} from 'react-native';
+import {Tabs as PaperTabs, TabScreen} from 'react-native-paper-tabs';
 
 type TabsProps = {
   tabs: {
     key: string;
     title: string;
+    icon?: string;
   }[];
-  component: ComponentType<unknown>;
+  children?: React.ReactNode;
 };
 
-const getRenderScene = ({tabs, component}: TabsProps) => {
-  const sceneMap: {[key: string]: ComponentType<unknown>} = {};
-
-  tabs?.forEach(({key}: {key: string}) => {
-    sceneMap[key] = component;
-  });
-
-  return SceneMap(sceneMap);
-};
-
-const Tabs: React.FC<TabsProps> = ({tabs, component}) => {
-  const layout = useWindowDimensions();
+const Tabs: React.FC<TabsProps> = ({tabs, children}) => {
   const {params} = useRoute<NavigationType>();
 
-  const [index, setIndex] = useState(params?.folder || 0);
-  const [routes] = useState(tabs);
-
   return (
-    <TabView
-      navigationState={{index, routes}}
-      renderScene={getRenderScene({tabs, component})}
-      onIndexChange={setIndex}
-      initialLayout={{width: layout.width}}
-      renderTabBar={props => (
-        <TabBar
-          {...props}
-          bounces
-          scrollEnabled
-          tabStyle={{width: 'auto'}}
-          indicatorStyle={{backgroundColor: MD3Colors.secondary50}}
-          style={{backgroundColor: 'transparent'}}
-        />
-      )}
-    />
+    <PaperTabs
+      defaultIndex={params?.folder || 0}
+      style={{backgroundColor: 'transparent'}}
+      dark={true}
+      mode="scrollable"
+      showLeadingSpace={false}>
+      {tabs?.map(tab => (
+        <TabScreen
+          key={tab.key}
+          label={tab.title}
+          // icon={tab?.icon}
+        >
+          {children}
+        </TabScreen>
+      ))}
+    </PaperTabs>
   );
 };
 
