@@ -1,10 +1,7 @@
-import React, {ComponentType, useState} from 'react';
-import {useWindowDimensions} from 'react-native';
+import React from 'react';
 import {useRoute} from '@react-navigation/native';
-import NavigationType from 'types/NavigationType';
-
-import {View} from 'react-native';
 import {Tabs as PaperTabs, TabScreen} from 'react-native-paper-tabs';
+import NavigationType from 'types/NavigationType';
 
 type TabsProps = {
   tabs: {
