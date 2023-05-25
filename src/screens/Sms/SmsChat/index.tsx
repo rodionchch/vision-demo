@@ -1,11 +1,8 @@
-import {View, Text} from 'react-native';
+import React from 'react';
+import Messenger from 'components/Messenger';
 
 const SmsChat = () => {
-  return (
-    <View>
-      <Text>SMS Chat</Text>
-    </View>
-  );
+  return <Messenger />;
 };
 
 export default SmsChat;

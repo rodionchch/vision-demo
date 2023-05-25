@@ -31,9 +31,13 @@ const Home = () => {
         name="Dashboard"
         component={Dashboard}
         options={{animation: 'none'}}
+        initialParams={{dashboard: 'Sms'}}
       />
 
-      {/* SMS */}
+      {/**
+       * SMS
+       */}
+
       <Stack.Screen
         name="SmsList"
         component={SmsList}
@@ -53,13 +57,15 @@ const Home = () => {
         }}
       />
 
-      {/* Mail */}
+      {/**
+       * Mail
+       */}
+
       <Stack.Screen
         name="MailList"
         component={MailList}
         options={{title: 'Mail'}}
       />
-
       <Stack.Screen
         name="MailView"
         component={MailView}
@@ -82,7 +88,9 @@ const Home = () => {
         }}
       />
 
-      {/* Settings */}
+      {/**
+       * Settings
+       */}
 
       <Stack.Screen
         name="Settings"
