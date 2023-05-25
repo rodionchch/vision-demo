@@ -10,7 +10,7 @@ type FoldersProps = {
     id: number;
     title: string;
     icon?: string;
-    count?: number;
+    text?: number;
   }[];
   screen?: string;
   tabs?: {key: string; title: string}[];
@@ -33,7 +33,7 @@ const Folders: React.FC<FoldersProps> = ({
   return (
     <s.Folders>
       {!!headerTitle && <s.FoldersHeader>{headerTitle}</s.FoldersHeader>}
-      {data?.map(({id, title, icon, count}, index) => (
+      {data?.map(({id, title, icon, text}, index) => (
         <s.FoldersItem
           key={id || `${title}-${index}`}
           title={title}
@@ -46,7 +46,7 @@ const Folders: React.FC<FoldersProps> = ({
             }
           }}
           left={getFoldersIcon(icon)}
-          right={getText(count)}
+          right={getText(text)}
         />
       ))}
     </s.Folders>

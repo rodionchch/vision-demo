@@ -29,8 +29,8 @@ const getTagIcon = (icon?: string) => () =>
 const getItemIcon = (icon?: string) => () =>
   icon && <s.TagsItemIcon icon={icon} />;
 
-const getCount = (count?: number) => () =>
-  count !== undefined && <s.TagsItemText>{count}</s.TagsItemText>;
+const getText = (text?: number) => () =>
+  text !== undefined && <s.TagsItemText>{text}</s.TagsItemText>;
 
 const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
   const {
@@ -88,7 +88,7 @@ const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
                   title={name}
                   description={phone}
                   left={getItemIcon(itemIcon)}
-                  right={getCount(0)}
+                  right={getText(0)}
                 />
               </s.TagsTouchable>
             ))}

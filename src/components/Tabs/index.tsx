@@ -5,11 +5,12 @@ import NavigationType from 'types/NavigationType';
 
 type TabsProps = {
   tabs: {
-    key: string;
+    id: number;
     title: string;
     icon?: string;
+    text?: string | number;
   }[];
-  children?: React.ReactNode;
+  children: React.ReactNode | React.ReactNode[];
 };
 
 const Tabs: React.FC<TabsProps> = ({tabs, children}) => {
@@ -22,13 +23,12 @@ const Tabs: React.FC<TabsProps> = ({tabs, children}) => {
       dark={true}
       mode="scrollable"
       showLeadingSpace={false}>
-      {tabs?.map(tab => (
+      {tabs?.map((tab, index) => (
         <TabScreen
-          key={tab.key}
-          label={tab.title}
-          // icon={tab?.icon}
-        >
-          {children}
+          key={tab.id}
+          label={tab.text ? `${tab.title} (${tab.text})` : tab.title}
+          icon={tab?.icon}>
+          {Array.isArray(children) ? children[index] : children}
         </TabScreen>
       ))}
     </PaperTabs>

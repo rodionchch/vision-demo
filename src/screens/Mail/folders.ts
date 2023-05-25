@@ -3,31 +3,31 @@ const folders = [
     id: 0,
     title: 'All Inbox',
     icon: 'inbox-arrow-down',
-    count: 1500,
+    text: 1500,
   },
   {
     id: 1,
     title: 'All Unread',
     icon: 'email-mark-as-unread',
-    count: 1497,
+    text: 1497,
   },
   {
     id: 2,
     title: 'All Sent',
     icon: 'send',
-    count: 474,
+    text: 474,
   },
   {
     id: 3,
     title: 'All Favorites',
     icon: 'heart',
-    count: 0,
+    text: 0,
   },
   {
     id: 4,
     title: 'All Trash',
     icon: 'delete',
-    count: 0,
+    text: 0,
   },
 ];
 

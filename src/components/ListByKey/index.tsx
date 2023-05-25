@@ -7,6 +7,7 @@ type ListByKeyProps = {
     [key: string]: {
       id?: number;
       title: string;
+      description: string;
       icon?: string;
       text?: string;
     };
@@ -26,10 +27,11 @@ const ListByKey: React.FC<ListByKeyProps> = ({data}) => {
         <s.ListByKey key={`${key}-${index}`}>
           <s.ListByKeyItem title={key} byKey />
 
-          {data[key]?.map(({title, icon, text}, index) => (
+          {data[key]?.map(({title, description, icon, text}, index) => (
             <s.ListByKeyItem
               key={index}
               title={title}
+              description={description}
               left={getListIcon(icon)}
               right={getText(text)}
               onPress={() => {}}
