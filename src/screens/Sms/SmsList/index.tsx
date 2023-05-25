@@ -13,6 +13,7 @@ import Menu, {ContextualMenuCoord} from 'components/Menu';
 import FAB from 'components/FAB';
 import useSmsList from './useSmsList';
 import useFAB from 'hooks/useFAB';
+import useMenu from 'hooks/useMenu';
 
 import data from './data';
 import menu from '../menu';
@@ -62,10 +63,11 @@ const SmsListContent: React.FC<SmsListContentProps> = ({
 };
 
 const SmsList: React.FC<SmsListProps> = () => {
-  const {params, menuVisible, toggleMenu, contextualMenuCoord, onLongPress} =
-    useSmsList();
+  const {params} = useSmsList();
 
   const {velocity, extended, onScroll} = useFAB();
+
+  const {toggleMenu, menuVisible, onLongPress, contextualMenuCoord} = useMenu();
 
   return (
     <>

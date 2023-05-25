@@ -69,6 +69,10 @@ const AppBar = ({
           />
         </Menu>
       )}
+
+      {route.name === 'MailView' && (
+        <PaperAppbar.Action icon="comment-text-multiple" onPress={openMenu} />
+      )}
     </PaperAppbar.Header>
   );
 };

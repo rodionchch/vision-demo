@@ -1,20 +1,16 @@
 import {useCallback, useMemo, useRef, useState} from 'react';
-import {GestureResponderEvent, Keyboard} from 'react-native';
+import {Keyboard} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 
 import NavigationType from 'types/NavigationType';
-import {ContextualMenuCoord} from 'components/Menu';
 import Edit from 'components/Edit';
 import Info from 'components/Info';
 import {MenuEnum} from './menu';
 
 const useTags = () => {
   const {navigate} = useNavigation<NavigationType>();
-  const [contextualMenuCoord, setContextualMenuCoor] =
-    useState<ContextualMenuCoord>({x: 0, y: 0});
   const modalRef = useRef<BottomSheetModal>(null);
-  const [menuVisible, setMenuVisible] = useState<boolean | {id: number}>(false);
 
   const [expanded, setExpanded] = useState([0]);
   const [showModal, setShowModal] = useState<MenuEnum | null>(null);
@@ -60,18 +56,6 @@ const useTags = () => {
 
   const modal = showModal && modalData?.[showModal];
 
-  const onLongPress = (event: GestureResponderEvent, tag: {id: number}) => {
-    const {nativeEvent} = event;
-
-    setContextualMenuCoor({
-      x: nativeEvent.pageX,
-      y: nativeEvent.pageY,
-    });
-    setMenuVisible(tag);
-  };
-
-  const toggleMenu = () => setMenuVisible(!menuVisible);
-
   const onPressAccordion = (index: number) => {
     const expandedSet = new Set(expanded);
     if (expandedSet.has(index)) {
@@ -100,11 +84,7 @@ const useTags = () => {
 
   return {
     navigate,
-    contextualMenuCoord,
-    onLongPress,
-    toggleMenu,
     onPressAccordion,
-    menuVisible,
     expanded,
     onPressMenu,
     modalRef,

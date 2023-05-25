@@ -8,7 +8,9 @@ import SmsList from 'screens/Sms/SmsList';
 import SmsChat from 'screens/Sms/SmsChat';
 import PhoneBook from 'screens/PhoneBook';
 import MailList from 'screens/Mail/MailList';
+import MailView from 'screens/Mail/MailView';
 import MailBook from 'screens/MailBook';
+import Group from 'screens/Group';
 import Settings from 'screens/Settings';
 import Profile from 'screens/Settings/Profile';
 import Security from 'screens/Settings/Security';
@@ -59,10 +61,24 @@ const Home = () => {
       />
 
       <Stack.Screen
+        name="MailView"
+        component={MailView}
+        options={{title: 'Inbox'}}
+      />
+
+      <Stack.Screen
         name="MailBook"
         component={MailBook}
         options={{
           title: 'MailBook',
+        }}
+      />
+
+      <Stack.Screen
+        name="Group"
+        component={Group}
+        options={{
+          title: 'Group',
         }}
       />
 

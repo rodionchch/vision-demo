@@ -5,6 +5,7 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
 } from 'react-native/types';
+import {useNavigation} from '@react-navigation/native';
 
 import List from 'components/List';
 import Tabs from 'components/Tabs';
@@ -12,6 +13,8 @@ import Menu, {ContextualMenuCoord} from 'components/Menu';
 import FAB from 'components/FAB';
 import useMailList from './useMailList';
 import useFAB from 'hooks/useFAB';
+import useMenu from 'hooks/useMenu';
+import NavigationType from 'types/NavigationType';
 
 import data from './data';
 import menu from '../menu';
@@ -33,6 +36,7 @@ const MailListContent: React.FC<MailListContentProps> = ({
   onLongPress,
   onScroll,
 }) => {
+  const {navigate} = useNavigation<NavigationType>();
   return (
     <s.MailList onScroll={onScroll}>
       <Menu
@@ -41,7 +45,14 @@ const MailListContent: React.FC<MailListContentProps> = ({
         toggleMenu={toggleMenu}
         contextualMenuCoord={contextualMenuCoord}
       />
-      <List selected={menuVisible} data={data} onLongPress={onLongPress} />
+      <List
+        selected={menuVisible}
+        data={data}
+        onPress={() => {
+          navigate('MailView');
+        }}
+        onLongPress={onLongPress}
+      />
 
       <s.MailListPlug />
     </s.MailList>
@@ -49,8 +60,9 @@ const MailListContent: React.FC<MailListContentProps> = ({
 };
 
 const MailList = () => {
-  const {params, toggleMenu, menuVisible, onLongPress, contextualMenuCoord} =
-    useMailList();
+  const {params} = useMailList();
+
+  const {toggleMenu, menuVisible, onLongPress, contextualMenuCoord} = useMenu();
 
   const {velocity, extended, onScroll} = useFAB();
 

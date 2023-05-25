@@ -17,7 +17,7 @@ export const tabs = [
 ];
 
 export const groups = {
-  ['C']: [{title: 'Companies', text: '1', icon: 'account-group'}],
+  ['C']: [{title: 'Companies', text: '4', icon: 'account-group'}],
   ['I']: [{title: 'Individuals', text: '0', icon: 'earth'}],
   ['P']: [{title: 'Persons', text: '0', icon: 'earth'}],
 };

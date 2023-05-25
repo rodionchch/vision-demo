@@ -5,17 +5,22 @@ import NavigationType from 'types/NavigationType';
 import {useToggleDrawer} from 'hooks/useDrawer';
 import Tabs from 'components/Tabs';
 import ListByKey from 'components/ListByKey';
+import FAB from 'components/FAB';
+import Menu from 'components/Menu';
+import useFAB from 'hooks/useFAB';
+import useMenu from 'hooks/useMenu';
+import useMail from 'screens/Mail/useMail';
 import {tabs, groups, contacts, myMailboxes} from './data';
+import menu from './menu';
 
 import * as s from './styles';
-import useFAB from 'hooks/useFAB';
-import FAB from 'components/FAB';
 
 const MailBook = () => {
   useToggleDrawer();
 
   const {setOptions} = useNavigation();
   const {params} = useRoute<NavigationType>();
+  const {navigate} = useNavigation<NavigationType>();
 
   useEffect(() => {
     setOptions({animation: params?.fromDrawer ? 'none' : 'default'});
@@ -23,13 +28,29 @@ const MailBook = () => {
 
   const {velocity, extended, onScroll} = useFAB();
 
+  const {toggleMenu, menuVisible, onLongPress, contextualMenuCoord} = useMenu();
+
+  const {tabs: mailTabs} = useMail();
+
   return (
     <s.MailBook>
+      <Menu
+        menu={menu}
+        visible={menuVisible}
+        toggleMenu={toggleMenu}
+        contextualMenuCoord={contextualMenuCoord}
+      />
       <Tabs tabs={tabs}>
         {[
           <>
             <s.MailBookList onScroll={onScroll}>
-              <ListByKey data={groups} />
+              <ListByKey
+                data={groups}
+                onLongPress={onLongPress}
+                onPress={() => {
+                  navigate('Group');
+                }}
+              />
             </s.MailBookList>
             <FAB
               visible={true}
@@ -42,10 +63,25 @@ const MailBook = () => {
           </>,
 
           <s.MailBookList>
-            <ListByKey data={contacts} />
+            <ListByKey
+              data={contacts}
+              onLongPress={onLongPress}
+              onPress={() => {
+                navigate('SmsChat');
+              }}
+            />
           </s.MailBookList>,
           <s.MailBookList>
-            <ListByKey data={myMailboxes} />
+            <ListByKey
+              data={myMailboxes}
+              onLongPress={onLongPress}
+              onPress={() => {
+                navigate('MailList', {
+                  folder: 0,
+                  tabs: mailTabs,
+                });
+              }}
+            />
           </s.MailBookList>,
         ]}
       </Tabs>

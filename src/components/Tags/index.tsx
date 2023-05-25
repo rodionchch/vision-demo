@@ -3,6 +3,7 @@ import React from 'react';
 import Menu from 'components/Menu';
 import Modal, {ModalActions} from 'components/Modal';
 import useTags from './useTags';
+import useMenu from 'hooks/useMenu';
 import menu from './menu';
 
 import * as s from './styles';
@@ -33,18 +34,10 @@ const getText = (text?: number) => () =>
   text !== undefined && <s.TagsItemText>{text}</s.TagsItemText>;
 
 const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
-  const {
-    navigate,
-    contextualMenuCoord,
-    onLongPress,
-    toggleMenu,
-    onPressAccordion,
-    menuVisible,
-    expanded,
-    onPressMenu,
-    modalRef,
-    modal,
-  } = useTags();
+  const {navigate, onPressAccordion, expanded, onPressMenu, modalRef, modal} =
+    useTags();
+
+  const {toggleMenu, menuVisible, onLongPress, contextualMenuCoord} = useMenu();
 
   return (
     <>

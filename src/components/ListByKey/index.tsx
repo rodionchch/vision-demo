@@ -1,4 +1,5 @@
 import React from 'react';
+import {GestureResponderEvent} from 'react-native/types';
 
 import * as s from './styles';
 
@@ -12,6 +13,8 @@ type ListByKeyProps = {
       text?: string;
     };
   }[];
+  onPress: () => void;
+  onLongPress?: (event: GestureResponderEvent, id: number) => void;
 };
 
 const getListIcon = (icon?: string) => () =>
@@ -20,7 +23,7 @@ const getListIcon = (icon?: string) => () =>
 const getText = (text?: string) => () =>
   text !== undefined && <s.ListByKeyItemText>{text}</s.ListByKeyItemText>;
 
-const ListByKey: React.FC<ListByKeyProps> = ({data}) => {
+const ListByKey: React.FC<ListByKeyProps> = ({data, onPress, onLongPress}) => {
   return (
     <s.ListByKey>
       {Object.keys(data)?.map((key, index) => (
@@ -34,7 +37,8 @@ const ListByKey: React.FC<ListByKeyProps> = ({data}) => {
               description={description}
               left={getListIcon(icon)}
               right={getText(text)}
-              onPress={() => {}}
+              onPress={onPress}
+              onLongPress={onLongPress}
             />
           ))}
         </s.ListByKey>
