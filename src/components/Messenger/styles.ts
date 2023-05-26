@@ -1,13 +1,13 @@
 import styled from 'styled-components/native';
 import {Card, MD3Colors, Text, IconButton, TextInput} from 'react-native-paper';
-import {iOS} from 'constants/Platform';
+import {isIOS} from 'constants/Platform';
 
 export const Messenger = styled.SafeAreaView`
   flex: 1;
 `;
 
 export const MessengerKeyboardAvoidingView = styled.KeyboardAvoidingView.attrs({
-  behavior: iOS ? 'padding' : 'height',
+  behavior: isIOS ? 'padding' : 'height',
   keyboardVerticalOffset: 130,
 })`
   flex: 1;
@@ -24,27 +24,14 @@ export const MessengerChat = styled.ScrollView.attrs({
     justifyContent: 'flex-end',
   },
 })`
-  background: ${MD3Colors.neutral0};
   padding: 12px 12px 0;
-`;
-
-export const MessengerChatMessage = styled(Card).attrs({
-  mode: 'contained',
-})`
-  margin-right: 18%;
-  margin-bottom: 6px;
-  border-radius: 16px;
-  ${props =>
-    props.me &&
-    `
-  background: ${MD3Colors.primary50};
-  margin-right: 0;
-  margin-left: 18%;`}
 `;
 
 export const MessengerChatMessageContent = styled(Card.Content)``;
 
-export const MessengerChatMessageText = styled(Text)``;
+export const MessengerChatMessageText = styled(Text).attrs({
+  variant: 'bodyMedium',
+})``;
 
 export const MessengerInput = styled.View`
   flex-direction: row;
@@ -69,4 +56,19 @@ export const MessengerSend = styled(IconButton).attrs({
   size: 28,
 })`
   margin-bottom: 0;
+`;
+
+export const MessengerChatMessage = styled(Card).attrs({
+  mode: 'contained',
+})<{me?: boolean}>`
+  background: ${MD3Colors.secondary20};
+  margin-right: 18%;
+  margin-bottom: 6px;
+  border-radius: 16px;
+  ${props =>
+    props.me &&
+    `
+  background: ${MD3Colors.primary30};
+  margin-right: 0;
+  margin-left: 18%;`}
 `;

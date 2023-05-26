@@ -39,6 +39,8 @@ const AppBar = ({
         <PaperAppbar.Action icon={'menu'} onPress={toggleDrawer} />
       )}
 
+      {route.name === 'MailView' && <PaperAppbar.Action icon="" />}
+
       <PaperAppbar.Content title={getTitle()} />
 
       {route.name === 'Dashboard' && (
@@ -71,7 +73,13 @@ const AppBar = ({
       )}
 
       {route.name === 'MailView' && (
-        <PaperAppbar.Action icon="comment-text-multiple" onPress={openMenu} />
+        <>
+          <PaperAppbar.Action icon="information-outline" onPress={() => {}} />
+          <PaperAppbar.Action
+            icon="comment-text-multiple-outline"
+            onPress={() => {}}
+          />
+        </>
       )}
     </PaperAppbar.Header>
   );
