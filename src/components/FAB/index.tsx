@@ -13,6 +13,7 @@ type FABProps = {
   animateFrom: 'left' | 'right';
   iconMode?: 'static' | 'dynamic';
   style?: StyleProp<ViewStyle>;
+  onPress?: () => void;
 };
 
 const FAB = ({
@@ -24,6 +25,7 @@ const FAB = ({
   animateFrom,
   style,
   iconMode,
+  onPress,
 }: FABProps) => {
   const [isExtended, setIsExtended] = useState(true);
 
@@ -45,7 +47,7 @@ const FAB = ({
       icon={'plus'}
       label={label}
       extended={isExtended}
-      onPress={() => console.log('Pressed')}
+      onPress={onPress}
       visible={visible}
       animateFrom={animateFrom}
       iconMode={iconMode}

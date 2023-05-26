@@ -29,7 +29,7 @@ const getBackdropComponent = (props: BottomSheetBackdropProps) => (
 
 const Modal: React.FC<ModalProps> = ({modalRef, title, actions, children}) => {
   const snapPoints = useMemo(
-    () => (isIOS ? ['94%', '94%'] : ['100%', '100%']),
+    () => (isIOS ? ['100%', '100%'] : ['100%', '100%']),
     [],
   );
 

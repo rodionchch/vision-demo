@@ -7,10 +7,15 @@ export const MailView = styled(ScrollView)``;
 
 export const MailViewContent = styled.Image.attrs({
   source: Mail,
+  capInsets: {
+    bottom: 0,
+    top: 0,
+    left: 0,
+    right: 0,
+  },
 })`
   width: 100%;
   height: 2000px;
-  resize-mode: contain;
 `;
 
 export const MailViewActions = styled.SafeAreaView`

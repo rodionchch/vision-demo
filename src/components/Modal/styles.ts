@@ -1,5 +1,6 @@
-import {Dimensions} from 'react-native';
 import styled from 'styled-components/native';
+import {Dimensions} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import {Button, MD3Colors, Text} from 'react-native-paper';
 
@@ -20,7 +21,7 @@ export const ModalSafeArea = styled.SafeAreaView`
   flex: 1;
 `;
 
-export const ModalContent = styled.ScrollView``;
+export const ModalContent = styled(ScrollView)``;
 
 export const ModalActions = styled.View`
   flex-direction: row;

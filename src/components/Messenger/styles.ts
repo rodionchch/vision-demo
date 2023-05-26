@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import {Card, MD3Colors, Text, IconButton, TextInput} from 'react-native-paper';
 import {isIOS} from 'constants/Platform';
+import {ScrollView} from 'react-native-gesture-handler';
 
 export const Messenger = styled.SafeAreaView`
   flex: 1;
@@ -15,10 +16,9 @@ export const MessengerKeyboardAvoidingView = styled.KeyboardAvoidingView.attrs({
 
 export const MessengerTouchableWithoutFeedback = styled.TouchableWithoutFeedback`
   flex: 1;
-  background: red;
 `;
 
-export const MessengerChat = styled.ScrollView.attrs({
+export const MessengerChat = styled(ScrollView).attrs({
   contentContainerStyle: {
     flexGrow: 1,
     justifyContent: 'flex-end',
@@ -43,7 +43,7 @@ export const MessengerTextInput = styled(TextInput).attrs({
   mode: 'outlined',
   outlineStyle: {borderRadius: 24},
   dense: true,
-  multiline: true,
+  multiline: isIOS,
   numberOfLines: 11,
 })`
   flex: 1;

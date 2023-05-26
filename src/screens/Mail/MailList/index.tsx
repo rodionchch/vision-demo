@@ -11,6 +11,8 @@ import List from 'components/List';
 import Tabs from 'components/Tabs';
 import Menu, {ContextualMenuCoord} from 'components/Menu';
 import FAB from 'components/FAB';
+import Modal from 'components/Modal';
+import NewEmail from 'components/NewEmail';
 import useMailList from './useMailList';
 import useFAB from 'hooks/useFAB';
 import useMenu from 'hooks/useMenu';
@@ -60,7 +62,7 @@ const MailListContent: React.FC<MailListContentProps> = ({
 };
 
 const MailList = () => {
-  const {params} = useMailList();
+  const {params, modalRef} = useMailList();
 
   const {toggleMenu, menuVisible, onLongPress, contextualMenuCoord} = useMenu();
 
@@ -85,7 +87,25 @@ const MailList = () => {
         label={'New Message'}
         animateFrom={'right'}
         iconMode={'static'}
+        onPress={() => {
+          modalRef.current?.present();
+        }}
       />
+
+      <Modal
+        modalRef={modalRef}
+        title={'New Message'}
+        actions={[
+          {
+            label: 'Cancel',
+            onPress: () => {
+              modalRef.current?.close();
+            },
+          },
+          {label: 'Send', onPress: () => {}},
+        ]}>
+        <NewEmail />
+      </Modal>
     </>
   );
 };

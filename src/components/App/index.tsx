@@ -30,16 +30,16 @@ function App(): JSX.Element {
             isThemeDark: boolean;
           }
         }>
-        <PaperProvider theme={theme as ThemeProp}>
-          <StatusBar
-            barStyle={isThemeDark ? 'light-content' : 'dark-content'}
-          />
-          <SafeAreaProvider>
-            <GestureHandlerRootView style={{flex: 1}}>
+        <GestureHandlerRootView style={{flex: 1}}>
+          <PaperProvider theme={theme as ThemeProp}>
+            <StatusBar
+              barStyle={isThemeDark ? 'light-content' : 'dark-content'}
+            />
+            <SafeAreaProvider>
               <Drawer theme={theme as Theme} />
-            </GestureHandlerRootView>
-          </SafeAreaProvider>
-        </PaperProvider>
+            </SafeAreaProvider>
+          </PaperProvider>
+        </GestureHandlerRootView>
       </PreferencesContext.Provider>
     </Provider>
   );

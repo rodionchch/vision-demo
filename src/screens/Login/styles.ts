@@ -14,9 +14,12 @@ export const LoginLogo = styled.Image.attrs({
   width: 86px;
   height: 90px;
   margin-top: 40px;
+  margin-top: 10%;
   margin-bottom: 80px;
+  margin-bottom: 20%;
 `;
 
 export const LoginText = styled(Text)`
   margin-bottom: 30px;
+  margin-bottom: 8%;
 `;
