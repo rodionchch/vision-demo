@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/native';
 
 import NavigationType from 'types/NavigationType';
+import Avatar from 'components/Avatar';
 import {getIcon} from '../Icon';
 import menu from './menu';
 
@@ -19,7 +20,7 @@ const DrawerContent = () => {
   return (
     <s.Drawer>
       <s.DrawerUserInfo>
-        <s.DrawerAvatarText label="R" />
+        <Avatar label="R" />
         <s.DrawerTitle>Rodion Chegodaev</s.DrawerTitle>
       </s.DrawerUserInfo>
 
