@@ -37,7 +37,7 @@ const Messenger: React.FC<MessengerProps> = ({
           <s.MessengerChat
             ref={chatRef}
             onContentSizeChange={() => {
-              chatRef.current?.scrollTo({y: -100, animated: true});
+              chatRef.current?.scrollTo({y: 0, animated: true});
             }}>
             <s.MessengerChatInner>
               {messages?.map(({id, date, message, me}) => {
