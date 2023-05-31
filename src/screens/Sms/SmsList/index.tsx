@@ -63,7 +63,7 @@ const SmsListContent: React.FC<SmsListContentProps> = ({
 };
 
 const SmsList: React.FC<SmsListProps> = () => {
-  const {params} = useSmsList();
+  const {params, navigate} = useSmsList();
 
   const {velocity, extended, onScroll} = useFAB();
 
@@ -88,6 +88,9 @@ const SmsList: React.FC<SmsListProps> = () => {
         label={'New Message'}
         animateFrom={'right'}
         iconMode={'static'}
+        onPress={() => {
+          navigate('SmsChat');
+        }}
       />
     </>
   );

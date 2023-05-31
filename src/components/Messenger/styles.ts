@@ -1,5 +1,12 @@
 import styled from 'styled-components/native';
-import {Card, MD3Colors, Text, IconButton, TextInput} from 'react-native-paper';
+import {
+  Card,
+  MD3Colors,
+  Text,
+  IconButton,
+  TextInput,
+  Chip,
+} from 'react-native-paper';
 import {isIOS} from 'constants/Platform';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -9,7 +16,7 @@ export const Messenger = styled.SafeAreaView`
 
 export const MessengerKeyboardAvoidingView = styled.KeyboardAvoidingView.attrs({
   behavior: isIOS ? 'padding' : 'height',
-  keyboardVerticalOffset: 130,
+  keyboardVerticalOffset: 118,
 })`
   flex: 1;
 `;
@@ -18,13 +25,30 @@ export const MessengerTouchableWithoutFeedback = styled.TouchableWithoutFeedback
   flex: 1;
 `;
 
-export const MessengerChat = styled(ScrollView).attrs({
+export const MessengerChat = styled<any>(ScrollView).attrs({
   contentContainerStyle: {
     flexGrow: 1,
-    justifyContent: 'flex-end',
   },
 })`
-  padding: 12px 12px 0;
+  transform: scaleY(-1);
+  padding-left: 12px;
+  padding-right: 12px;
+`;
+
+export const MessengerChatInner = styled.View`
+  transform: scaleY(-1);
+  flex: 1;
+`;
+
+export const MessengerChatMessageDate = styled(Chip).attrs({
+  compact: true,
+  textStyle: {
+    textAlign: 'right',
+  },
+})`
+  align-self: center;
+  margin: 4px 0 8px;
+  height: 32px;
 `;
 
 export const MessengerChatMessageContent = styled(Card.Content)``;
@@ -63,12 +87,15 @@ export const MessengerChatMessage = styled(Card).attrs({
 })<{me?: boolean}>`
   background: ${MD3Colors.secondary20};
   margin-right: 18%;
-  margin-bottom: 6px;
+  align-self: flex-start;
+  margin-bottom: 4px;
   border-radius: 16px;
   ${props =>
     props.me &&
     `
   background: ${MD3Colors.primary30};
   margin-right: 0;
-  margin-left: 18%;`}
+  margin-left: 18%;
+  align-self: flex-end;
+  `}
 `;

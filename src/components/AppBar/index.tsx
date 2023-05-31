@@ -26,7 +26,9 @@ const AppBar = ({
 
   const getTitle = () => {
     if (route.name === 'Dashboard') {
-      return params?.dashboard;
+      return params?.dashboard === 'Sms'
+        ? params?.dashboard?.toUpperCase()
+        : params?.dashboard;
     }
     return params?.name || title;
   };

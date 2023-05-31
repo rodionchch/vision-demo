@@ -53,7 +53,7 @@ const Home = () => {
         name="PhoneBook"
         component={PhoneBook}
         options={{
-          title: 'PhoneBook',
+          title: 'Phone Book',
         }}
       />
 
@@ -76,7 +76,7 @@ const Home = () => {
         name="MailBook"
         component={MailBook}
         options={{
-          title: 'MailBook',
+          title: 'Mail Book',
         }}
       />
 
