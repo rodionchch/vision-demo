@@ -14,10 +14,12 @@ export const Messenger = styled.SafeAreaView`
   flex: 1;
 `;
 
-export const MessengerKeyboardAvoidingView = styled.KeyboardAvoidingView.attrs({
+export const MessengerKeyboardAvoidingView = styled.KeyboardAvoidingView.attrs<{
+  to?: boolean;
+}>(props => ({
   behavior: isIOS ? 'padding' : 'height',
-  keyboardVerticalOffset: 118,
-})`
+  keyboardVerticalOffset: props?.to ? 182 : 118,
+}))<any>`
   flex: 1;
 `;
 

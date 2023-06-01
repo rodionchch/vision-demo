@@ -45,20 +45,27 @@ const useSmsChat = () => {
   };
 
   const onSend = () => {
-    let m = [];
-    const date = moment().format('HH:ss');
-    if (!dateRefCount.current) {
-      m = [
-        ...messages,
-        {id: messages?.length, date: `Today ${date}`},
-        {id: messages?.length + 1, message, me: true},
-      ];
-      dateRefCount.current = 1;
-    } else {
-      m = [...messages, {id: messages?.length, message, me: true}];
+    const messageTrimmed = message?.trim();
+
+    if (messageTrimmed) {
+      let m = [];
+      const date = moment().format('HH:ss');
+      if (!dateRefCount.current) {
+        m = [
+          ...messages,
+          {id: messages?.length, date: `Today ${date}`},
+          {id: messages?.length + 1, message: messageTrimmed, me: true},
+        ];
+        dateRefCount.current = 1;
+      } else {
+        m = [
+          ...messages,
+          {id: messages?.length, message: messageTrimmed, me: true},
+        ];
+      }
+      setMessages(m);
+      setMessage('');
     }
-    setMessages(m);
-    setMessage('');
   };
 
   return {params, message, messages, onChange, onSend};

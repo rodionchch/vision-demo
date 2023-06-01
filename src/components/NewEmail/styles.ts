@@ -1,8 +1,22 @@
 import styled from 'styled-components/native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {Divider, List, MD3Colors, Text, TextInput} from 'react-native-paper';
+import {Divider, List, Text, TextInput} from 'react-native-paper';
+import {isIOS} from 'constants/Platform';
 
 export const NewEmail = styled(ScrollView)``;
+
+export const NewEmailKeyboardAvoidingView = styled.KeyboardAvoidingView.attrs<{
+  to?: boolean;
+}>(props => ({
+  behavior: isIOS ? 'padding' : 'height',
+  keyboardVerticalOffset: props?.to ? 182 : 118,
+}))<any>`
+  flex: 1;
+`;
+
+export const NewEmailTouchableWithoutFeedback = styled.TouchableWithoutFeedback`
+  flex: 1;
+`;
 
 export const NewEmailHeader = styled(List.Section)``;
 
@@ -43,8 +57,7 @@ export const NewEmailTextArea = styled(TextInput).attrs({
   background: transparent;
   font-size: 14px;
   font-weight: 500;
-  min-height: 100%;
-  margin-bottom: 8px;
+  height: 600px;
 `;
 
 export const NewEmailDivider = styled(Divider)`

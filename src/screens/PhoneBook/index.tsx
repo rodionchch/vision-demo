@@ -1,31 +1,25 @@
-import React, {useEffect} from 'react';
-
-import {useNavigation, useRoute} from '@react-navigation/native';
-import NavigationType from 'types/NavigationType';
+import React from 'react';
 import {useToggleDrawer} from 'hooks/useDrawer';
 import Tabs from 'components/Tabs';
 import ListByKey from 'components/ListByKey';
 import FAB from 'components/FAB';
 import Menu from 'components/Menu';
+import Modal from 'components/Modal';
+import EditBook from 'components/EditBook';
 import useFAB from 'hooks/useFAB';
 import useMenu from 'hooks/useMenu';
+import useSms from 'screens/Sms/useSms';
+import usePhoneBook from './usePhoneBook';
 
 import {tabs, groups, contacts, myPhoneNumbers} from './data';
+import menu from './menu';
 
 import * as s from './styles';
-import menu from './menu';
-import useSms from 'screens/Sms/useSms';
 
 const PhoneBook = () => {
   useToggleDrawer();
-  const {setOptions} = useNavigation();
-  const {params} = useRoute<NavigationType>();
 
-  const {navigate} = useNavigation<NavigationType>();
-
-  useEffect(() => {
-    setOptions({animation: params?.fromDrawer ? 'none' : 'default'});
-  });
+  const {navigate, modalRef, book, addBook} = usePhoneBook();
 
   const {velocity, extended, onScroll} = useFAB();
 
@@ -57,9 +51,12 @@ const PhoneBook = () => {
               visible={true}
               animatedValue={velocity}
               extended={extended}
-              label={'Add Group    '}
+              label={'Add a Group  '}
               animateFrom={'right'}
               iconMode={'static'}
+              onPress={() => {
+                modalRef.current?.present();
+              }}
             />
           </>,
 
@@ -87,6 +84,26 @@ const PhoneBook = () => {
           </s.PhoneBookList>,
         ]}
       </Tabs>
+
+      <Modal
+        modalRef={modalRef}
+        title={'Add a Group'}
+        actions={[
+          {
+            label: 'Cancel',
+            onPress: () => {
+              modalRef.current?.close();
+            },
+          },
+          {
+            label: 'Add',
+            onPress: () => {
+              modalRef.current?.close();
+            },
+          },
+        ]}>
+        <EditBook book={book} setBook={addBook} />
+      </Modal>
     </s.PhoneBook>
   );
 };

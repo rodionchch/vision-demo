@@ -1,9 +1,10 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import * as s from './styles';
 import MessengerInput from './Input';
 import {Keyboard, ScrollView} from 'react-native';
 
 type MessengerProps = {
+  to?: boolean;
   message: string;
   messages: {
     id: number;
@@ -16,6 +17,7 @@ type MessengerProps = {
 };
 
 const Messenger: React.FC<MessengerProps> = ({
+  to,
   message: messageValue,
   messages,
   onChange,
@@ -23,17 +25,10 @@ const Messenger: React.FC<MessengerProps> = ({
 }) => {
   const chatRef = useRef<ScrollView>();
 
-  // useEffect(() => {
-  //   chatRef.current?.scrollToEnd?.({animated: false});
-  // }, []);
-
   return (
     <s.Messenger>
-      <s.MessengerKeyboardAvoidingView>
-        <s.MessengerTouchableWithoutFeedback
-          onPress={() => {
-            // Keyboard.dismiss();
-          }}>
+      <s.MessengerKeyboardAvoidingView to={to}>
+        <s.MessengerTouchableWithoutFeedback>
           <s.MessengerChat
             ref={chatRef}
             onContentSizeChange={() => {

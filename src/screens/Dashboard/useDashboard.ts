@@ -38,6 +38,7 @@ const useDashboard = () => {
       focusedIcon: 'forum',
       unfocusedIcon: 'forum-outline',
       disabled: true,
+      // badge: 3,
     },
     {
       key: 'call',
@@ -51,7 +52,6 @@ const useDashboard = () => {
       title: 'Mail',
       focusedIcon: 'email',
       unfocusedIcon: 'email-outline',
-      badge: 3,
     },
     {
       key: 'sms',

@@ -11,7 +11,6 @@ import List from 'components/List';
 import Tabs from 'components/Tabs';
 import Menu, {ContextualMenuCoord} from 'components/Menu';
 import FAB from 'components/FAB';
-import Modal from 'components/Modal';
 import NewEmail from 'components/NewEmail';
 import useMailList from './useMailList';
 import useFAB from 'hooks/useFAB';
@@ -92,20 +91,7 @@ const MailList = () => {
         }}
       />
 
-      <Modal
-        modalRef={modalRef}
-        title={'New Message'}
-        actions={[
-          {
-            label: 'Cancel',
-            onPress: () => {
-              modalRef.current?.close();
-            },
-          },
-          {label: 'Send', onPress: () => {}},
-        ]}>
-        <NewEmail />
-      </Modal>
+      <NewEmail modalRef={modalRef} />
     </>
   );
 };
