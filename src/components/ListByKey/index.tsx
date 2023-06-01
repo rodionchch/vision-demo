@@ -15,6 +15,7 @@ type ListByKeyProps = {
   }[];
   onPress: () => void;
   onLongPress?: (event: GestureResponderEvent, id: number) => void;
+  menuVisible?: boolean | {id: number};
 };
 
 const getListIcon = (icon?: string) => () =>
@@ -23,14 +24,19 @@ const getListIcon = (icon?: string) => () =>
 const getText = (text?: string) => () =>
   text !== undefined && <s.ListByKeyItemText>{text}</s.ListByKeyItemText>;
 
-const ListByKey: React.FC<ListByKeyProps> = ({data, onPress, onLongPress}) => {
+const ListByKey: React.FC<ListByKeyProps> = ({
+  data,
+  onPress,
+  onLongPress,
+  menuVisible,
+}) => {
   return (
     <s.ListByKey>
       {Object.keys(data)?.map((key, index) => (
         <s.ListByKey key={`${key}-${index}`}>
           <s.ListByKeyItem title={key} byKey />
 
-          {data[key]?.map(({title, description, icon, text}, index) => (
+          {data[key]?.map(({id, title, description, icon, text}, index) => (
             <s.ListByKeyItem
               key={index}
               title={title}
@@ -38,7 +44,10 @@ const ListByKey: React.FC<ListByKeyProps> = ({data, onPress, onLongPress}) => {
               left={getListIcon(icon)}
               right={getText(text)}
               onPress={onPress}
-              onLongPress={onLongPress}
+              selected={menuVisible.id === id}
+              onLongPress={event => {
+                onLongPress?.(event, id);
+              }}
             />
           ))}
         </s.ListByKey>

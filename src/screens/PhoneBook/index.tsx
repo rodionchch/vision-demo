@@ -41,6 +41,7 @@ const PhoneBook = () => {
             <s.PhoneBookList onScroll={onScroll}>
               <ListByKey
                 data={groups}
+                menuVisible={menuVisible}
                 onLongPress={onLongPress}
                 onPress={() => {
                   navigate('Group');
@@ -63,6 +64,7 @@ const PhoneBook = () => {
           <s.PhoneBookList>
             <ListByKey
               data={contacts}
+              menuVisible={menuVisible}
               onPress={() => {
                 navigate('SmsChat');
               }}
@@ -73,6 +75,7 @@ const PhoneBook = () => {
           <s.PhoneBookList>
             <ListByKey
               data={myPhoneNumbers}
+              menuVisible={menuVisible}
               onLongPress={onLongPress}
               onPress={() => {
                 navigate('SmsList', {

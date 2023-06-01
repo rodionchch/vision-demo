@@ -72,7 +72,7 @@ const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
                   }
                 }}
                 onLongPress={event => {
-                  onLongPress(event, {id: itemId});
+                  onLongPress(event, itemId);
                 }}
                 selected={
                   typeof menuVisible === 'object' && menuVisible.id === itemId

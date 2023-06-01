@@ -42,6 +42,7 @@ const MailBook = () => {
             <s.MailBookList onScroll={onScroll}>
               <ListByKey
                 data={groups}
+                menuVisible={menuVisible}
                 onLongPress={onLongPress}
                 onPress={() => {
                   navigate('Group');
@@ -64,6 +65,7 @@ const MailBook = () => {
           <s.MailBookList>
             <ListByKey
               data={contacts}
+              menuVisible={menuVisible}
               onLongPress={onLongPress}
               onPress={() => {
                 navigate('SmsChat');
@@ -73,6 +75,7 @@ const MailBook = () => {
           <s.MailBookList>
             <ListByKey
               data={myMailboxes}
+              menuVisible={menuVisible}
               onLongPress={onLongPress}
               onPress={() => {
                 navigate('MailList', {

@@ -20,7 +20,7 @@ const Group: React.FC<GroupProps> = () => {
         toggleMenu={toggleMenu}
         contextualMenuCoord={contextualMenuCoord}
       />
-      <List data={data} onLongPress={onLongPress} />
+      <List selected={menuVisible} data={data} onLongPress={onLongPress} />
     </s.Group>
   );
 };
