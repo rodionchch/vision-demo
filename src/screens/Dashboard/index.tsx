@@ -19,7 +19,7 @@ const Dashboard = () => {
               disabled={route.disabled}
               onPress={() => {
                 if (!route?.disabled) {
-                  onSetDashboard(route?.title);
+                  onSetDashboard(route?.title === 'SMS' ? 'Sms' : route?.title);
                   onPress();
                 }
               }}>
