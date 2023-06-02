@@ -37,8 +37,11 @@ export const MailViewHeaderSubTitle = styled(Text).attrs({
   ellipsizeMode: 'tail',
   numberOfLines: 1,
 })<any>`
-  color: #99999e;
-  ${props => props.white && `color: #fff;`}
+  color: ${props => props.theme.colors.secondary};
+`;
+
+export const MailViewHeaderSubText = styled(MailViewHeaderSubTitle)`
+  color: ${props => props.theme?.colors?.onSurface};
 `;
 
 export const MailViewHeaderDate = styled(Text).attrs({
@@ -46,7 +49,7 @@ export const MailViewHeaderDate = styled(Text).attrs({
   ellipsizeMode: 'tail',
   numberOfLines: 1,
 })`
-  color: #99999e;
+  color: ${props => props.theme.colors.outline};
 `;
 
 export const MailViewDivider = styled(Divider)`

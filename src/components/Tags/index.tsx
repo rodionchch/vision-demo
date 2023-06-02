@@ -7,6 +7,7 @@ import useMenu from 'hooks/useMenu';
 import menu from './menu';
 
 import * as s from './styles';
+import {useTheme} from 'react-native-paper';
 
 type TagsProps = {
   data: {
@@ -34,6 +35,8 @@ const getText = (text?: number) => () =>
   text !== undefined && <s.TagsItemText>{text}</s.TagsItemText>;
 
 const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
+  const theme = useTheme();
+
   const {navigate, onPressAccordion, expanded, onPressMenu, modalRef, modal} =
     useTags();
 
@@ -62,6 +65,7 @@ const Tags: React.FC<TagsProps> = ({data, tabs, screen}) => {
             {items?.map(({id: itemId, name, phone, icon: itemIcon}) => (
               <s.TagsTouchable
                 key={itemId}
+                theme={theme}
                 onPress={() => {
                   if (screen) {
                     navigate(`${screen}List`, {

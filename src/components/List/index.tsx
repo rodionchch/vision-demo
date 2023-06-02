@@ -2,6 +2,7 @@ import React, {ReactNode} from 'react';
 import {GestureResponderEvent} from 'react-native/types';
 
 import * as s from './styles';
+import {useTheme} from 'react-native-paper';
 
 export type ListDataItemType = {
   id?: number;
@@ -33,6 +34,8 @@ const List: React.FC<ListProps> = ({
   selected,
   onPress,
 }) => {
+  const theme = useTheme();
+
   return (
     <s.List>
       {!!headerTitle && <s.ListHeader>{headerTitle}</s.ListHeader>}
@@ -65,6 +68,7 @@ const List: React.FC<ListProps> = ({
               selected?.id === item?.id) ||
             (typeof selected !== 'object' && selected)
           }
+          theme={theme}
         />
       ))}
     </s.List>

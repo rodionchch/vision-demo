@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {IconButton, MD3Colors} from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const Code = styled.View`
@@ -16,21 +16,21 @@ export const CodeDots = styled.View`
   margin-bottom: 60px;
 `;
 
-export const CodeDotsDot = styled.View<{filled?: boolean}>`
+export const CodeDotsDot = styled.View<any>`
   width: 15px;
   height: 15px;
   border-radius: 50px;
-  background: ${MD3Colors.neutral50};
-  ${props => props.filled && `background: ${MD3Colors.neutral80};`}
+  background: ${props => props.theme.colors.surfaceVariant};
+  ${props => props.filled && `background: ${props.theme.colors.primary};`}
 `;
 
 export const CodeButton = styled(IconButton)`
   margin-bottom: 8px;
 `;
 
-export const CodeButtonIcon = styled(MaterialCommunityIcons).attrs({
-  color: MD3Colors.neutral80,
-})<{isActionButton?: boolean | 'backspace'}>`
+export const CodeButtonIcon = styled(MaterialCommunityIcons).attrs(props => ({
+  color: props.color,
+}))<{isActionButton?: boolean | 'backspace'}>`
   width: 50px;
   height: 50px;
   margin-top: -9px;

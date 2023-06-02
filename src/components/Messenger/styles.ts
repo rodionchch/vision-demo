@@ -42,12 +42,14 @@ export const MessengerChatInner = styled.View`
   flex: 1;
 `;
 
-export const MessengerChatMessageDate = styled(Chip).attrs({
+export const MessengerChatMessageDate = styled(Chip).attrs(props => ({
   compact: true,
   textStyle: {
     textAlign: 'right',
+    color: props.theme.colors.onSurface,
   },
-})`
+}))`
+  background: ${props => props.theme.colors.inverseOnSurface};
   align-self: center;
   margin: 4px 0 8px;
   height: 32px;
@@ -86,8 +88,8 @@ export const MessengerSend = styled(IconButton).attrs({
 
 export const MessengerChatMessage = styled(Card).attrs({
   mode: 'contained',
-})<{me?: boolean}>`
-  background: ${MD3Colors.secondary20};
+})<any>`
+  background: ${props => props.theme?.colors.card};
   margin-right: 18%;
   align-self: flex-start;
   margin-bottom: 4px;
@@ -95,7 +97,7 @@ export const MessengerChatMessage = styled(Card).attrs({
   ${props =>
     props.me &&
     `
-  background: ${MD3Colors.primary30};
+  background: ${props.theme?.colors.tertiaryContainer};
   margin-right: 0;
   margin-left: 18%;
   align-self: flex-end;

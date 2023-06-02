@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {MD3Colors, TextInput} from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 
 export const EditBook = styled(ScrollView)`
   padding: 20px 12px;
@@ -9,6 +9,6 @@ export const EditBook = styled(ScrollView)`
 export const EditBookInput = styled(TextInput).attrs({
   mode: 'outlined',
 })`
-  background: ${MD3Colors.secondary10};
+  background: ${props => props.theme.colors.elevation.level2};
   margin-bottom: 20px;
 `;

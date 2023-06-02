@@ -2,20 +2,18 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
-import {Button, MD3Colors, Text} from 'react-native-paper';
+import {Button, Text} from 'react-native-paper';
 
 export const Modal = styled(BottomSheetModal).attrs(
-  (props: {hideHandle?: boolean}) => ({
+  (props: {hideHandle?: boolean; backgroundColor?: string; theme: any}) => ({
     handleStyle: props.hideHandle ? {display: 'none'} : undefined,
     backgroundStyle: {
-      backgroundColor: MD3Colors.secondary10,
+      backgroundColor: props.theme.colors.elevation.level2,
       borderRadius: 22,
     },
-    handleIndicatorStyle: {
-      backgroundColor: MD3Colors.secondary90,
-    },
+    handleIndicatorStyle: {},
   }),
-)<{hideHandle?: boolean}>``;
+)<any>``;
 
 export const ModalSafeArea = styled.SafeAreaView`
   flex: 1;

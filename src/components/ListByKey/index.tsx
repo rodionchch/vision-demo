@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTheme} from 'react-native-paper';
 import {GestureResponderEvent} from 'react-native/types';
 
 import * as s from './styles';
@@ -30,6 +31,8 @@ const ListByKey: React.FC<ListByKeyProps> = ({
   onLongPress,
   menuVisible,
 }) => {
+  const theme = useTheme();
+
   return (
     <s.ListByKey>
       {Object.keys(data)?.map((key, index) => (
@@ -45,6 +48,7 @@ const ListByKey: React.FC<ListByKeyProps> = ({
               right={getText(text)}
               onPress={onPress}
               selected={menuVisible.id === id}
+              theme={theme}
               onLongPress={event => {
                 onLongPress?.(event, id);
               }}

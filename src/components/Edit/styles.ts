@@ -1,4 +1,4 @@
-import {MD3Colors, TextInput} from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 import styled from 'styled-components/native';
 
 export const Edit = styled.View`
@@ -8,6 +8,6 @@ export const Edit = styled.View`
 export const EditInput = styled(TextInput).attrs({
   mode: 'outlined',
 })`
-  background: ${MD3Colors.secondary10};
+  background: ${props => props.theme.colors.elevation.level2};
   margin-bottom: 20px;
 `;

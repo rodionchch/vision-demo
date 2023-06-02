@@ -1,24 +1,23 @@
 import {createContext, useCallback, useEffect, useMemo, useState} from 'react';
 import {useColorScheme} from 'react-native';
+import merge from 'deepmerge';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {adaptNavigationTheme} from 'react-native-paper';
 import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from '@react-navigation/native';
-import {
-  MD3DarkTheme,
-  MD3LightTheme,
-  adaptNavigationTheme,
-} from 'react-native-paper';
-import merge from 'deepmerge';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import MyDarkTheme from 'themes/MyDarkTheme';
+import MyLightTheme from 'themes/MyLightTheme';
 
 const {LightTheme, DarkTheme} = adaptNavigationTheme({
   reactNavigationLight: NavigationDefaultTheme,
   reactNavigationDark: NavigationDarkTheme,
 });
 
-const CombinedDefaultTheme = merge(MD3LightTheme, LightTheme);
-const CombinedDarkTheme = merge(MD3DarkTheme, DarkTheme);
+const CombinedDarkTheme = merge(DarkTheme, MyDarkTheme);
+const CombinedLightTheme = merge(LightTheme, MyLightTheme);
 
 export const PreferencesContext = createContext({
   toggleTheme: () => {},
@@ -29,9 +28,7 @@ const useApp = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const [isThemeDark, setIsThemeDark] = useState(isDarkMode);
 
-  const theme = isThemeDark
-    ? {...CombinedDarkTheme}
-    : {...CombinedDefaultTheme};
+  const theme = isThemeDark ? {...CombinedDarkTheme} : {...CombinedLightTheme};
 
   useEffect(() => {
     AsyncStorage.getItem('theme').then(currentTheme => {

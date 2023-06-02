@@ -55,7 +55,7 @@ const useDashboard = () => {
     },
     {
       key: 'sms',
-      title: 'Sms',
+      title: 'SMS',
       focusedIcon: 'chat-processing',
       unfocusedIcon: 'chat-outline',
     },

@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTheme} from 'react-native-paper';
 
 import MailActions from 'components/MailActions';
 import Avatar from 'components/Avatar';
@@ -6,6 +7,8 @@ import Avatar from 'components/Avatar';
 import * as s from './styles';
 
 const MailView = () => {
+  const theme = useTheme();
+
   return (
     <>
       <s.MailView>
@@ -14,10 +17,14 @@ const MailView = () => {
           <s.MailViewHeaderContent>
             <s.MailViewHeaderInner>
               <s.MailViewHeaderTitle>Apple Developer</s.MailViewHeaderTitle>
-              <s.MailViewHeaderDate>03.06.2023</s.MailViewHeaderDate>
+              <s.MailViewHeaderDate theme={theme}>
+                03.06.2023
+              </s.MailViewHeaderDate>
             </s.MailViewHeaderInner>
-            <s.MailViewHeaderSubTitle>
-              <s.MailViewHeaderSubTitle white>To:</s.MailViewHeaderSubTitle>{' '}
+            <s.MailViewHeaderSubTitle theme={theme}>
+              <s.MailViewHeaderSubText theme={theme}>
+                To:
+              </s.MailViewHeaderSubText>{' '}
               Rodion
             </s.MailViewHeaderSubTitle>
           </s.MailViewHeaderContent>

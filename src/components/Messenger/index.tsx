@@ -2,6 +2,7 @@ import React, {useRef} from 'react';
 import * as s from './styles';
 import MessengerInput from './Input';
 import {Keyboard, ScrollView} from 'react-native';
+import {useTheme} from 'react-native-paper';
 
 type MessengerProps = {
   to?: boolean;
@@ -24,6 +25,7 @@ const Messenger: React.FC<MessengerProps> = ({
   onSend,
 }) => {
   const chatRef = useRef<ScrollView>();
+  const theme = useTheme();
 
   return (
     <s.Messenger>
@@ -38,13 +40,13 @@ const Messenger: React.FC<MessengerProps> = ({
               {messages?.map(({id, date, message, me}) => {
                 if (date) {
                   return (
-                    <s.MessengerChatMessageDate>
+                    <s.MessengerChatMessageDate theme={theme}>
                       {date}
                     </s.MessengerChatMessageDate>
                   );
                 }
                 return (
-                  <s.MessengerChatMessage key={id} me={me}>
+                  <s.MessengerChatMessage key={id} me={me} theme={theme}>
                     <s.MessengerChatMessageContent>
                       <s.MessengerChatMessageText>
                         {message}

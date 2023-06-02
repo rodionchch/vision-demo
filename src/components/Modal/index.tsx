@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {Keyboard} from 'react-native';
-import {Portal} from 'react-native-paper';
+import {Portal, useTheme} from 'react-native-paper';
 import {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
@@ -28,6 +28,7 @@ const getBackdropComponent = (props: BottomSheetBackdropProps) => (
 );
 
 const Modal: React.FC<ModalProps> = ({modalRef, title, actions, children}) => {
+  const theme = useTheme();
   const snapPoints = useMemo(
     () => (isIOS ? ['100%', '100%'] : ['100%', '100%']),
     [],
@@ -39,6 +40,7 @@ const Modal: React.FC<ModalProps> = ({modalRef, title, actions, children}) => {
         <s.Modal
           ref={modalRef}
           index={1}
+          theme={theme}
           hideHandle={!!actions}
           snapPoints={snapPoints}
           onAnimate={() => {
