@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import * as s from './styles';
 import MessengerInput from './Input';
-import {Keyboard, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import {useTheme} from 'react-native-paper';
 
 type MessengerProps = {
@@ -40,7 +40,7 @@ const Messenger: React.FC<MessengerProps> = ({
               {messages?.map(({id, date, message, me}) => {
                 if (date) {
                   return (
-                    <s.MessengerChatMessageDate theme={theme}>
+                    <s.MessengerChatMessageDate key={id} theme={theme}>
                       {date}
                     </s.MessengerChatMessageDate>
                   );

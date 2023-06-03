@@ -14,7 +14,7 @@ const Dashboard = () => {
       renderScene={renderScene}
       renderTouchable={({route, onPress, children}) => {
         return (
-          <s.BottomNavigationButton>
+          <s.BottomNavigationButton key={route.key}>
             <s.BottomNavigationTouchable
               disabled={route.disabled}
               onPress={() => {

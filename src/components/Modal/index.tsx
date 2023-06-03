@@ -51,7 +51,9 @@ const Modal: React.FC<ModalProps> = ({modalRef, title, actions, children}) => {
             {actions && (
               <s.ModalActions>
                 {actions?.map(({label, onPress}) => (
-                  <s.ModalAction onPress={onPress}>{label}</s.ModalAction>
+                  <s.ModalAction key={label} onPress={onPress}>
+                    {label}
+                  </s.ModalAction>
                 ))}
                 <s.ModalTitle>{title}</s.ModalTitle>
               </s.ModalActions>

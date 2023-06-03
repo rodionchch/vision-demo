@@ -1,5 +1,6 @@
 import React from 'react';
 import {useToggleDrawer} from 'hooks/useDrawer';
+import useBack from 'hooks/useBack';
 import Tabs from 'components/Tabs';
 import ListByKey from 'components/ListByKey';
 import FAB from 'components/FAB';
@@ -18,6 +19,7 @@ import * as s from './styles';
 
 const PhoneBook = () => {
   useToggleDrawer();
+  useBack();
 
   const {navigate, modalRef, book, addBook} = usePhoneBook();
 

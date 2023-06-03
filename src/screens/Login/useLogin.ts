@@ -1,6 +1,8 @@
 import {useEffect, useRef, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import {useAppDispatch} from 'store/hooks';
+import {setAuth} from 'store/appSlice';
 
 import NavigationType from 'types/NavigationType';
 import useFaceId from 'hooks/useFaceId';
@@ -8,6 +10,7 @@ import sleep from 'utils/sleep';
 
 const useLogin = () => {
   const {onFaceId, faceIdSuccess} = useFaceId();
+  const dispatch = useAppDispatch();
 
   const {navigate} = useNavigation<NavigationType>();
   const [savedPIN, setSavedPIN] = useState<string | null>(null);
@@ -28,13 +31,13 @@ const useLogin = () => {
     if (PIN?.length === 5) {
       if (PIN === savedPIN) {
         sleep(500).then(() => {
-          navigate('Home');
+          dispatch(setAuth(true));
         });
       } else {
         setPIN('');
       }
     }
-  }, [PIN, navigate, savedPIN]);
+  }, [PIN, dispatch, navigate, savedPIN]);
 
   useEffect(() => {
     if (typeof onFaceId === 'function' && !startFaceId.current) {

@@ -1,8 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {getAppBar} from 'components/AppBar';
-
 import Dashboard from 'screens/Dashboard';
 import SmsList from 'screens/Sms/SmsList';
 import SmsChat from 'screens/Sms/SmsChat';
@@ -17,91 +15,107 @@ import Security from 'screens/Settings/Security';
 import Theme from 'screens/Settings/Theme';
 import Language from 'screens/Settings/Language';
 import About from 'screens/Settings/About';
+import Login from 'screens/Login';
+
+import {useAppSelector} from 'store/hooks';
+import {getAppBar} from 'components/AppBar';
 
 const Stack = createNativeStackNavigator();
 
 const Home = () => {
+  const {auth} = useAppSelector(({app}) => app);
+
   return (
     <Stack.Navigator
       initialRouteName="Dashboard"
       screenOptions={{
         header: getAppBar,
       }}>
-      <Stack.Screen
-        name="Dashboard"
-        component={Dashboard}
-        options={{animation: 'none'}}
-        initialParams={{dashboard: 'Sms'}}
-      />
+      {!auth ? (
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{headerShown: false}}
+        />
+      ) : (
+        <>
+          <Stack.Screen
+            name="Dashboard"
+            component={Dashboard}
+            options={{animation: 'none'}}
+            initialParams={{dashboard: 'Sms'}}
+          />
 
-      {/**
-       * SMS
-       */}
+          {/**
+           * SMS
+           */}
 
-      <Stack.Screen
-        name="SmsList"
-        component={SmsList}
-        options={{title: 'SMS'}}
-      />
-      <Stack.Screen
-        name="SmsChat"
-        component={SmsChat}
-        options={{title: 'SMS'}}
-      />
+          <Stack.Screen
+            name="SmsList"
+            component={SmsList}
+            options={{title: 'SMS'}}
+          />
+          <Stack.Screen
+            name="SmsChat"
+            component={SmsChat}
+            options={{title: 'SMS'}}
+          />
 
-      <Stack.Screen
-        name="PhoneBook"
-        component={PhoneBook}
-        options={{
-          title: 'Phone Book',
-        }}
-      />
+          <Stack.Screen
+            name="PhoneBook"
+            component={PhoneBook}
+            options={{
+              title: 'Phone Book',
+            }}
+          />
 
-      {/**
-       * Mail
-       */}
+          {/**
+           * Mail
+           */}
 
-      <Stack.Screen
-        name="MailList"
-        component={MailList}
-        options={{title: 'Mail'}}
-      />
-      <Stack.Screen
-        name="MailView"
-        component={MailView}
-        options={{title: 'Inbox'}}
-      />
+          <Stack.Screen
+            name="MailList"
+            component={MailList}
+            options={{title: 'Mail'}}
+          />
+          <Stack.Screen
+            name="MailView"
+            component={MailView}
+            options={{title: 'Inbox'}}
+          />
 
-      <Stack.Screen
-        name="MailBook"
-        component={MailBook}
-        options={{
-          title: 'Mail Book',
-        }}
-      />
+          <Stack.Screen
+            name="MailBook"
+            component={MailBook}
+            options={{
+              title: 'Mail Book',
+            }}
+          />
 
-      <Stack.Screen
-        name="Group"
-        component={Group}
-        options={{
-          title: 'Group',
-        }}
-      />
+          <Stack.Screen
+            name="Group"
+            component={Group}
+            options={{
+              title: 'Group',
+            }}
+          />
 
-      {/**
-       * Settings
-       */}
+          {/**
+           * Settings
+           */}
 
-      <Stack.Screen
-        name="Settings"
-        component={Settings}
-        options={{title: 'Settings', animation: 'none'}}
-      />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Security" component={Security} />
-      <Stack.Screen name="Theme" component={Theme} />
-      <Stack.Screen name="Language" component={Language} />
-      <Stack.Screen name="About" component={About} />
+          <Stack.Screen
+            name="Settings"
+            component={Settings}
+            options={{title: 'Settings', animation: 'none'}}
+          />
+          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Security" component={Security} />
+          <Stack.Screen name="Theme" component={Theme} />
+          <Stack.Screen name="Language" component={Language} />
+          <Stack.Screen name="About" component={About} />
+        </>
+      )}
     </Stack.Navigator>
   );
 };

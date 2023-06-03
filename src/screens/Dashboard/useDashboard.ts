@@ -7,8 +7,6 @@ import ChatScreen from 'screens/Chat';
 import CallScreen from 'screens/Call';
 import MailScreen from 'screens/Mail';
 import SmsScreen from 'screens/Sms';
-// import {useAppDispatch} from 'store/hooks';
-// import {setDashboard} from 'store/appSlice';
 
 enum Dashboard {
   Chat,
@@ -21,7 +19,6 @@ const useDashboard = () => {
   const [index, setIndex] = useState(3);
   const route = useRoute<NavigationType>();
   const navigation = useNavigation<NavigationType>();
-  // const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (route?.params?.dashboard === 'Sms') {
@@ -62,7 +59,6 @@ const useDashboard = () => {
   ]);
 
   const onSetDashboard = (dashboard: string) => {
-    // dispatch(setDashboard(dashboard));
     navigation.setParams({dashboard});
   };
 

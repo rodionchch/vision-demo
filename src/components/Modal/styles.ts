@@ -19,7 +19,9 @@ export const ModalSafeArea = styled.SafeAreaView`
   flex: 1;
 `;
 
-export const ModalContent = styled(ScrollView)``;
+export const ModalContent = styled(ScrollView)`
+  flex: 1;
+`;
 
 export const ModalActions = styled.View`
   flex-direction: row;

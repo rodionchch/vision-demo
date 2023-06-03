@@ -7,7 +7,7 @@ import {
   TextInput,
   Chip,
 } from 'react-native-paper';
-import {isIOS} from 'constants/Platform';
+import {isAndroid, isIOS} from 'constants/Platform';
 import {ScrollView} from 'react-native-gesture-handler';
 
 export const Messenger = styled.SafeAreaView`
@@ -65,6 +65,7 @@ export const MessengerInput = styled.View`
   flex-direction: row;
   align-items: center;
   padding: 0 2px 0 8px;
+  ${() => isAndroid && `padding: 0 2px 8px 8px;`}
 `;
 
 export const MessengerTextInput = styled(TextInput).attrs({

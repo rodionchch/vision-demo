@@ -1,23 +1,23 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 interface AppState {
-  dashboard: 'chat' | 'call' | 'mail' | 'sms';
+  auth: boolean;
 }
 
 const initialState: AppState = {
-  dashboard: 'sms',
+  auth: false,
 };
 
 export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setDashboard: (state, {payload}) => {
-      state.dashboard = payload;
+    setAuth: (state, {payload}) => {
+      state.auth = payload;
     },
   },
 });
 
-export const {setDashboard} = appSlice.actions;
+export const {setAuth} = appSlice.actions;
 
 export default appSlice.reducer;
